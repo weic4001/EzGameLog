@@ -10,12 +10,12 @@ enum RedactionCategory: String, CaseIterable, Codable, Hashable, Sendable {
 
     var title: String {
         switch self {
-        case .accessToken: "Token / 密钥"
-        case .accountIdentifier: "账号标识"
-        case .emailAddress: "邮箱地址"
-        case .ipAddress: "IP 地址"
-        case .deviceSerial: "设备序列号"
-        case .localPath: "本地路径"
+        case .accessToken: String(localized: "Token / 密钥")
+        case .accountIdentifier: String(localized: "账号标识")
+        case .emailAddress: String(localized: "邮箱地址")
+        case .ipAddress: String(localized: "IP 地址")
+        case .deviceSerial: String(localized: "设备序列号")
+        case .localPath: String(localized: "本地路径")
         }
     }
 }
@@ -32,7 +32,7 @@ struct CustomRedactionRule: Identifiable, Equatable, Codable, Sendable {
         id: UUID = UUID(),
         name: String,
         pattern: String,
-        replacement: String = "‹已脱敏:自定义规则›",
+        replacement: String = String(localized: "‹已脱敏:自定义规则›"),
         packagePattern: String = "",
         isEnabled: Bool = true
     ) {

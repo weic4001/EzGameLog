@@ -217,10 +217,10 @@
 				};
 			};
 			buildConfigurationList = B00000000000000000000060 /* Build configuration list for PBXProject "GameLog" */;
-			developmentRegion = zh_CN;
+			developmentRegion = "zh-Hans";
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				zh_CN,
+				"zh-Hans",
 				en,
 				Base,
 			);

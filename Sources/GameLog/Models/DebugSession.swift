@@ -12,14 +12,14 @@ enum DebugSessionState: String, Codable, Sendable {
 
     var title: String {
         switch self {
-        case .ready: "准备"
-        case .starting: "启动中"
-        case .capturing: "采集中"
-        case .followingPaused: "暂停跟随"
-        case .recovering: "恢复中"
-        case .stopping: "停止中"
-        case .stopped: "已停止"
-        case .failed: "失败"
+        case .ready: String(localized: "准备")
+        case .starting: String(localized: "启动中")
+        case .capturing: String(localized: "采集中")
+        case .followingPaused: String(localized: "暂停跟随")
+        case .recovering: String(localized: "恢复中")
+        case .stopping: String(localized: "停止中")
+        case .stopped: String(localized: "已停止")
+        case .failed: String(localized: "失败")
         }
     }
 

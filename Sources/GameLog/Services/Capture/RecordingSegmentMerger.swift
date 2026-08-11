@@ -18,7 +18,7 @@ enum RecordingSegmentMerger {
             withMediaType: .video,
             preferredTrackID: kCMPersistentTrackID_Invalid
         ) else {
-            throw CaptureError.videoEncodingFailed("无法创建录屏合并轨道")
+            throw CaptureError.videoEncodingFailed(String(localized: "无法创建录屏合并轨道"))
         }
 
         var insertionTime = CMTime.zero
@@ -29,7 +29,7 @@ enum RecordingSegmentMerger {
             guard duration.seconds.isFinite,
                   duration.seconds > 0,
                   let sourceTrack = tracks.first else {
-                throw CaptureError.videoEncodingFailed("录屏分段无有效视频轨道")
+                throw CaptureError.videoEncodingFailed(String(localized: "录屏分段无有效视频轨道"))
             }
             if index == 0 {
                 compositionTrack.preferredTransform = try await sourceTrack.load(
@@ -48,7 +48,7 @@ enum RecordingSegmentMerger {
             asset: composition,
             presetName: AVAssetExportPresetPassthrough
         ) else {
-            throw CaptureError.videoEncodingFailed("无法创建录屏合并任务")
+            throw CaptureError.videoEncodingFailed(String(localized: "无法创建录屏合并任务"))
         }
         try await exporter.export(to: outputURL, as: .mp4)
     }

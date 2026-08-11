@@ -9,13 +9,13 @@ enum ADBInstallationSource: String, Sendable, Equatable {
     var title: String {
         switch self {
         case .bundled:
-            "内置 ADB"
+            String(localized: "内置 ADB")
         case .userSelected:
-            "外部 ADB"
+            String(localized: "外部 ADB")
         case .environment:
-            "环境中的 ADB"
+            String(localized: "环境中的 ADB")
         case .commonLocation:
-            "常用位置中的 ADB"
+            String(localized: "常用位置中的 ADB")
         }
     }
 }

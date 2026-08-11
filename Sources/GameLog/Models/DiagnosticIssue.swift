@@ -7,8 +7,8 @@ enum DiagnosticIssueKind: String, Codable, CaseIterable, Sendable {
 
     var title: String {
         switch self {
-        case .javaCrash: "Java 崩溃"
-        case .nativeCrash: "Native 崩溃"
+        case .javaCrash: String(localized: "Java 崩溃")
+        case .nativeCrash: String(localized: "Native 崩溃")
         case .anr: "ANR"
         }
     }

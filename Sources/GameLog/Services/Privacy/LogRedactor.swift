@@ -244,6 +244,6 @@ enum LogRedactor {
     }
 
     private static func replacement(for category: RedactionCategory) -> String {
-        "‹已脱敏:\(category.title)›"
+        String(localized: "‹已脱敏:\(category.title)›")
     }
 }

@@ -7,9 +7,9 @@ enum RecordingSafetyLevel: String, Codable, Sendable {
 
     var title: String {
         switch self {
-        case .normal: "空间充足"
-        case .warning: "空间偏低"
-        case .critical: "空间严重不足"
+        case .normal: String(localized: "空间充足")
+        case .warning: String(localized: "空间偏低")
+        case .critical: String(localized: "空间严重不足")
         }
     }
 }

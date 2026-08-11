@@ -11,7 +11,7 @@ struct FilterControlsView: View {
                 .padding(.top, 8)
         } label: {
             HStack(spacing: 6) {
-                Text("高级过滤")
+                Text(String(localized: "高级过滤"))
                     .foregroundStyle(.primary)
 
                 Spacer(minLength: 4)
@@ -24,7 +24,7 @@ struct FilterControlsView: View {
                         .padding(.vertical, 2)
                         .background(.quaternary, in: Capsule())
                 } else {
-                    Text("未启用")
+                    Text(String(localized: "未启用"))
                         .font(.caption2)
                         .foregroundStyle(.tertiary)
                 }
@@ -41,12 +41,12 @@ private struct AdvancedFilterInlineView: View {
         @Bindable var model = model
 
         VStack(alignment: .leading, spacing: 10) {
-            filterSectionTitle("日志等级")
+            filterSectionTitle(String(localized: "日志等级"))
 
             VStack(spacing: 7) {
-                filterRow("最低等级") {
-                    Picker("最低等级", selection: $model.filterConfiguration.minimumLevel) {
-                        Text("不限").tag(nil as LogLevel?)
+                filterRow(String(localized: "最低等级")) {
+                    Picker(String(localized: "最低等级"), selection: $model.filterConfiguration.minimumLevel) {
+                        Text(String(localized: "不限")).tag(nil as LogLevel?)
                         ForEach(
                             LogLevel.allCases.filter { $0 != .unknown },
                             id: \.self
@@ -59,7 +59,7 @@ private struct AdvancedFilterInlineView: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 }
 
-                filterRow("包含等级") {
+                filterRow(String(localized: "包含等级")) {
                     Menu {
                         ForEach(LogLevel.allCases, id: \.self) { level in
                             Toggle(
@@ -74,19 +74,19 @@ private struct AdvancedFilterInlineView: View {
                         Text(model.filterConfiguration.enabledLevelSummary)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .accessibilityLabel("包含等级")
+                    .accessibilityLabel(String(localized: "包含等级"))
                     .accessibilityValue(model.filterConfiguration.enabledLevelSummary)
                 }
             }
-            .help("日志需同时满足最低等级和包含等级")
+            .help(String(localized: "日志需同时满足最低等级和包含等级"))
 
             Divider()
 
-            filterSectionTitle("范围与 Tag")
+            filterSectionTitle(String(localized: "范围与 Tag"))
 
             VStack(spacing: 7) {
-                filterRow("进程范围") {
-                    Picker("进程范围", selection: $model.filterConfiguration.pidScope) {
+                filterRow(String(localized: "进程范围")) {
+                    Picker(String(localized: "进程范围"), selection: $model.filterConfiguration.pidScope) {
                         ForEach(LogPIDScope.allCases) { scope in
                             Text(scope.title).tag(scope)
                         }
@@ -97,41 +97,41 @@ private struct AdvancedFilterInlineView: View {
                 }
 
                 if model.filterConfiguration.pidScope == .custom {
-                    filterRow("指定 PID") {
+                    filterRow(String(localized: "指定 PID")) {
                         TextField(
-                            "例如 1234, 5678",
+                            String(localized: "例如 1234, 5678"),
                             text: Binding(
                                 get: { model.filterConfiguration.customPIDs ?? "" },
                                 set: { model.filterConfiguration.customPIDs = $0 }
                             )
                         )
                         .textFieldStyle(.roundedBorder)
-                        .accessibilityLabel("指定 PID")
+                        .accessibilityLabel(String(localized: "指定 PID"))
                     }
                 }
 
-                filterRow("包含 Tag") {
+                filterRow(String(localized: "包含 Tag")) {
                     TextField(
-                        "逗号分隔",
+                        String(localized: "逗号分隔"),
                         text: $model.filterConfiguration.includedTags
                     )
                     .textFieldStyle(.roundedBorder)
-                    .accessibilityLabel("包含 Tag")
+                    .accessibilityLabel(String(localized: "包含 Tag"))
                 }
 
-                filterRow("排除 Tag") {
+                filterRow(String(localized: "排除 Tag")) {
                     TextField(
-                        "逗号分隔",
+                        String(localized: "逗号分隔"),
                         text: $model.filterConfiguration.excludedTags
                     )
                     .textFieldStyle(.roundedBorder)
-                    .accessibilityLabel("排除 Tag")
+                    .accessibilityLabel(String(localized: "排除 Tag"))
                 }
             }
 
             Divider()
 
-            filterSectionTitle("搜索匹配")
+            filterSectionTitle(String(localized: "搜索匹配"))
 
             ViewThatFits(in: .horizontal) {
                 HStack(spacing: 12) {
@@ -143,7 +143,7 @@ private struct AdvancedFilterInlineView: View {
                 }
             }
             .font(.caption)
-            .help("这些选项作用于工具栏的“搜索 Tag 或消息”")
+            .help(String(localized: "这些选项作用于工具栏的“搜索 Tag 或消息”"))
 
             if let error = model.filterError {
                 Label(error, systemImage: "exclamationmark.triangle.fill")
@@ -154,12 +154,12 @@ private struct AdvancedFilterInlineView: View {
             if model.filterConfiguration.activeAdvancedFilterCount > 0 {
                 HStack {
                     Spacer()
-                    Button("重置") {
+                    Button(String(localized: "重置")) {
                         model.preset = .all
                         model.filterConfiguration = LogFilterConfiguration()
                     }
                     .buttonStyle(.borderless)
-                    .help("重置所有高级过滤条件")
+                    .help(String(localized: "重置所有高级过滤条件"))
                 }
             }
         }
@@ -194,11 +194,11 @@ private struct AdvancedFilterInlineView: View {
 
         Group {
             Toggle(
-                "区分大小写",
+                String(localized: "区分大小写"),
                 isOn: $model.filterConfiguration.isCaseSensitive
             )
             Toggle(
-                "正则表达式",
+                String(localized: "正则表达式"),
                 isOn: $model.filterConfiguration.usesRegularExpression
             )
         }
@@ -225,17 +225,17 @@ private extension LogFilterConfiguration {
     }
 
     var advancedFilterSummary: String {
-        activeAdvancedFilterCount == 0 ? "未启用" : "\(activeAdvancedFilterCount) 项已启用"
+        activeAdvancedFilterCount == 0 ? String(localized: "未启用") : String(localized: "\(activeAdvancedFilterCount) 项已启用")
     }
 
     var enabledLevelSummary: String {
         switch enabledLevels.count {
         case LogLevel.allCases.count:
-            "全部等级"
+            String(localized: "全部等级")
         case 0:
-            "未选择"
+            String(localized: "未选择")
         default:
-            "已选 \(enabledLevels.count) 项"
+            String(localized: "已选 \(enabledLevels.count) 项")
         }
     }
 }
@@ -256,7 +256,7 @@ struct SavedFiltersView: View {
                     .lineLimit(1)
             }
             .buttonStyle(.plain)
-            .help("应用内置 \(builtInPreset.name) 日志预设")
+            .help(String(localized: "应用内置 \(builtInPreset.name) 日志预设"))
         }
 
         if !model.savedFilterPresets.isEmpty {
@@ -274,10 +274,10 @@ struct SavedFiltersView: View {
                 .buttonStyle(.plain)
                 Spacer(minLength: 0)
                 Menu {
-                    Button("重命名…") {
+                    Button(String(localized: "重命名…")) {
                         beginRenaming(savedPreset)
                     }
-                    Button("删除", role: .destructive) {
+                    Button(String(localized: "删除"), role: .destructive) {
                         pendingDelete = savedPreset
                     }
                 } label: {
@@ -285,20 +285,20 @@ struct SavedFiltersView: View {
                 }
                 .menuStyle(.borderlessButton)
                 .fixedSize()
-                .help("管理过滤预设")
+                .help(String(localized: "管理过滤预设"))
             }
             .contextMenu {
-                Button("重命名…") {
+                Button(String(localized: "重命名…")) {
                     beginRenaming(savedPreset)
                 }
-                Button("删除", role: .destructive) {
+                Button(String(localized: "删除"), role: .destructive) {
                     pendingDelete = savedPreset
                 }
             }
         }
 
         HStack(spacing: 6) {
-            TextField("新预设名称", text: $newPresetName)
+            TextField(String(localized: "新预设名称"), text: $newPresetName)
                 .textFieldStyle(.roundedBorder)
                 .onSubmit(save)
             Button(action: save) {
@@ -306,20 +306,20 @@ struct SavedFiltersView: View {
             }
             .buttonStyle(.borderless)
             .disabled(newPresetName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-            .help("保存当前过滤条件")
+            .help(String(localized: "保存当前过滤条件"))
         }
         .alert(
-            "重命名过滤预设",
+            String(localized: "重命名过滤预设"),
             isPresented: Binding(
                 get: { editingPreset != nil },
                 set: { if !$0 { editingPreset = nil } }
             )
         ) {
-            TextField("名称", text: $renameText)
-            Button("取消", role: .cancel) {
+            TextField(String(localized: "名称"), text: $renameText)
+            Button(String(localized: "取消"), role: .cancel) {
                 editingPreset = nil
             }
-            Button("保存") {
+            Button(String(localized: "保存")) {
                 if let editingPreset {
                     model.renameSavedFilter(editingPreset, to: renameText)
                 }
@@ -327,23 +327,23 @@ struct SavedFiltersView: View {
             }
         }
         .alert(
-            "删除过滤预设？",
+            String(localized: "删除过滤预设？"),
             isPresented: Binding(
                 get: { pendingDelete != nil },
                 set: { if !$0 { pendingDelete = nil } }
             )
         ) {
-            Button("取消", role: .cancel) {
+            Button(String(localized: "取消"), role: .cancel) {
                 pendingDelete = nil
             }
-            Button("删除", role: .destructive) {
+            Button(String(localized: "删除"), role: .destructive) {
                 if let pendingDelete {
                     model.deleteSavedFilter(pendingDelete)
                 }
                 pendingDelete = nil
             }
         } message: {
-            Text("该操作不会删除日志或会话数据。")
+            Text(String(localized: "该操作不会删除日志或会话数据。"))
         }
     }
 

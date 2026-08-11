@@ -40,7 +40,7 @@ enum SessionRegressionService {
             )
         }
         let fallback = TimelineAnchor(
-            title: "会话开始",
+            title: String(localized: "会话开始"),
             baselineEventID: nil,
             comparisonEventID: nil,
             baselineTime: baselineSession.createdAt,
@@ -81,7 +81,7 @@ enum SessionRegressionService {
             guard let issue = comparisonIssues[key] else { continue }
             alerts.append(RegressionAlert(
                 severity: .critical,
-                title: "新增\(issue.kind.title)",
+                title: String(localized: "新增\(issue.kind.title)"),
                 detail: issue.title,
                 metric: "diagnostic.\(key)",
                 baselineValue: 0,
@@ -97,7 +97,7 @@ enum SessionRegressionService {
             }
             alerts.append(RegressionAlert(
                 severity: .warning,
-                title: "\(new.kind.title)出现次数增加",
+                title: String(localized: "\(new.kind.title)出现次数增加"),
                 detail: "\(new.title)：\(old.occurrenceCount) → \(new.occurrenceCount)",
                 metric: "diagnostic-occurrence.\(key)",
                 baselineValue: old.occurrenceCount,
@@ -115,8 +115,8 @@ enum SessionRegressionService {
         if comparison.errorCount - baseline.errorCount >= errorThreshold {
             alerts.append(RegressionAlert(
                 severity: .warning,
-                title: "错误日志显著增加",
-                detail: "错误与 Fatal 日志从 \(baseline.errorCount) 增加到 \(comparison.errorCount)。",
+                title: String(localized: "错误日志显著增加"),
+                detail: String(localized: "错误与 Fatal 日志从 \(baseline.errorCount) 增加到 \(comparison.errorCount)。"),
                 metric: "error-count",
                 baselineValue: baseline.errorCount,
                 comparisonValue: comparison.errorCount
@@ -134,8 +134,8 @@ enum SessionRegressionService {
             guard new - old >= threshold else { return nil }
             return RegressionAlert(
                 severity: .warning,
-                title: "\(tag) 日志激增",
-                detail: "Tag 计数从 \(old) 增加到 \(new)。",
+                title: String(localized: "\(tag) 日志激增"),
+                detail: String(localized: "Tag 计数从 \(old) 增加到 \(new)。"),
                 metric: "tag.\(tag)",
                 baselineValue: old,
                 comparisonValue: new
@@ -158,8 +158,8 @@ enum SessionRegressionService {
             ) {
             alerts.append(RegressionAlert(
                 severity: .info,
-                title: "整体日志量增加",
-                detail: "日志从 \(baseline.logEventCount) 增加到 \(comparison.logEventCount)，建议检查重复输出。",
+                title: String(localized: "整体日志量增加"),
+                detail: String(localized: "日志从 \(baseline.logEventCount) 增加到 \(comparison.logEventCount)，建议检查重复输出。"),
                 metric: "log-count",
                 baselineValue: baseline.logEventCount,
                 comparisonValue: comparison.logEventCount
@@ -213,7 +213,7 @@ enum SessionRegressionService {
                 continue
             }
             return TimelineAnchor(
-                title: baselineIssues[key]?.title ?? "共同诊断",
+                title: baselineIssues[key]?.title ?? String(localized: "共同诊断"),
                 baselineEventID: baselineEvent.id,
                 comparisonEventID: comparisonEvent.id,
                 baselineTime: baselineEvent.occurredAt,

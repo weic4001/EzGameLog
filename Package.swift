@@ -4,6 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "GameLog",
+    defaultLocalization: "zh-Hans",
     platforms: [
         .macOS("26.0")
     ],
@@ -13,7 +14,10 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "GameLog",
-            path: "Sources/GameLog"
+            path: "Sources/GameLog",
+            resources: [
+                .process("Resources")
+            ]
         ),
         .testTarget(
             name: "GameLogTests",

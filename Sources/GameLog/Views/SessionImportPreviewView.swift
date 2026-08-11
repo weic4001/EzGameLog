@@ -7,7 +7,7 @@ struct SessionImportPreviewView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .firstTextBaseline, spacing: 10) {
-                Label("导入预检", systemImage: "checkmark.shield")
+                Label(String(localized: "导入预检"), systemImage: "checkmark.shield")
                     .font(.headline)
                 Text(preview.disposition.title)
                     .font(.caption.weight(.medium))
@@ -19,7 +19,7 @@ struct SessionImportPreviewView: View {
                         in: .capsule
                     )
                 Spacer()
-                Button("取消") {
+                Button(String(localized: "取消")) {
                     model.cancelPendingImport()
                 }
                 .keyboardShortcut(.cancelAction)
@@ -33,30 +33,30 @@ struct SessionImportPreviewView: View {
 
             LazyVGrid(columns: previewColumns, alignment: .leading, spacing: 8) {
                 ImportPreviewFact(
-                    title: "目标包",
+                    title: String(localized: "目标包"),
                     value: preview.targetPackage
                 )
                 ImportPreviewFact(
-                    title: "设备",
+                    title: String(localized: "设备"),
                     value: "\(preview.deviceDisplayName) · \(preview.deviceSerial)"
                 )
                 ImportPreviewFact(
-                    title: "日志",
-                    value: "\(preview.eventCount) 条"
+                    title: String(localized: "日志"),
+                    value: String(localized: "\(preview.eventCount) 条")
                 )
                 ImportPreviewFact(
-                    title: "证据",
-                    value: "\(preview.screenshotCount) 截图 · \(preview.recordingCount) 录屏"
+                    title: String(localized: "证据"),
+                    value: String(localized: "\(preview.screenshotCount) 截图 · \(preview.recordingCount) 录屏")
                 )
                 ImportPreviewFact(
-                    title: "大小",
+                    title: String(localized: "大小"),
                     value: ByteCountFormatter.string(
                         fromByteCount: preview.totalByteCount,
                         countStyle: .file
                     )
                 )
                 ImportPreviewFact(
-                    title: "完整性",
+                    title: String(localized: "完整性"),
                     value: preview.integrityStatus.title,
                     systemImage: integrityIcon,
                     tint: integrityColor
@@ -68,7 +68,7 @@ struct SessionImportPreviewView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             } else if preview.integrityStatus == .legacyUnverified {
-                Text("此旧格式会话通过了结构和内容校验，但没有 SHA-256 协作清单；请确认来源可信。")
+                Text(String(localized: "此旧格式会话通过了结构和内容校验，但没有 SHA-256 协作清单；请确认来源可信。"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -90,17 +90,17 @@ struct SessionImportPreviewView: View {
     }
 
     private var confirmTitle: String {
-        preview.disposition == .newSession ? "确认导入" : "合并注释"
+        preview.disposition == .newSession ? String(localized: "确认导入") : String(localized: "合并注释")
     }
 
     private var mergeDescription: String {
         let title = preview.importedTitle.isEmpty
-            ? "无标题"
-            : "标题“\(preview.importedTitle)”"
+            ? String(localized: "无标题")
+            : String(localized: "标题“\(preview.importedTitle)”")
         let labels = preview.importedLabels.isEmpty
-            ? "无新增标签"
-            : "\(preview.importedLabels.count) 个导入标签"
-        return "本地日志和证据不会被替换；将按更新时间合并\(title)及\(labels)。"
+            ? String(localized: "无新增标签")
+            : String(localized: "\(preview.importedLabels.count) 个导入标签")
+        return String(localized: "本地日志和证据不会被替换；将按更新时间合并\(title)及\(labels)。")
     }
 
     private var dispositionColor: Color {

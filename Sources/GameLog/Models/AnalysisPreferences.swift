@@ -6,8 +6,8 @@ enum SessionImportIntegrityStatus: String, Codable, Sendable {
 
     var title: String {
         switch self {
-        case .verified: "完整性已验证"
-        case .legacyUnverified: "旧格式，未提供校验清单"
+        case .verified: String(localized: "完整性已验证")
+        case .legacyUnverified: String(localized: "旧格式，未提供校验清单")
         }
     }
 }
@@ -18,8 +18,8 @@ enum SessionImportPreviewDisposition: String, Codable, Sendable {
 
     var title: String {
         switch self {
-        case .newSession: "导入为新会话"
-        case .mergeAnnotation: "仅合并注释与标签"
+        case .newSession: String(localized: "导入为新会话")
+        case .mergeAnnotation: String(localized: "仅合并注释与标签")
         }
     }
 }

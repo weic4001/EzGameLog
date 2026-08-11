@@ -19,32 +19,32 @@ struct LogWorkspaceView: View {
             } else if model.selectedDeviceSerial == nil,
                       model.devices.contains(where: { $0.state == .unauthorized }) {
                 ContentUnavailableView {
-                    Label("请在设备上允许 USB 调试", systemImage: "lock.trianglebadge.exclamationmark")
+                    Label(String(localized: "请在设备上允许 USB 调试"), systemImage: "lock.trianglebadge.exclamationmark")
                 } description: {
-                    Text("解锁 Android 设备，并在 RSA 授权弹窗中选择允许这台 Mac。")
+                    Text(String(localized: "解锁 Android 设备，并在 RSA 授权弹窗中选择允许这台 Mac。"))
                 } actions: {
-                    Button("重新检查") {
+                    Button(String(localized: "重新检查")) {
                         Task { await model.refreshDevices() }
                     }
                 }
             } else if model.selectedDeviceSerial == nil,
                       model.devices.contains(where: { $0.state == .offline }) {
                 ContentUnavailableView {
-                    Label("设备离线", systemImage: "iphone.slash")
+                    Label(String(localized: "设备离线"), systemImage: "iphone.slash")
                 } description: {
-                    Text("保持 USB 连接，等待设备恢复；当前会话数据不会被清除。")
+                    Text(String(localized: "保持 USB 连接，等待设备恢复；当前会话数据不会被清除。"))
                 } actions: {
-                    Button("重新检查") {
+                    Button(String(localized: "重新检查")) {
                         Task { await model.refreshDevices() }
                     }
                 }
             } else if model.selectedDeviceSerial == nil {
                 ContentUnavailableView {
-                    Label("连接 Android 测试机", systemImage: "cable.connector")
+                    Label(String(localized: "连接 Android 测试机"), systemImage: "cable.connector")
                 } description: {
-                    Text("打开 USB 调试并在设备上允许这台 Mac，然后刷新设备列表。")
+                    Text(String(localized: "打开 USB 调试并在设备上允许这台 Mac，然后刷新设备列表。"))
                 } actions: {
-                    Button("刷新设备") {
+                    Button(String(localized: "刷新设备")) {
                         Task { await model.refreshDevices() }
                     }
                 }
@@ -75,7 +75,7 @@ struct LogWorkspaceView: View {
             if model.isStreaming {
                 ProgressView()
                     .controlSize(.small)
-                Text("实时")
+                Text(String(localized: "实时"))
                     .foregroundStyle(.green)
             }
             if model.isRecording, let startedAt = model.recordingStartedAt {
@@ -94,7 +94,7 @@ struct LogWorkspaceView: View {
                             : "externaldrive.badge.exclamationmark"
                     )
                     .foregroundStyle(recordingSafetyColor)
-                    .help("录屏期间每 5 秒检查 Mac 与设备剩余空间")
+                    .help(String(localized: "录屏期间每 5 秒检查 Mac 与设备剩余空间"))
                 }
             } else if model.recordingState != .idle {
                 Text(model.recordingState.title)
@@ -104,23 +104,23 @@ struct LogWorkspaceView: View {
                 .lineLimit(1)
             Spacer()
             if !model.searchText.isEmpty {
-                Text("\(model.visibleEvents.count.formatted()) 个匹配")
+                Text(String(localized: "\(model.visibleEvents.count.formatted()) 个匹配"))
                 Button {
                     model.selectNextMatch(direction: -1)
                 } label: {
                     Image(systemName: "chevron.up")
                 }
                 .buttonStyle(.borderless)
-                .help("上一个匹配")
+                .help(String(localized: "上一个匹配"))
                 Button {
                     model.selectNextMatch(direction: 1)
                 } label: {
                     Image(systemName: "chevron.down")
                 }
                 .buttonStyle(.borderless)
-                .help("下一个匹配")
+                .help(String(localized: "下一个匹配"))
             }
-            Text("显示 \(model.visibleEvents.count.formatted()) / \(model.events.count.formatted())")
+            Text(String(localized: "显示 \(model.visibleEvents.count.formatted()) / \(model.events.count.formatted())"))
             if let issue = model.diagnosticIssues.first {
                 Button {
                     model.selectDiagnosticIssue(issue)
@@ -132,23 +132,23 @@ struct LogWorkspaceView: View {
                 }
                 .buttonStyle(.borderless)
                 .foregroundStyle(.red)
-                .help("查看自动识别的 Crash / ANR")
+                .help(String(localized: "查看自动识别的 Crash / ANR"))
             }
-            Toggle("跟随最新", isOn: Binding(
+            Toggle(String(localized: "跟随最新"), isOn: Binding(
                 get: { model.followLatest },
                 set: { model.setFollowingLatest($0) }
             ))
             .toggleStyle(.checkbox)
             if !model.followLatest {
-                Button("回到最新") {
+                Button(String(localized: "回到最新")) {
                     model.setFollowingLatest(true)
                 }
                 .buttonStyle(.borderless)
                 .keyboardShortcut(.downArrow, modifiers: [.command])
             }
-            Text("淘汰 \(model.evictedEventCount.formatted())")
-            Text("传输丢失 \(model.transportDroppedEventCount.formatted())")
-            Text("\(model.inputRatePerSecond.formatted(.number.precision(.fractionLength(0)))) 行/秒")
+            Text(String(localized: "淘汰 \(model.evictedEventCount.formatted())"))
+            Text(String(localized: "传输丢失 \(model.transportDroppedEventCount.formatted())"))
+            Text(String(localized: "\(model.inputRatePerSecond.formatted(.number.precision(.fractionLength(0)))) 行/秒"))
             Text(model.sessionState.title)
         }
         .font(.caption)
@@ -170,7 +170,7 @@ struct LogWorkspaceView: View {
         guard let seconds = model.recordingSafetyStatus.estimatedMacRemainingSeconds else {
             return free
         }
-        return "\(free) · 约 \(durationText(seconds))"
+        return String(localized: "\(free) · 约 \(durationText(seconds))")
     }
 
     private var recordingSafetyColor: Color {
@@ -192,30 +192,30 @@ private struct RecoveryBanner: View {
             Image(systemName: "clock.arrow.trianglehead.counterclockwise.rotate.90")
                 .foregroundStyle(.orange)
             VStack(alignment: .leading, spacing: 2) {
-                Text("发现未完成会话")
+                Text(String(localized: "发现未完成会话"))
                     .font(.headline)
                 Text("\(recoverable.session.targetPackage) · \(recoverable.session.createdAt.formatted())")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
             Spacer()
-            Button("恢复数据") {
+            Button(String(localized: "恢复数据")) {
                 Task { await model.restoreRecoverableSession(recoverable) }
             }
-            Button("清理", role: .destructive) {
+            Button(String(localized: "清理"), role: .destructive) {
                 confirmDiscard = true
             }
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 9)
         .background(.orange.opacity(0.08))
-        .alert("清理未完成会话？", isPresented: $confirmDiscard) {
-            Button("取消", role: .cancel) {}
-            Button("清理", role: .destructive) {
+        .alert(String(localized: "清理未完成会话？"), isPresented: $confirmDiscard) {
+            Button(String(localized: "取消"), role: .cancel) {}
+            Button(String(localized: "清理"), role: .destructive) {
                 Task { await model.discardRecoverableSession(recoverable) }
             }
         } message: {
-            Text("日志、截图和录屏文件将一并删除，此操作无法撤销。")
+            Text(String(localized: "日志、截图和录屏文件将一并删除，此操作无法撤销。"))
         }
     }
 }
@@ -226,14 +226,14 @@ private struct FailedADBView: View {
 
     var body: some View {
         ContentUnavailableView {
-            Label("ADB 无法使用", systemImage: "exclamationmark.triangle")
+            Label(String(localized: "ADB 无法使用"), systemImage: "exclamationmark.triangle")
         } description: {
             Text(message)
         } actions: {
-            Button("重新检测") {
+            Button(String(localized: "重新检测")) {
                 Task { await model.redetectADB() }
             }
-            Button("选择外部 ADB…") {
+            Button(String(localized: "选择外部 ADB…")) {
                 Task { await model.chooseADBExecutable() }
             }
         }
@@ -245,11 +245,11 @@ private struct MissingADBView: View {
 
     var body: some View {
         ContentUnavailableView {
-            Label("内置 ADB 无法使用", systemImage: "terminal")
+            Label(String(localized: "内置 ADB 无法使用"), systemImage: "terminal")
         } description: {
-            Text("请重新安装 GameLog，或临时选择一个可用的外部 ADB。")
+            Text(String(localized: "请重新安装 GameLog，或临时选择一个可用的外部 ADB。"))
         } actions: {
-            Button("选择外部 ADB…") {
+            Button(String(localized: "选择外部 ADB…")) {
                 Task { await model.chooseADBExecutable() }
             }
         }

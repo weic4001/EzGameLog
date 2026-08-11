@@ -11,11 +11,11 @@ enum LogTableColumn: String, CaseIterable, Identifiable, Codable, Sendable {
 
     var title: String {
         switch self {
-        case .time: "时间"
-        case .level: "级别"
+        case .time: String(localized: "时间")
+        case .level: String(localized: "级别")
         case .pid: "PID/TID"
         case .tag: "Tag"
-        case .message: "消息"
+        case .message: String(localized: "消息")
         }
     }
 }

@@ -236,15 +236,15 @@ enum SymbolCatalogError: LocalizedError, Sendable {
     var errorDescription: String? {
         switch self {
         case .invalidPackagePattern:
-            "项目范围必须留空、使用完整包名或形如 com.example.*。"
+            String(localized: "项目范围必须留空、使用完整包名或形如 com.example.*。")
         case .directoryNotFound:
-            "找不到所选符号目录。"
+            String(localized: "找不到所选符号目录。")
         case .noELFFiles:
-            "目录中没有可识别的 ELF .so 文件。"
+            String(localized: "目录中没有可识别的 ELF .so 文件。")
         case .tooManyFiles:
-            "符号目录超过 50,000 个库文件，请缩小目录范围。"
+            String(localized: "符号目录超过 50,000 个库文件，请缩小目录范围。")
         case .symbolizerNotExecutable:
-            "所选 llvm-symbolizer 不可执行。"
+            String(localized: "所选 llvm-symbolizer 不可执行。")
         }
     }
 }

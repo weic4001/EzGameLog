@@ -92,7 +92,7 @@ enum NativeSymbolicationService {
                                 column: nil
                             )
                         ],
-                        errorMessage: "日志已有函数名，但未找到对应符号文件。"
+                        errorMessage: String(localized: "日志已有函数名，但未找到对应符号文件。")
                     ))
                 } else {
                     results.append(SymbolicatedNativeFrame(
@@ -100,7 +100,7 @@ enum NativeSymbolicationService {
                         status: .missingSymbolFile,
                         symbolFilePath: nil,
                         sourceFrames: [],
-                        errorMessage: "缺少 \(frame.libraryName) 的匹配符号文件。"
+                        errorMessage: String(localized: "缺少 \(frame.libraryName) 的匹配符号文件。")
                     ))
                 }
             case .ambiguous(let count):
@@ -109,7 +109,7 @@ enum NativeSymbolicationService {
                     status: .missingSymbolFile,
                     symbolFilePath: nil,
                     sourceFrames: [],
-                    errorMessage: "找到 \(count) 个同名库，缺少可用于消歧的 Build ID 或 ABI。"
+                    errorMessage: String(localized: "找到 \(count) 个同名库，缺少可用于消歧的 Build ID 或 ABI。")
                 ))
             case .record(let record):
                 do {
@@ -125,7 +125,7 @@ enum NativeSymbolicationService {
                         symbolFilePath: record.path,
                         sourceFrames: sourceFrames,
                         errorMessage: sourceFrames.isEmpty
-                            ? "llvm-symbolizer 未返回可用函数或源码位置。"
+                            ? String(localized: "llvm-symbolizer 未返回可用函数或源码位置。")
                             : nil
                     ))
                 } catch is CancellationError {
@@ -168,7 +168,7 @@ enum NativeSymbolicationService {
             }
             let parsedLocation = parseLocation(location)
             frames.append(SymbolizedSourceFrame(
-                function: function == "??" ? "未知函数" : function,
+                function: function == "??" ? String(localized: "未知函数") : function,
                 file: parsedLocation.file,
                 line: parsedLocation.line,
                 column: parsedLocation.column
@@ -380,13 +380,13 @@ enum NativeSymbolicationError: LocalizedError, Sendable {
     var errorDescription: String? {
         switch self {
         case .toolTimedOut:
-            "llvm-symbolizer 执行超时。"
+            String(localized: "llvm-symbolizer 执行超时。")
         case .toolFailed(let detail):
             detail.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-                ? "llvm-symbolizer 执行失败。"
+                ? String(localized: "llvm-symbolizer 执行失败。")
                 : detail
         case .symbolizerUnavailable:
-            "未找到 llvm-symbolizer，请选择 Android NDK 中的可执行文件。"
+            String(localized: "未找到 llvm-symbolizer，请选择 Android NDK 中的可执行文件。")
         }
     }
 }

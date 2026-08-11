@@ -104,7 +104,7 @@ final class AppModel {
             )
         }
     }
-    private(set) var statusMessage = "正在查找 ADB…"
+    private(set) var statusMessage = String(localized: "正在查找 ADB…")
     private(set) var lastExportURL: URL?
     private(set) var availableStorageBytes: Int64 = 0
     private(set) var sessionRootDirectory: URL
@@ -298,7 +298,7 @@ final class AppModel {
             recoverableSessions = try await sessionStore.recoverableSessions()
             availableStorageBytes = try await sessionStore.availableCapacity()
         } catch {
-            statusMessage = "检查未完成会话失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "检查未完成会话失败：\(error.localizedDescription)")
         }
         await configureADB(
             savedPath: UserDefaults.standard.string(forKey: ADBPreferenceKey.customExecutablePath)
@@ -307,12 +307,12 @@ final class AppModel {
 
     func chooseADBExecutable() async {
         guard !sessionState.isActive else {
-            statusMessage = "请先停止当前会话，再更改 ADB 路径"
+            statusMessage = String(localized: "请先停止当前会话，再更改 ADB 路径")
             return
         }
         let panel = NSOpenPanel()
-        panel.title = "选择 adb 可执行文件"
-        panel.prompt = "选择"
+        panel.title = String(localized: "选择 adb 可执行文件")
+        panel.prompt = String(localized: "选择")
         panel.canChooseDirectories = false
         panel.canChooseFiles = true
         panel.allowsMultipleSelection = false
@@ -327,7 +327,7 @@ final class AppModel {
 
     func redetectADB() async {
         guard !sessionState.isActive else {
-            statusMessage = "请先停止当前会话，再重新检测 ADB"
+            statusMessage = String(localized: "请先停止当前会话，再重新检测 ADB")
             return
         }
         await configureADB(
@@ -337,7 +337,7 @@ final class AppModel {
 
     func useBundledADB() async {
         guard !sessionState.isActive else {
-            statusMessage = "请先停止当前会话，再切换 ADB"
+            statusMessage = String(localized: "请先停止当前会话，再切换 ADB")
             return
         }
         UserDefaults.standard.removeObject(forKey: ADBPreferenceKey.customExecutablePath)
@@ -346,7 +346,7 @@ final class AppModel {
 
     func refreshDevices() async {
         guard let deviceService else { return }
-        statusMessage = "正在刷新设备…"
+        statusMessage = String(localized: "正在刷新设备…")
         do {
             let newDevices = try await deviceService.listDevices()
             let activeSerial = selectedDeviceSerial
@@ -370,9 +370,9 @@ final class AppModel {
             if selectedDeviceSerial == nil {
                 processes = []
                 selectedProcessID = nil
-                statusMessage = newDevices.isEmpty ? "未发现 Android 设备" : "设备尚未授权或处于离线状态"
+                statusMessage = newDevices.isEmpty ? String(localized: "未发现 Android 设备") : String(localized: "设备尚未授权或处于离线状态")
             } else {
-                statusMessage = "已连接 \(selectedDevice?.displayName ?? "Android 设备")"
+                statusMessage = String(localized: "已连接 \(selectedDevice?.displayName ?? String(localized: "Android 设备"))")
                 loadRecentPackages()
                 await refreshProcesses()
             }
@@ -384,11 +384,11 @@ final class AppModel {
 
     func pairWirelessDevice(host: String, port: Int, pairingCode: String) async {
         guard let deviceService else {
-            wirelessADBStatus = "ADB 尚未就绪"
+            wirelessADBStatus = String(localized: "ADB 尚未就绪")
             return
         }
         isWirelessADBWorking = true
-        wirelessADBStatus = "正在配对…"
+        wirelessADBStatus = String(localized: "正在配对…")
         defer { isWirelessADBWorking = false }
         do {
             _ = try await deviceService.pairWirelessDevice(
@@ -396,49 +396,49 @@ final class AppModel {
                 port: port,
                 pairingCode: pairingCode
             )
-            wirelessADBStatus = "配对成功；请输入设备显示的调试端口进行连接"
+            wirelessADBStatus = String(localized: "配对成功；请输入设备显示的调试端口进行连接")
         } catch {
-            wirelessADBStatus = "配对失败：\(error.localizedDescription)"
+            wirelessADBStatus = String(localized: "配对失败：\(error.localizedDescription)")
         }
     }
 
     func connectWirelessDevice(host: String, port: Int) async {
         guard let deviceService else {
-            wirelessADBStatus = "ADB 尚未就绪"
+            wirelessADBStatus = String(localized: "ADB 尚未就绪")
             return
         }
         isWirelessADBWorking = true
-        wirelessADBStatus = "正在连接…"
+        wirelessADBStatus = String(localized: "正在连接…")
         defer { isWirelessADBWorking = false }
         do {
             _ = try await deviceService.connectWirelessDevice(host: host, port: port)
-            wirelessADBStatus = "无线设备已连接"
+            wirelessADBStatus = String(localized: "无线设备已连接")
             await refreshDevices()
         } catch {
-            wirelessADBStatus = "连接失败：\(error.localizedDescription)"
+            wirelessADBStatus = String(localized: "连接失败：\(error.localizedDescription)")
         }
     }
 
     func disconnectWirelessDevice(host: String, port: Int) async {
         guard let deviceService else {
-            wirelessADBStatus = "ADB 尚未就绪"
+            wirelessADBStatus = String(localized: "ADB 尚未就绪")
             return
         }
         isWirelessADBWorking = true
         defer { isWirelessADBWorking = false }
         do {
             _ = try await deviceService.disconnectWirelessDevice(host: host, port: port)
-            wirelessADBStatus = "无线设备已断开"
+            wirelessADBStatus = String(localized: "无线设备已断开")
             await refreshDevices()
         } catch {
-            wirelessADBStatus = "断开失败：\(error.localizedDescription)"
+            wirelessADBStatus = String(localized: "断开失败：\(error.localizedDescription)")
         }
     }
 
     func selectDevice(_ serial: String?) async {
         guard serial != selectedDeviceSerial else { return }
         guard !sessionState.isActive else {
-            statusMessage = "请先停止当前会话，再切换设备"
+            statusMessage = String(localized: "请先停止当前会话，再切换设备")
             return
         }
         selectedDeviceSerial = serial
@@ -464,24 +464,24 @@ final class AppModel {
                 }?.pid
             }
             statusMessage = newProcesses.isEmpty
-                ? "设备已连接；未找到应用进程"
-                : "已加载 \(newProcesses.count) 个应用进程"
+                ? String(localized: "设备已连接；未找到应用进程")
+                : String(localized: "已加载 \(newProcesses.count) 个应用进程")
         } catch {
             processes = []
-            statusMessage = "读取进程失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "读取进程失败：\(error.localizedDescription)")
         }
     }
 
     func selectProcess(_ pid: Int?) {
         guard pid != selectedProcessID else { return }
         guard !sessionState.isActive else {
-            statusMessage = "请先停止当前会话，再切换目标进程"
+            statusMessage = String(localized: "请先停止当前会话，再切换目标进程")
             return
         }
         selectedProcessID = pid
         if let process = processes.first(where: { $0.pid == pid }) {
             guard AndroidPackageName.isValid(process.name) else {
-                statusMessage = "所选进程不是有效的 Android 包名"
+                statusMessage = String(localized: "所选进程不是有效的 Android 包名")
                 selectedProcessID = nil
                 return
             }
@@ -493,7 +493,7 @@ final class AppModel {
 
     func selectPackageName(_ packageName: String) async {
         guard !sessionState.isActive else {
-            statusMessage = "请先停止当前会话，再切换目标包名"
+            statusMessage = String(localized: "请先停止当前会话，再切换目标包名")
             return
         }
         let trimmed = packageName.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -505,7 +505,7 @@ final class AppModel {
         guard AndroidPackageName.isValid(trimmed) else {
             selectedPackageName = nil
             selectedProcessID = nil
-            statusMessage = "包名格式无效；请输入类似 com.example.game 的 Android 包名"
+            statusMessage = String(localized: "包名格式无效；请输入类似 com.example.game 的 Android 包名")
             return
         }
         selectedPackageName = trimmed
@@ -515,8 +515,8 @@ final class AppModel {
         let pids = (try? await deviceService.pids(forPackage: trimmed, serial: serial)) ?? []
         selectedProcessID = pids.sorted().first
         statusMessage = pids.isEmpty
-            ? "已选择 \(trimmed)；开始会话后将等待进程启动"
-            : "已选择 \(trimmed) · PID \(pids.sorted().map(String.init).joined(separator: ", "))"
+            ? String(localized: "已选择 \(trimmed)；开始会话后将等待进程启动")
+            : String(localized: "已选择 \(trimmed) · PID \(pids.sorted().map(String.init).joined(separator: ", "))")
     }
 
     func toggleSession() async {
@@ -534,14 +534,14 @@ final class AppModel {
               let targetPackage = selectedPackageName,
               let deviceService,
               logService != nil else {
-            statusMessage = selectedPackageName == nil ? "请选择目标包名或应用进程" : "设备或 ADB 尚未就绪"
+            statusMessage = selectedPackageName == nil ? String(localized: "请选择目标包名或应用进程") : String(localized: "设备或 ADB 尚未就绪")
             return
         }
 
         let startToken = UUID()
         startSessionToken = startToken
         sessionState = .starting
-        statusMessage = "正在创建调试会话…"
+        statusMessage = String(localized: "正在创建调试会话…")
         resetVisibleSession()
 
         do {
@@ -573,8 +573,8 @@ final class AppModel {
             scheduleFilterUpdate(delay: .zero)
             sessionState = initialPIDs.isEmpty ? .recovering : .capturing
             statusMessage = initialPIDs.isEmpty
-                ? "会话已创建，等待 \(targetPackage) 进程启动…"
-                : "正在捕获 \(targetPackage) 的日志"
+                ? String(localized: "会话已创建，等待 \(targetPackage) 进程启动…")
+                : String(localized: "正在捕获 \(targetPackage) 的日志")
             sessionLogger.info("Started session \(session.id.uuidString, privacy: .public)")
             launchLogStream(session: session, serial: device.serial)
             startProcessMonitoring()
@@ -583,7 +583,7 @@ final class AppModel {
             startSessionToken = nil
             sessionState = .failed
             isStreaming = false
-            statusMessage = "启动会话失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "启动会话失败：\(error.localizedDescription)")
             sessionLogger.error("Session start failed: \(error.localizedDescription, privacy: .public)")
         }
     }
@@ -592,12 +592,12 @@ final class AppModel {
         if sessionState == .starting, currentSession == nil {
             startSessionToken = nil
             sessionState = .ready
-            statusMessage = "已取消启动会话"
+            statusMessage = String(localized: "已取消启动会话")
             return
         }
         guard sessionState.isActive, let session = currentSession else { return }
         sessionState = .stopping
-        statusMessage = "正在停止会话并写入磁盘…"
+        statusMessage = String(localized: "正在停止会话并写入磁盘…")
         if recordingTask != nil {
             recordingState = .stopping
             recordingTask?.cancel()
@@ -622,11 +622,11 @@ final class AppModel {
             currentSession = finalized
             scheduleFilterUpdate(delay: .zero)
             sessionState = .stopped
-            statusMessage = "会话已停止，可导出或在 Finder 中查看"
+            statusMessage = String(localized: "会话已停止，可导出或在 Finder 中查看")
             sessionLogger.info("Finalized session \(session.id.uuidString, privacy: .public)")
         } catch {
             sessionState = .failed
-            statusMessage = "停止会话失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "停止会话失败：\(error.localizedDescription)")
         }
     }
 
@@ -670,17 +670,17 @@ final class AppModel {
             configuration: filterConfiguration
         ))
         persistSavedFilterPresets()
-        statusMessage = "已保存过滤预设“\(trimmed)”"
+        statusMessage = String(localized: "已保存过滤预设“\(trimmed)”")
     }
 
     func applySavedFilter(_ savedPreset: SavedFilterPreset) {
         filterConfiguration = savedPreset.configuration
-        statusMessage = "已应用过滤预设“\(savedPreset.name)”"
+        statusMessage = String(localized: "已应用过滤预设“\(savedPreset.name)”")
     }
 
     func applyBuiltInFilter(_ builtInPreset: BuiltInFilterPreset) {
         filterConfiguration = builtInPreset.configuration
-        statusMessage = "已应用 \(builtInPreset.name) 过滤预设"
+        statusMessage = String(localized: "已应用 \(builtInPreset.name) 过滤预设")
     }
 
     func renameSavedFilter(_ savedPreset: SavedFilterPreset, to name: String) {
@@ -694,7 +694,7 @@ final class AppModel {
     func deleteSavedFilter(_ savedPreset: SavedFilterPreset) {
         savedFilterPresets.removeAll { $0.id == savedPreset.id }
         persistSavedFilterPresets()
-        statusMessage = "已删除过滤预设“\(savedPreset.name)”"
+        statusMessage = String(localized: "已删除过滤预设“\(savedPreset.name)”")
     }
 
     func upsertCustomRedactionRule(_ rule: CustomRedactionRule) -> String? {
@@ -702,26 +702,26 @@ final class AppModel {
         let pattern = rule.pattern.trimmingCharacters(in: .whitespacesAndNewlines)
         let packagePattern = rule.packagePattern
             .trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !name.isEmpty else { return "请输入规则名称。" }
-        guard !pattern.isEmpty else { return "请输入正则表达式。" }
+        guard !name.isEmpty else { return String(localized: "请输入规则名称。") }
+        guard !pattern.isEmpty else { return String(localized: "请输入正则表达式。") }
         do {
             _ = try NSRegularExpression(pattern: pattern)
         } catch {
-            return "正则表达式无效：\(error.localizedDescription)"
+            return String(localized: "正则表达式无效：\(error.localizedDescription)")
         }
         if !packagePattern.isEmpty {
             let exactPackage = packagePattern.hasSuffix(".*")
                 ? String(packagePattern.dropLast(2))
                 : packagePattern
             guard AndroidPackageName.isValid(exactPackage) else {
-                return "包名范围无效；可使用 com.example.game 或 com.example.*。"
+                return String(localized: "包名范围无效；可使用 com.example.game 或 com.example.*。")
             }
         }
         var normalized = rule
         normalized.name = name
         normalized.pattern = pattern
         normalized.replacement = rule.replacement.isEmpty
-            ? "‹已脱敏:\(name)›"
+            ? String(localized: "‹已脱敏:\(name)›")
             : rule.replacement
         normalized.packagePattern = packagePattern
         if let index = customRedactionRules.firstIndex(where: { $0.id == rule.id }) {
@@ -792,17 +792,17 @@ final class AppModel {
 
     func markIncident() async {
         guard sessionState.isActive, let session = currentSession else {
-            statusMessage = "请先开始调试会话"
+            statusMessage = String(localized: "请先开始调试会话")
             return
         }
-        let marker = evidenceEvent(kind: .incident, message: "问题标记")
+        let marker = evidenceEvent(kind: .incident, message: String(localized: "问题标记"))
         let recordingOffset = recordingStartedAt.map {
             max(0, marker.occurredAt.timeIntervalSince($0))
         }
         let incident = IncidentRecord(
             createdAt: marker.occurredAt,
             eventID: marker.id,
-            title: "问题 \(Self.incidentTimeFormatter.string(from: marker.occurredAt))",
+            title: String(localized: "问题 \(Self.incidentTimeFormatter.string(from: marker.occurredAt))"),
             recordingOffset: recordingOffset
         )
         do {
@@ -812,15 +812,15 @@ final class AppModel {
             enqueue([marker])
             selectedEventIDs = [marker.id]
             isInspectorPresented = true
-            statusMessage = "问题已标记，正在补充现场截图…"
-            announceAccessibility("问题已标记")
+            statusMessage = String(localized: "问题已标记，正在补充现场截图…")
+            announceAccessibility(String(localized: "问题已标记"))
         } catch {
-            statusMessage = "标记问题失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "标记问题失败：\(error.localizedDescription)")
             return
         }
 
         guard screenshotTask == nil else {
-            statusMessage = "问题已标记；当前截图任务完成后可手动补充证据"
+            statusMessage = String(localized: "问题已标记；当前截图任务完成后可手动补充证据")
             return
         }
         screenshotTask = Task { [weak self] in
@@ -839,9 +839,9 @@ final class AppModel {
         incidents[index].note = note.trimmingCharacters(in: .whitespacesAndNewlines)
         do {
             try await sessionStore.upsert(incident: incidents[index], sessionID: sessionID)
-            statusMessage = "问题说明已保存"
+            statusMessage = String(localized: "问题说明已保存")
         } catch {
-            statusMessage = "保存问题说明失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "保存问题说明失败：\(error.localizedDescription)")
         }
     }
 
@@ -900,7 +900,7 @@ final class AppModel {
         buffer.removeAll()
         events = []
         selectedEventIDs = []
-        let marker = systemEvent("本地视图已清空；设备 Logcat 缓冲区未改变")
+        let marker = systemEvent(String(localized: "本地视图已清空；设备 Logcat 缓冲区未改变"))
         buffer.append(contentsOf: [marker])
         events = buffer.events
         scheduleFilterUpdate(delay: .zero)
@@ -909,7 +909,7 @@ final class AppModel {
                 try? await sessionStore.append(events: [marker], sessionID: sessionID)
             }
         }
-        statusMessage = "本地日志视图已清空"
+        statusMessage = String(localized: "本地日志视图已清空")
     }
 
     func takeScreenshot(attachingToIncidentID incidentID: UUID? = nil) async {
@@ -919,11 +919,11 @@ final class AppModel {
               let session = currentSession,
               let paths = currentSessionPaths,
               !isCapturing else {
-            statusMessage = "请先开始调试会话"
+            statusMessage = String(localized: "请先开始调试会话")
             return
         }
         isCapturing = true
-        statusMessage = "正在截取设备屏幕…"
+        statusMessage = String(localized: "正在截取设备屏幕…")
         defer { isCapturing = false }
 
         do {
@@ -934,7 +934,7 @@ final class AppModel {
             try await sessionStore.append(artifact: item, sessionID: session.id)
             let marker = evidenceEvent(
                 kind: .screenshot,
-                message: "屏幕截图 · \(item.fileURL.lastPathComponent)",
+                message: String(localized: "屏幕截图 · \(item.fileURL.lastPathComponent)"),
                 evidenceID: item.id
             )
             try await sessionStore.append(events: [marker], sessionID: session.id)
@@ -944,16 +944,16 @@ final class AppModel {
             }
             enqueue([marker])
             isInspectorPresented = true
-            statusMessage = "截图已保存到当前会话"
-            announceAccessibility("屏幕截图已保存")
+            statusMessage = String(localized: "截图已保存到当前会话")
+            announceAccessibility(String(localized: "屏幕截图已保存"))
         } catch is CancellationError {
-            await persistFailureEvent("截图已取消", kind: .system)
-            statusMessage = "截图已取消"
-            announceAccessibility("屏幕截图已取消")
+            await persistFailureEvent(String(localized: "截图已取消"), kind: .system)
+            statusMessage = String(localized: "截图已取消")
+            announceAccessibility(String(localized: "屏幕截图已取消"))
         } catch {
-            await persistFailureEvent("截图失败：\(error.localizedDescription)", kind: .system)
-            statusMessage = "截图失败：\(error.localizedDescription)"
-            announceAccessibility("屏幕截图失败")
+            await persistFailureEvent(String(localized: "截图失败：\(error.localizedDescription)"), kind: .system)
+            statusMessage = String(localized: "截图失败：\(error.localizedDescription)")
+            announceAccessibility(String(localized: "屏幕截图失败"))
         }
     }
 
@@ -968,7 +968,7 @@ final class AppModel {
     func toggleRecording() {
         if recordingTask != nil {
             recordingState = .stopping
-            statusMessage = "正在停止录屏并保存文件…"
+            statusMessage = String(localized: "正在停止录屏并保存文件…")
             recordingTask?.cancel()
             return
         }
@@ -999,27 +999,27 @@ final class AppModel {
               let session = currentSession,
               let paths = currentSessionPaths,
               !isRecording else {
-            statusMessage = "请先开始调试会话"
+            statusMessage = String(localized: "请先开始调试会话")
             return
         }
         let freeBytes = (try? await sessionStore.availableCapacity()) ?? 0
         availableStorageBytes = freeBytes
         guard freeBytes == 0 || freeBytes >= 500_000_000 else {
-            recordingState = .failed(message: "磁盘剩余空间不足 500 MB")
-            statusMessage = "磁盘空间不足；请更改位置或清理临时会话"
-            await persistFailureEvent("录屏未开始：Mac 磁盘空间不足", kind: .recordingFailed)
+            recordingState = .failed(message: String(localized: "磁盘剩余空间不足 500 MB"))
+            statusMessage = String(localized: "磁盘空间不足；请更改位置或清理临时会话")
+            await persistFailureEvent(String(localized: "录屏未开始：Mac 磁盘空间不足"), kind: .recordingFailed)
             return
         }
         isRecording = true
         recordingStartedAt = Date()
         startRecordingSafetyMonitoring()
         recordingState = .starting
-        let startMarker = evidenceEvent(kind: .recordingStart, message: "录屏开始")
+        let startMarker = evidenceEvent(kind: .recordingStart, message: String(localized: "录屏开始"))
         try? await sessionStore.append(events: [startMarker], sessionID: session.id)
         enqueue([startMarker])
-        announceAccessibility("设备录屏开始")
+        announceAccessibility(String(localized: "设备录屏开始"))
         recordingState = .recording(startedAt: recordingStartedAt ?? Date())
-        statusMessage = "正在录屏；再次点击录屏按钮结束…"
+        statusMessage = String(localized: "正在录屏；再次点击录屏按钮结束…")
         defer {
             recordingSafetyTask?.cancel()
             recordingSafetyTask = nil
@@ -1045,7 +1045,7 @@ final class AppModel {
             try await sessionStore.append(artifact: item, sessionID: session.id)
             let marker = evidenceEvent(
                 kind: .recordingEnd,
-                message: "录屏结束 · \(item.fileURL.lastPathComponent)",
+                message: String(localized: "录屏结束 · \(item.fileURL.lastPathComponent)"),
                 evidenceID: item.id
             )
             try await sessionStore.append(events: [marker], sessionID: session.id)
@@ -1053,12 +1053,12 @@ final class AppModel {
             await attachRecordingToMatchingIncidents(item)
             enqueue([marker])
             isInspectorPresented = true
-            statusMessage = "录屏已保存到当前会话"
-            announceAccessibility("设备录屏结束，文件已保存")
+            statusMessage = String(localized: "录屏已保存到当前会话")
+            announceAccessibility(String(localized: "设备录屏结束，文件已保存"))
         } catch is CancellationError {
-            await persistFailureEvent("录屏已取消，未生成可播放文件", kind: .system)
-            statusMessage = "录屏已取消"
-            announceAccessibility("设备录屏已取消")
+            await persistFailureEvent(String(localized: "录屏已取消，未生成可播放文件"), kind: .system)
+            statusMessage = String(localized: "录屏已取消")
+            announceAccessibility(String(localized: "设备录屏已取消"))
         } catch let CaptureError.recoverableRecording(remotePath, localFileName, reason) {
             let recoverable = RecoverableRecording(
                 deviceSerial: serial,
@@ -1071,18 +1071,18 @@ final class AppModel {
                 sessionID: session.id
             )
             recoverableRecordings.append(recoverable)
-            recordingState = .failed(message: "录屏待重连恢复")
+            recordingState = .failed(message: String(localized: "录屏待重连恢复"))
             await persistFailureEvent(
-                "录屏中断，远端文件待恢复 · \(remotePath)",
+                String(localized: "录屏中断，远端文件待恢复 · \(remotePath)"),
                 kind: .recordingFailed
             )
-            statusMessage = "录屏中断；重连设备后可尝试恢复"
-            announceAccessibility("设备录屏中断，可在重连后恢复")
+            statusMessage = String(localized: "录屏中断；重连设备后可尝试恢复")
+            announceAccessibility(String(localized: "设备录屏中断，可在重连后恢复"))
         } catch {
             recordingState = .failed(message: error.localizedDescription)
-            await persistFailureEvent("录屏失败：\(error.localizedDescription)", kind: .recordingFailed)
-            statusMessage = "录屏失败：\(error.localizedDescription)"
-            announceAccessibility("设备录屏失败")
+            await persistFailureEvent(String(localized: "录屏失败：\(error.localizedDescription)"), kind: .recordingFailed)
+            statusMessage = String(localized: "录屏失败：\(error.localizedDescription)")
+            announceAccessibility(String(localized: "设备录屏失败"))
         }
     }
 
@@ -1097,7 +1097,7 @@ final class AppModel {
     func exportSelectedLogs() async {
         let selected = events.filter { selectedEventIDs.contains($0.id) }
         guard !selected.isEmpty else {
-            statusMessage = "请先选择要导出的日志"
+            statusMessage = String(localized: "请先选择要导出的日志")
             return
         }
         await prepareExportPreview(kind: .session(.selected(selected)))
@@ -1109,7 +1109,7 @@ final class AppModel {
 
     func exportIncidentPackage(_ incident: IncidentRecord) async {
         guard !isRecording else {
-            statusMessage = "请先停止录屏，确保问题包包含完整视频"
+            statusMessage = String(localized: "请先停止录屏，确保问题包包含完整视频")
             return
         }
         await prepareExportPreview(kind: .incident(incident.id))
@@ -1154,7 +1154,7 @@ final class AppModel {
         }
         let panel = NSOpenPanel()
         panel.title = previewTitle(for: preview.kind)
-        panel.prompt = "导出"
+        panel.prompt = String(localized: "导出")
         panel.canChooseFiles = false
         panel.canChooseDirectories = true
         panel.canCreateDirectories = true
@@ -1163,7 +1163,7 @@ final class AppModel {
 
         exportPreview = nil
         isExporting = true
-        statusMessage = "正在原子导出并应用脱敏规则…"
+        statusMessage = String(localized: "正在原子导出并应用脱敏规则…")
         defer { isExporting = false }
         do {
             let url: URL
@@ -1184,9 +1184,9 @@ final class AppModel {
                 )
             }
             lastExportURL = url
-            statusMessage = "已导出到 \(url.lastPathComponent)"
+            statusMessage = String(localized: "已导出到 \(url.lastPathComponent)")
         } catch {
-            statusMessage = "导出失败，原始会话已保留：\(error.localizedDescription)"
+            statusMessage = String(localized: "导出失败，原始会话已保留：\(error.localizedDescription)")
         }
     }
 
@@ -1221,9 +1221,9 @@ final class AppModel {
             currentSession = finalized
             recoverableSessions.removeAll { $0.id == session.id }
             sessionState = .stopped
-            statusMessage = "已恢复未完成会话的数据，可导出或在 Finder 中查看"
+            statusMessage = String(localized: "已恢复未完成会话的数据，可导出或在 Finder 中查看")
         } catch {
-            statusMessage = "恢复会话失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "恢复会话失败：\(error.localizedDescription)")
         }
     }
 
@@ -1231,9 +1231,9 @@ final class AppModel {
         do {
             try await sessionStore.discard(sessionID: recoverable.id)
             recoverableSessions.removeAll { $0.id == recoverable.id }
-            statusMessage = "已清理未完成会话"
+            statusMessage = String(localized: "已清理未完成会话")
         } catch {
-            statusMessage = "清理失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "清理失败：\(error.localizedDescription)")
         }
     }
 
@@ -1249,12 +1249,12 @@ final class AppModel {
 
     func chooseSessionRootDirectory() async {
         guard !sessionState.isActive else {
-            statusMessage = "请先停止当前会话，再更改会话目录"
+            statusMessage = String(localized: "请先停止当前会话，再更改会话目录")
             return
         }
         let panel = NSOpenPanel()
-        panel.title = "选择 GameLog 会话目录"
-        panel.prompt = "使用此目录"
+        panel.title = String(localized: "选择 GameLog 会话目录")
+        panel.prompt = String(localized: "使用此目录")
         panel.canChooseFiles = false
         panel.canChooseDirectories = true
         panel.canCreateDirectories = true
@@ -1272,9 +1272,9 @@ final class AppModel {
             UserDefaults.standard.set(url.path, forKey: "sessionRootDirectory")
             recoverableSessions = try await sessionStore.recoverableSessions()
             await refreshStorageCapacity()
-            statusMessage = "会话目录已更新"
+            statusMessage = String(localized: "会话目录已更新")
         } catch {
-            statusMessage = "所选目录不可写：\(error.localizedDescription)"
+            statusMessage = String(localized: "所选目录不可写：\(error.localizedDescription)")
         }
     }
 
@@ -1284,11 +1284,11 @@ final class AppModel {
               let paths = currentSessionPaths,
               selectedDeviceSerial == recoverable.deviceSerial,
               selectedDevice?.state == .online else {
-            statusMessage = "请连接原设备 \(recoverable.deviceSerial) 后重试"
+            statusMessage = String(localized: "请连接原设备 \(recoverable.deviceSerial) 后重试")
             return
         }
         recordingState = .finalizing
-        statusMessage = "正在恢复设备端录屏…"
+        statusMessage = String(localized: "正在恢复设备端录屏…")
         do {
             let item = try await captureService.recoverRecording(
                 serial: recoverable.deviceSerial,
@@ -1305,16 +1305,16 @@ final class AppModel {
             evidence.insert(item, at: 0)
             let marker = evidenceEvent(
                 kind: .recordingEnd,
-                message: "录屏已恢复 · \(item.fileURL.lastPathComponent)",
+                message: String(localized: "录屏已恢复 · \(item.fileURL.lastPathComponent)"),
                 evidenceID: item.id
             )
             try? await sessionStore.append(events: [marker], sessionID: session.id)
             enqueue([marker])
             recordingState = .idle
-            statusMessage = "设备端录屏已恢复并校验"
+            statusMessage = String(localized: "设备端录屏已恢复并校验")
         } catch {
             recordingState = .failed(message: error.localizedDescription)
-            statusMessage = "录屏恢复失败，远端文件已保留：\(error.localizedDescription)"
+            statusMessage = String(localized: "录屏恢复失败，远端文件已保留：\(error.localizedDescription)")
         }
     }
 
@@ -1325,38 +1325,38 @@ final class AppModel {
             )
             recoverableSessions = try await sessionStore.recoverableSessions()
             await refreshStorageCapacity()
-            statusMessage = count == 0 ? "没有过期临时会话" : "已清理 \(count) 个过期临时会话"
+            statusMessage = count == 0 ? String(localized: "没有过期临时会话") : String(localized: "已清理 \(count) 个过期临时会话")
         } catch {
-            statusMessage = "临时会话清理失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "临时会话清理失败：\(error.localizedDescription)")
         }
     }
 
     func cleanupAllRecoverableSessions() async {
         guard !sessionState.isActive else {
-            statusMessage = "请先停止当前会话"
+            statusMessage = String(localized: "请先停止当前会话")
             return
         }
         do {
             let count = try await sessionStore.cleanupRecoverableSessions(olderThanDays: nil)
             recoverableSessions = try await sessionStore.recoverableSessions()
             await refreshStorageCapacity()
-            statusMessage = count == 0 ? "没有可清理的异常会话" : "已清理 \(count) 个异常会话"
+            statusMessage = count == 0 ? String(localized: "没有可清理的异常会话") : String(localized: "已清理 \(count) 个异常会话")
         } catch {
-            statusMessage = "异常会话清理失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "异常会话清理失败：\(error.localizedDescription)")
         }
     }
 
     func discardCurrentSession() async {
         guard sessionState == .stopped, let session = currentSession else {
-            statusMessage = "请先停止当前会话"
+            statusMessage = String(localized: "请先停止当前会话")
             return
         }
         let alert = NSAlert()
-        alert.messageText = "丢弃当前会话？"
-        alert.informativeText = "当前会话的日志、截图、录屏和书签将被永久删除。"
+        alert.messageText = String(localized: "丢弃当前会话？")
+        alert.informativeText = String(localized: "当前会话的日志、截图、录屏和书签将被永久删除。")
         alert.alertStyle = .warning
-        alert.addButton(withTitle: "取消")
-        alert.addButton(withTitle: "丢弃")
+        alert.addButton(withTitle: String(localized: "取消"))
+        alert.addButton(withTitle: String(localized: "丢弃"))
         guard alert.runModal() == .alertSecondButtonReturn else { return }
 
         do {
@@ -1365,10 +1365,10 @@ final class AppModel {
             currentSessionPaths = nil
             resetVisibleSession()
             sessionState = .ready
-            statusMessage = "当前会话已丢弃"
+            statusMessage = String(localized: "当前会话已丢弃")
             await refreshStorageCapacity()
         } catch {
-            statusMessage = "丢弃会话失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "丢弃会话失败：\(error.localizedDescription)")
         }
     }
 
@@ -1398,10 +1398,10 @@ final class AppModel {
 
     private func prepareExportPreview(kind: PendingExportKind) async {
         guard let session = currentSession, !isExporting else {
-            statusMessage = "当前没有可导出的会话"
+            statusMessage = String(localized: "当前没有可导出的会话")
             return
         }
-        statusMessage = "正在检查导出内容中的敏感信息…"
+        statusMessage = String(localized: "正在检查导出内容中的敏感信息…")
         do {
             let configuration = RedactionConfiguration(
                 isEnabled: true,
@@ -1431,24 +1431,24 @@ final class AppModel {
                 configuration: configuration
             )
             statusMessage = preview.totalMatchCount == 0
-                ? "未发现常见敏感信息；请确认后导出"
-                : "发现 \(preview.totalMatchCount) 处可能的敏感信息"
+                ? String(localized: "未发现常见敏感信息；请确认后导出")
+                : String(localized: "发现 \(preview.totalMatchCount) 处可能的敏感信息")
         } catch {
-            statusMessage = "生成脱敏预览失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "生成脱敏预览失败：\(error.localizedDescription)")
         }
     }
 
     private func previewTitle(for kind: PendingExportKind) -> String {
         switch kind {
-        case .session: "选择会话导出位置"
-        case .incident: "选择问题包导出位置"
+        case .session: String(localized: "选择会话导出位置")
+        case .incident: String(localized: "选择问题包导出位置")
         }
     }
 
     private func exportEvidenceFile(_ source: URL) async {
         let panel = NSSavePanel()
-        panel.title = "导出证据"
-        panel.prompt = "导出"
+        panel.title = String(localized: "导出证据")
+        panel.prompt = String(localized: "导出")
         panel.nameFieldStringValue = source.lastPathComponent
         guard await panel.begin() == .OK, let destination = panel.url else { return }
         do {
@@ -1456,9 +1456,9 @@ final class AppModel {
                 try FileManager.default.removeItem(at: destination)
             }
             try FileManager.default.copyItem(at: source, to: destination)
-            statusMessage = "证据已导出"
+            statusMessage = String(localized: "证据已导出")
         } catch {
-            statusMessage = "证据导出失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "证据导出失败：\(error.localizedDescription)")
         }
     }
 
@@ -1546,17 +1546,17 @@ final class AppModel {
             return
         }
         if lastAnnouncedRecordingSafetyLevel != status.level {
-            announceAccessibility("录屏\(status.level.title)")
+            announceAccessibility(String(localized: "录屏\(status.level.title)"))
             lastAnnouncedRecordingSafetyLevel = status.level
         }
         statusMessage = status.level == .critical
-            ? "录屏继续进行；空间严重不足，请尽快停止并保存"
-            : "录屏继续进行；剩余空间偏低"
+            ? String(localized: "录屏继续进行；空间严重不足，请尽快停止并保存")
+            : String(localized: "录屏继续进行；剩余空间偏低")
     }
 
     private func configureADB(savedPath: String?) async {
         adbAvailability = .checking
-        statusMessage = "正在查找 ADB…"
+        statusMessage = String(localized: "正在查找 ADB…")
         guard let installation = await ADBLocator().locate(savedPath: savedPath) else {
             adbAvailability = .missing
             adbPath = ""
@@ -1566,7 +1566,7 @@ final class AppModel {
             deviceService = nil
             logService = nil
             captureService = nil
-            statusMessage = "内置 ADB 缺失或不可执行；请重新安装 GameLog，或选择外部 ADB"
+            statusMessage = String(localized: "内置 ADB 缺失或不可执行；请重新安装 GameLog，或选择外部 ADB")
             return
         }
 
@@ -1661,9 +1661,9 @@ final class AppModel {
         logRestartTask = nil
         isStreaming = false
         sessionState = .recovering
-        statusMessage = "设备 \(serial) 已断开，正在等待重连…"
-        await persistSystemEvent("设备已断开 · \(serial)")
-        announceAccessibility("Android 设备已断开，正在等待重连")
+        statusMessage = String(localized: "设备 \(serial) 已断开，正在等待重连…")
+        await persistSystemEvent(String(localized: "设备已断开 · \(serial)"))
+        announceAccessibility(String(localized: "Android 设备已断开，正在等待重连"))
     }
 
     private func recoverActiveDevice(serial: String) async {
@@ -1671,7 +1671,7 @@ final class AppModel {
         do {
             let pids = try await deviceService.pids(forPackage: session.targetPackage, serial: serial)
             guard !pids.isEmpty else {
-                statusMessage = "设备已重连，等待 \(session.targetPackage) 进程启动…"
+                statusMessage = String(localized: "设备已重连，等待 \(session.targetPackage) 进程启动…")
                 return
             }
             wasDeviceDisconnected = false
@@ -1679,10 +1679,10 @@ final class AppModel {
             scheduleFilterUpdate(delay: .zero)
             selectedProcessID = pids.sorted().first
             await refreshProcesses()
-            await persistSystemEvent("设备已重连 · PID \(pids.sorted().map(String.init).joined(separator: ", "))")
+            await persistSystemEvent(String(localized: "设备已重连 · PID \(pids.sorted().map(String.init).joined(separator: ", "))"))
             sessionState = followLatest ? .capturing : .followingPaused
-            statusMessage = "会话已自动恢复"
-            announceAccessibility("Android 设备已重连，会话已恢复")
+            statusMessage = String(localized: "会话已自动恢复")
+            announceAccessibility(String(localized: "Android 设备已重连，会话已恢复"))
             logRestartTask?.cancel()
             logRestartTask = nil
             launchLogStream(session: session, serial: serial)
@@ -1690,7 +1690,7 @@ final class AppModel {
                 await recoverRecording(pending)
             }
         } catch {
-            statusMessage = "设备恢复失败，2 秒后重试：\(error.localizedDescription)"
+            statusMessage = String(localized: "设备恢复失败，2 秒后重试：\(error.localizedDescription)")
         }
     }
 
@@ -1734,22 +1734,22 @@ final class AppModel {
         scheduleFilterUpdate(delay: .zero)
         if pids.isEmpty {
             await persistSystemEvent(
-                "目标进程已退出 · 原 PID \(previous.sorted().map(String.init).joined(separator: ", "))"
+                String(localized: "目标进程已退出 · 原 PID \(previous.sorted().map(String.init).joined(separator: ", "))")
             )
             sessionState = .recovering
-            statusMessage = "等待 \(session.targetPackage) 重新启动…"
+            statusMessage = String(localized: "等待 \(session.targetPackage) 重新启动…")
             return
         }
 
         selectedProcessID = pids.sorted().first
         let lifecycle = previous.isEmpty && !hasPreviouslyRun
-            ? "目标进程已启动"
-            : "目标进程已重启"
+            ? String(localized: "目标进程已启动")
+            : String(localized: "目标进程已重启")
         await persistSystemEvent(
             "\(lifecycle) · PID \(pids.sorted().map(String.init).joined(separator: ", "))"
         )
         sessionState = followLatest ? .capturing : .followingPaused
-        statusMessage = "已恢复目标进程日志"
+        statusMessage = String(localized: "已恢复目标进程日志")
         if logTask == nil {
             launchLogStream(session: session, serial: serial)
         }
@@ -1794,10 +1794,10 @@ final class AppModel {
         guard sessionState != .stopping && sessionState != .stopped else { return }
         if let error, !(error is CancellationError) {
             sessionState = .recovering
-            statusMessage = "日志流已中断，等待设备恢复：\(error.localizedDescription)"
+            statusMessage = String(localized: "日志流已中断，等待设备恢复：\(error.localizedDescription)")
         } else if sessionState.isActive {
             sessionState = .recovering
-            statusMessage = "日志流已结束，等待恢复"
+            statusMessage = String(localized: "日志流已结束，等待恢复")
         }
         scheduleLogStreamRestart()
     }
@@ -1824,9 +1824,9 @@ final class AppModel {
                 return
             }
             self.logRestartTask = nil
-            await self.persistSystemEvent("日志流已重新连接")
+            await self.persistSystemEvent(String(localized: "日志流已重新连接"))
             self.sessionState = self.followLatest ? .capturing : .followingPaused
-            self.statusMessage = "日志流已恢复"
+            self.statusMessage = String(localized: "日志流已恢复")
             self.launchLogStream(session: session, serial: serial)
         }
     }

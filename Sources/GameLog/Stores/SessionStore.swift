@@ -1503,7 +1503,7 @@ actor SessionStore {
                 date: .abbreviated,
                 time: .shortened
             )
-            note = "\(local.note)\n\n---\n导入注释（\(timestamp)）\n\(imported.note)"
+            note = String(localized: "\(local.note)\n\n---\n导入注释（\(timestamp)）\n\(imported.note)")
         }
         let labels = Array(Set(local.labels + imported.labels)).sorted {
             $0.localizedStandardCompare($1) == .orderedAscending
@@ -1673,26 +1673,26 @@ enum SessionStoreError: LocalizedError, Sendable {
 
     var errorDescription: String? {
         switch self {
-        case .cannotCreateSession: "无法创建会话目录。"
-        case .sessionNotActive: "当前没有可写入的活动会话。"
-        case .sessionNotFound: "找不到指定会话。"
-        case .incidentNotFound: "找不到指定的问题标记。"
+        case .cannotCreateSession: String(localized: "无法创建会话目录。")
+        case .sessionNotActive: String(localized: "当前没有可写入的活动会话。")
+        case .sessionNotFound: String(localized: "找不到指定会话。")
+        case .incidentNotFound: String(localized: "找不到指定的问题标记。")
         case .activeSessionsPreventDirectoryChange:
-            "仍有活动会话，无法更改共享会话目录。"
+            String(localized: "仍有活动会话，无法更改共享会话目录。")
         case .invalidSymbolicationReport:
-            "符号化报告与会话不匹配。"
+            String(localized: "符号化报告与会话不匹配。")
         case .invalidImportPackage:
-            "所选目录不是有效的 GameLog 会话包。"
+            String(localized: "所选目录不是有效的 GameLog 会话包。")
         case .unsafeImportPackage:
-            "会话包包含符号链接、越界路径或异常大小，已停止导入。"
+            String(localized: "会话包包含符号链接、越界路径或异常大小，已停止导入。")
         case .importDigestMismatch:
-            "会话包完整性校验失败，文件可能已被修改或损坏。"
+            String(localized: "会话包完整性校验失败，文件可能已被修改或损坏。")
         case .importConflictsWithActiveSession:
-            "同一会话仍在采集中，无法合并导入注释。"
+            String(localized: "同一会话仍在采集中，无法合并导入注释。")
         case .duplicateSessionIdentityConflict:
-            "发现相同会话 ID，但设备、目标或创建时间不一致。"
+            String(localized: "发现相同会话 ID，但设备、目标或创建时间不一致。")
         case .invalidRegressionConfiguration:
-            "回归规则的目标包或阈值无效。"
+            String(localized: "回归规则的目标包或阈值无效。")
         }
     }
 }

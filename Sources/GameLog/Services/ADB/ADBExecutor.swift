@@ -17,7 +17,7 @@ struct ADBCommandError: LocalizedError, Sendable {
     var errorDescription: String? {
         let detail = stderr.trimmingCharacters(in: .whitespacesAndNewlines)
         return detail.isEmpty
-            ? "ADB 命令失败（退出码 \(exitCode)）"
+            ? String(localized: "ADB 命令失败（退出码 \(exitCode)）")
             : detail
     }
 }
@@ -26,7 +26,7 @@ struct ADBCommandTimeoutError: LocalizedError, Sendable {
     let arguments: [String]
 
     var errorDescription: String? {
-        "ADB 命令执行超时。"
+        String(localized: "ADB 命令执行超时。")
     }
 }
 

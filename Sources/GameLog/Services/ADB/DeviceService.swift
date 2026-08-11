@@ -126,7 +126,7 @@ struct DeviceService: Sendable {
         guard response.localizedCaseInsensitiveContains("successfully paired")
             || response.localizedCaseInsensitiveContains("already paired") else {
             throw DeviceServiceError.wirelessCommandFailed(
-                response.isEmpty ? "ADB 未返回配对结果。" : response
+                response.isEmpty ? String(localized: "ADB 未返回配对结果。") : response
             )
         }
         return response
@@ -142,7 +142,7 @@ struct DeviceService: Sendable {
         guard response.localizedCaseInsensitiveContains("connected to")
             || response.localizedCaseInsensitiveContains("already connected") else {
             throw DeviceServiceError.wirelessCommandFailed(
-                response.isEmpty ? "ADB 未返回连接结果。" : response
+                response.isEmpty ? String(localized: "ADB 未返回连接结果。") : response
             )
         }
         return response
@@ -237,11 +237,11 @@ enum DeviceServiceError: LocalizedError, Sendable {
     var errorDescription: String? {
         switch self {
         case .invalidPackageName:
-            "包名格式无效。请输入类似 com.example.game 的 Android 包名。"
+            String(localized: "包名格式无效。请输入类似 com.example.game 的 Android 包名。")
         case .invalidWirelessEndpoint:
-            "无线 ADB 地址无效。请输入主机地址和 1–65535 端口。"
+            String(localized: "无线 ADB 地址无效。请输入主机地址和 1–65535 端口。")
         case .invalidPairingCode:
-            "配对码应为 6 位数字。"
+            String(localized: "配对码应为 6 位数字。")
         case .wirelessCommandFailed(let message):
             message
         }

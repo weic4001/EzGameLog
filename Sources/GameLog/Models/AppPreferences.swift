@@ -9,9 +9,9 @@ enum AppAppearance: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .system: "跟随系统"
-        case .light: "浅色"
-        case .dark: "深色"
+        case .system: String(localized: "跟随系统")
+        case .light: String(localized: "浅色")
+        case .dark: String(localized: "深色")
         }
     }
 
@@ -32,8 +32,8 @@ enum RecordingResolution: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .device: "设备原生"
-        case .p720: "720p 兼容"
+        case .device: String(localized: "设备原生")
+        case .p720: String(localized: "720p 兼容")
         }
     }
 
@@ -54,9 +54,9 @@ enum RecordingBitRate: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .automatic: "自动"
-        case .balanced: "平衡（4 Mbps）"
-        case .high: "高质量（8 Mbps）"
+        case .automatic: String(localized: "自动")
+        case .balanced: String(localized: "平衡（4 Mbps）")
+        case .high: String(localized: "高质量（8 Mbps）")
         }
     }
 

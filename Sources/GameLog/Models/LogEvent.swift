@@ -109,9 +109,9 @@ enum LogPreset: String, CaseIterable, Identifiable, Codable, Sendable {
 
     var title: String {
         switch self {
-        case .all: "全部日志"
-        case .warnings: "警告及以上"
-        case .errors: "仅错误"
+        case .all: String(localized: "全部日志")
+        case .warnings: String(localized: "警告及以上")
+        case .errors: String(localized: "仅错误")
         }
     }
 

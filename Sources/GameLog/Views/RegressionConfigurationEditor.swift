@@ -12,46 +12,46 @@ struct RegressionConfigurationEditor: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("阈值同时满足“绝对增量”和“相对增量”中的较高者时才告警。新增 Crash / ANR 仍会直接标为严重。")
+            Text(String(localized: "阈值同时满足“绝对增量”和“相对增量”中的较高者时才告警。新增 Crash / ANR 仍会直接标为严重。"))
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
             Grid(alignment: .leading, horizontalSpacing: 12, verticalSpacing: 8) {
                 headerRow
                 thresholdRow(
-                    "错误 / Fatal",
+                    String(localized: "错误 / Fatal"),
                     absolute: $thresholds.errorAbsoluteIncrease,
                     relative: $thresholds.errorRelativeIncrease
                 )
                 thresholdRow(
-                    "单个 Tag",
+                    String(localized: "单个 Tag"),
                     absolute: $thresholds.tagAbsoluteIncrease,
                     relative: $thresholds.tagRelativeIncrease
                 )
                 thresholdRow(
-                    "整体日志",
+                    String(localized: "整体日志"),
                     absolute: $thresholds.logAbsoluteIncrease,
                     relative: $thresholds.logRelativeIncrease
                 )
                 GridRow {
-                    Text("重复诊断")
+                    Text(String(localized: "重复诊断"))
                     TextField(
-                        "次数",
+                        String(localized: "次数"),
                         value: $thresholds.recurringDiagnosticIncrease,
                         format: .number
                     )
                     .frame(width: 80)
-                    .accessibilityLabel("重复诊断绝对增量")
-                    Text("新增出现次数")
+                    .accessibilityLabel(String(localized: "重复诊断绝对增量"))
+                    Text(String(localized: "新增出现次数"))
                         .foregroundStyle(.secondary)
-                    Text("基线最少日志")
+                    Text(String(localized: "基线最少日志"))
                     TextField(
-                        "条数",
+                        String(localized: "条数"),
                         value: $thresholds.logMinimumBaseline,
                         format: .number
                     )
                     .frame(width: 80)
-                    .accessibilityLabel("告警所需的基线最少日志条数")
+                    .accessibilityLabel(String(localized: "告警所需的基线最少日志条数"))
                 }
             }
             .textFieldStyle(.roundedBorder)
@@ -59,7 +59,7 @@ struct RegressionConfigurationEditor: View {
             HStack {
                 if !configuration.ignoredAlertKeys.isEmpty {
                     Button(
-                        "恢复已忽略项（\(configuration.ignoredAlertKeys.count)）"
+                        String(localized: "恢复已忽略项（\(configuration.ignoredAlertKeys.count)）")
                     ) {
                         Task {
                             await model.restoreIgnoredRegressionAlerts(
@@ -69,10 +69,10 @@ struct RegressionConfigurationEditor: View {
                     }
                 }
                 Spacer()
-                Button("恢复推荐阈值") {
+                Button(String(localized: "恢复推荐阈值")) {
                     thresholds = .recommended
                 }
-                Button("保存规则") {
+                Button(String(localized: "保存规则")) {
                     Task {
                         await model.saveRegressionThresholds(
                             thresholds,
@@ -88,9 +88,9 @@ struct RegressionConfigurationEditor: View {
 
     private var headerRow: some View {
         GridRow {
-            Text("指标")
-            Text("绝对增量")
-            Text("相对增量")
+            Text(String(localized: "指标"))
+            Text(String(localized: "绝对增量"))
+            Text(String(localized: "相对增量"))
             Text("")
             Text("")
         }
@@ -104,16 +104,16 @@ struct RegressionConfigurationEditor: View {
     ) -> some View {
         GridRow {
             Text(title)
-            TextField("条数", value: absolute, format: .number)
+            TextField(String(localized: "条数"), value: absolute, format: .number)
                 .frame(width: 80)
-                .accessibilityLabel("\(title)绝对增量")
+                .accessibilityLabel(String(localized: "\(title)绝对增量"))
             TextField(
-                "比例",
+                String(localized: "比例"),
                 value: relative,
                 format: .percent.precision(.fractionLength(0))
             )
             .frame(width: 80)
-            .accessibilityLabel("\(title)相对增量")
+            .accessibilityLabel(String(localized: "\(title)相对增量"))
             Text("")
             Text("")
         }

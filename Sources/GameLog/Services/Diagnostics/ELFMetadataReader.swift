@@ -230,9 +230,9 @@ enum ELFMetadataError: LocalizedError, Sendable {
 
     var errorDescription: String? {
         switch self {
-        case .invalidELF: "不是有效的 ELF 符号文件。"
-        case .unsupportedFormat: "ELF 位宽或字节序不受支持。"
-        case .invalidBounds: "ELF 元数据范围无效。"
+        case .invalidELF: String(localized: "不是有效的 ELF 符号文件。")
+        case .unsupportedFormat: String(localized: "ELF 位宽或字节序不受支持。")
+        case .invalidBounds: String(localized: "ELF 元数据范围无效。")
         }
     }
 }

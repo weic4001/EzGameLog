@@ -152,27 +152,27 @@ enum SessionAnalysisService {
             comparisonSessionID: comparison.sessionID,
             metrics: [
                 SessionMetricDelta(
-                    title: "日志",
+                    title: String(localized: "日志"),
                     baseline: baseline.logEventCount,
                     comparison: comparison.logEventCount
                 ),
                 SessionMetricDelta(
-                    title: "错误",
+                    title: String(localized: "错误"),
                     baseline: baseline.errorCount,
                     comparison: comparison.errorCount
                 ),
                 SessionMetricDelta(
-                    title: "诊断",
+                    title: String(localized: "诊断"),
                     baseline: baseline.diagnosticIssues.count,
                     comparison: comparison.diagnosticIssues.count
                 ),
                 SessionMetricDelta(
-                    title: "问题标记",
+                    title: String(localized: "问题标记"),
                     baseline: baseline.incidentCount,
                     comparison: comparison.incidentCount
                 ),
                 SessionMetricDelta(
-                    title: "证据",
+                    title: String(localized: "证据"),
                     baseline: baseline.artifactCount,
                     comparison: comparison.artifactCount
                 )

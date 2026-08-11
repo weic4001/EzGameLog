@@ -19,7 +19,7 @@ final class ArchiveModel {
     private(set) var symbolCatalog = SymbolCatalog.empty
     private(set) var symbolicationReports: [UUID: SessionSymbolicationReport] = [:]
     private(set) var pendingImportPreview: SessionImportPreview?
-    private(set) var statusMessage = "准备读取会话归档"
+    private(set) var statusMessage = String(localized: "准备读取会话归档")
     private(set) var isLoading = false
     private(set) var isPreviewingImport = false
     private(set) var isImporting = false
@@ -125,7 +125,7 @@ final class ArchiveModel {
     func refresh(forceAnalysis: Bool = false) async {
         guard !isLoading else { return }
         isLoading = true
-        statusMessage = forceAnalysis ? "正在重新分析全部会话…" : "正在读取会话归档…"
+        statusMessage = forceAnalysis ? String(localized: "正在重新分析全部会话…") : String(localized: "正在读取会话归档…")
         defer { isLoading = false }
         do {
             async let loadedEntries = store.archiveEntries()
@@ -197,10 +197,10 @@ final class ArchiveModel {
                 comparisonID: comparisonSessionID
             )
             statusMessage = newEntries.isEmpty
-                ? "暂无已保存会话"
-                : "已索引 \(newEntries.count) 个会话"
+                ? String(localized: "暂无已保存会话")
+                : String(localized: "已索引 \(newEntries.count) 个会话")
         } catch {
-            statusMessage = "读取会话归档失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "读取会话归档失败：\(error.localizedDescription)")
         }
     }
 
@@ -222,9 +222,9 @@ final class ArchiveModel {
             try await store.updateAnnotation(annotation, sessionID: sessionID)
             entries = try await store.archiveEntries()
             selectedSessionID = sessionID
-            statusMessage = "会话注释已保存"
+            statusMessage = String(localized: "会话注释已保存")
         } catch {
-            statusMessage = "保存会话注释失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "保存会话注释失败：\(error.localizedDescription)")
         }
     }
 
@@ -237,16 +237,16 @@ final class ArchiveModel {
             baselines.append(baseline)
             rebuildAutomaticRegressionReports()
             baselineSessionID = sessionID
-            statusMessage = "已将该会话设为 \(baseline.targetPackage) 的回归基线"
+            statusMessage = String(localized: "已将该会话设为 \(baseline.targetPackage) 的回归基线")
         } catch {
-            statusMessage = "设置回归基线失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "设置回归基线失败：\(error.localizedDescription)")
         }
     }
 
     func chooseAndImportSession() async {
         let panel = NSOpenPanel()
-        panel.title = "导入 GameLog 会话包"
-        panel.prompt = "导入"
+        panel.title = String(localized: "导入 GameLog 会话包")
+        panel.prompt = String(localized: "导入")
         panel.canChooseDirectories = true
         panel.canChooseFiles = false
         panel.allowsMultipleSelection = false
@@ -257,20 +257,20 @@ final class ArchiveModel {
     func previewImport(from url: URL) async {
         guard !isPreviewingImport, !isImporting else { return }
         isPreviewingImport = true
-        statusMessage = "正在校验会话包，生成导入预检…"
+        statusMessage = String(localized: "正在校验会话包，生成导入预检…")
         defer { isPreviewingImport = false }
         do {
             pendingImportPreview = try await store.previewImport(from: url)
-            statusMessage = "预检完成，请确认导入内容"
+            statusMessage = String(localized: "预检完成，请确认导入内容")
         } catch {
             pendingImportPreview = nil
-            statusMessage = "导入预检失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "导入预检失败：\(error.localizedDescription)")
         }
     }
 
     func cancelPendingImport() {
         pendingImportPreview = nil
-        statusMessage = "已取消导入"
+        statusMessage = String(localized: "已取消导入")
     }
 
     func confirmPendingImport() async {
@@ -281,7 +281,7 @@ final class ArchiveModel {
     func importSession(from url: URL) async {
         guard !isImporting else { return }
         isImporting = true
-        statusMessage = "正在校验并导入会话包…"
+        statusMessage = String(localized: "正在校验并导入会话包…")
         defer { isImporting = false }
         do {
             let result = try await store.importSession(from: url)
@@ -289,21 +289,21 @@ final class ArchiveModel {
             await refresh(forceAnalysis: true)
             selectedSessionID = result.sessionID
             statusMessage = result.disposition == .imported
-                ? "已导入 \(result.targetPackage)，共 \(result.importedEventCount) 条事件"
-                : "会话已存在，已安全合并注释与 \(result.mergedLabelCount) 个标签"
+                ? String(localized: "已导入 \(result.targetPackage)，共 \(result.importedEventCount) 条事件")
+                : String(localized: "会话已存在，已安全合并注释与 \(result.mergedLabelCount) 个标签")
         } catch {
-            statusMessage = "导入失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "导入失败：\(error.localizedDescription)")
         }
     }
 
     func chooseAndIndexSymbols() async {
         guard !symbolPackage.isEmpty else {
-            statusMessage = "请先选择符号目录对应的目标包"
+            statusMessage = String(localized: "请先选择符号目录对应的目标包")
             return
         }
         let panel = NSOpenPanel()
-        panel.title = "选择 NDK 符号目录"
-        panel.prompt = "建立索引"
+        panel.title = String(localized: "选择 NDK 符号目录")
+        panel.prompt = String(localized: "建立索引")
         panel.canChooseDirectories = true
         panel.canChooseFiles = false
         panel.allowsMultipleSelection = false
@@ -314,7 +314,7 @@ final class ArchiveModel {
     func indexSymbols(directory: URL, packagePattern: String) async {
         guard !isIndexingSymbols else { return }
         isIndexingSymbols = true
-        statusMessage = "正在扫描 ELF 符号文件…"
+        statusMessage = String(localized: "正在扫描 ELF 符号文件…")
         defer { isIndexingSymbols = false }
         do {
             _ = try await symbolStore.index(
@@ -322,9 +322,9 @@ final class ArchiveModel {
                 packagePattern: packagePattern
             )
             symbolCatalog = try await symbolStore.catalog()
-            statusMessage = "符号索引完成，共 \(symbolCatalog.files(for: packagePattern).count) 个库"
+            statusMessage = String(localized: "符号索引完成，共 \(symbolCatalog.files(for: packagePattern).count) 个库")
         } catch {
-            statusMessage = "符号索引失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "符号索引失败：\(error.localizedDescription)")
         }
     }
 
@@ -332,16 +332,16 @@ final class ArchiveModel {
         do {
             try await symbolStore.removeRoot(id: id)
             symbolCatalog = try await symbolStore.catalog()
-            statusMessage = "符号目录已从索引移除，源文件未删除"
+            statusMessage = String(localized: "符号目录已从索引移除，源文件未删除")
         } catch {
-            statusMessage = "移除符号索引失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "移除符号索引失败：\(error.localizedDescription)")
         }
     }
 
     func chooseSymbolizerExecutable() async {
         let panel = NSOpenPanel()
-        panel.title = "选择 Android NDK llvm-symbolizer"
-        panel.prompt = "选择"
+        panel.title = String(localized: "选择 Android NDK llvm-symbolizer")
+        panel.prompt = String(localized: "选择")
         panel.canChooseDirectories = false
         panel.canChooseFiles = true
         panel.allowsMultipleSelection = false
@@ -349,9 +349,9 @@ final class ArchiveModel {
         do {
             try await symbolStore.setSymbolizerPath(url.path)
             symbolCatalog = try await symbolStore.catalog()
-            statusMessage = "已选择 llvm-symbolizer"
+            statusMessage = String(localized: "已选择 llvm-symbolizer")
         } catch {
-            statusMessage = "无法使用符号化工具：\(error.localizedDescription)"
+            statusMessage = String(localized: "无法使用符号化工具：\(error.localizedDescription)")
         }
     }
 
@@ -362,7 +362,7 @@ final class ArchiveModel {
             return
         }
         isSymbolicating = true
-        statusMessage = "正在符号化 \(entry.session.targetPackage)…"
+        statusMessage = String(localized: "正在符号化 \(entry.session.targetPackage)…")
         defer { isSymbolicating = false }
         do {
             guard let symbolizerURL = try await symbolStore.resolvedSymbolizerURL() else {
@@ -382,9 +382,9 @@ final class ArchiveModel {
             )
             symbolicationReports[entry.id] = report
             updateTrends()
-            statusMessage = "符号化完成：\(report.symbolicatedCount) / \(report.frames.count) 个 Native 帧"
+            statusMessage = String(localized: "符号化完成：\(report.symbolicatedCount) / \(report.frames.count) 个 Native 帧")
         } catch {
-            statusMessage = "符号化失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "符号化失败：\(error.localizedDescription)")
         }
     }
 
@@ -393,7 +393,7 @@ final class ArchiveModel {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         pasteboard.setString(report.plainText, forType: .string)
-        statusMessage = "已复制完整符号化结果"
+        statusMessage = String(localized: "已复制完整符号化结果")
     }
 
     func exportSelectedSymbolicationReport() {
@@ -402,16 +402,16 @@ final class ArchiveModel {
             return
         }
         let panel = NSSavePanel()
-        panel.title = "导出符号化结果"
-        panel.prompt = "导出"
+        panel.title = String(localized: "导出符号化结果")
+        panel.prompt = String(localized: "导出")
         panel.nameFieldStringValue = "GameLog-Symbolicated-\(entry.id.uuidString.prefix(8)).txt"
         panel.allowedContentTypes = [.plainText]
         guard panel.runModal() == .OK, let url = panel.url else { return }
         do {
             try Data(report.plainText.utf8).write(to: url, options: .atomic)
-            statusMessage = "符号化结果已导出"
+            statusMessage = String(localized: "符号化结果已导出")
         } catch {
-            statusMessage = "导出符号化结果失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "导出符号化结果失败：\(error.localizedDescription)")
         }
     }
 
@@ -423,7 +423,7 @@ final class ArchiveModel {
         configuration.thresholds = thresholds.normalized()
         await persistRegressionConfiguration(
             configuration,
-            successMessage: "已保存 \(targetPackage) 的回归阈值"
+            successMessage: String(localized: "已保存 \(targetPackage) 的回归阈值")
         )
     }
 
@@ -435,7 +435,7 @@ final class ArchiveModel {
         configuration.ignoredAlertKeys.insert(alert.suppressionKey)
         await persistRegressionConfiguration(
             configuration,
-            successMessage: "已忽略该告警规则，可在告警规则中恢复"
+            successMessage: String(localized: "已忽略该告警规则，可在告警规则中恢复")
         )
     }
 
@@ -444,7 +444,7 @@ final class ArchiveModel {
         configuration.ignoredAlertKeys.removeAll()
         await persistRegressionConfiguration(
             configuration,
-            successMessage: "已恢复 \(targetPackage) 的全部已忽略告警"
+            successMessage: String(localized: "已恢复 \(targetPackage) 的全部已忽略告警")
         )
     }
 
@@ -531,7 +531,7 @@ final class ArchiveModel {
             updateComparison()
             statusMessage = successMessage
         } catch {
-            statusMessage = "保存回归规则失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "保存回归规则失败：\(error.localizedDescription)")
         }
     }
 
@@ -621,7 +621,7 @@ final class ArchiveModel {
         } catch {
             alignment = nil
             timelineAlignments = []
-            statusMessage = "时间轴对齐失败：\(error.localizedDescription)"
+            statusMessage = String(localized: "时间轴对齐失败：\(error.localizedDescription)")
         }
     }
 }

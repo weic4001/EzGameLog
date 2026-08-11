@@ -6,8 +6,8 @@ enum CaptureKind: String, Codable, Sendable {
 
     var title: String {
         switch self {
-        case .screenshot: "屏幕截图"
-        case .recording: "屏幕录制"
+        case .screenshot: String(localized: "屏幕截图")
+        case .recording: String(localized: "屏幕录制")
         }
     }
 }
@@ -22,12 +22,12 @@ enum RecordingWorkflowState: Equatable, Sendable {
 
     var title: String {
         switch self {
-        case .idle: "未录制"
-        case .starting: "正在启动录屏"
-        case .recording: "录屏中"
-        case .stopping: "正在停止录屏"
-        case .finalizing: "正在下载并校验"
-        case .failed(let message): "录屏失败：\(message)"
+        case .idle: String(localized: "未录制")
+        case .starting: String(localized: "正在启动录屏")
+        case .recording: String(localized: "录屏中")
+        case .stopping: String(localized: "正在停止录屏")
+        case .finalizing: String(localized: "正在下载并校验")
+        case .failed(let message): String(localized: "录屏失败：\(message)")
         }
     }
 }

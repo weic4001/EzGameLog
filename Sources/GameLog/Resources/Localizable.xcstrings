@@ -1,0 +1,7094 @@
+{
+  "sourceLanguage":  "zh-Hans",
+  "strings":  {
+    "":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  ""
+          }
+        }
+      }
+    },
+    " 秒":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  " seconds"
+          }
+        }
+      }
+    },
+    "#%lld %@ + 0x%@":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "#%1$lld %2$@ + 0x%3$@"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "#%lld %@ + 0x%@"
+          }
+        }
+      }
+    },
+    "%@\n\n---\n导入注释（%@）\n%@":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "%1$@\n\n---\n导入注释（%2$@）\n%3$@"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%@\n\n---\nImported Notes (%@)\n%@"
+          }
+        }
+      }
+    },
+    "%@ %lld":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "%1$@ %2$lld"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%@ %lld"
+          }
+        }
+      }
+    },
+    "%@ · %@":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "%1$@ · %2$@"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%@ · %@"
+          }
+        }
+      }
+    },
+    "%@ · %lld 次":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "%1$@ · %2$lld 次"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%@ · %lld times"
+          }
+        }
+      }
+    },
+    "%@ · 约 %@":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "%1$@ · 约 %2$@"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%@ · approx. %@"
+          }
+        }
+      }
+    },
+    "%@ 个匹配":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%@ matches"
+          }
+        }
+      }
+    },
+    "%@ 日志激增":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%@ log spike"
+          }
+        }
+      }
+    },
+    "%@ 行/秒":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%@ lines/sec"
+          }
+        }
+      }
+    },
+    "%@出现次数增加":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%@ occurrence increase"
+          }
+        }
+      }
+    },
+    "%@回归告警":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%@ regression alerts"
+          }
+        }
+      }
+    },
+    "%@相对增量":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%@ relative increase"
+          }
+        }
+      }
+    },
+    "%@绝对增量":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%@ absolute increase"
+          }
+        }
+      }
+    },
+    "%lld":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld"
+          }
+        }
+      }
+    },
+    "%lld × %lld":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "%1$lld × %2$lld"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld × %lld"
+          }
+        }
+      }
+    },
+    "%lld → %lld":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "%1$lld → %2$lld"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld → %lld"
+          }
+        }
+      }
+    },
+    "%lld 个 ELF 库已建立索引":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld ELF libraries indexed"
+          }
+        }
+      }
+    },
+    "%lld 个会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld sessions"
+          }
+        }
+      }
+    },
+    "%lld 个导入标签":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld imported tags"
+          }
+        }
+      }
+    },
+    "%lld 处":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld locations"
+          }
+        }
+      }
+    },
+    "%lld 帧执行失败；在下方帧详情查看超时、权限或工具错误。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld frames failed; see frame details below for timeout, permission, or tool errors."
+          }
+        }
+      }
+    },
+    "%lld 帧被 llvm-symbolizer 接收，但没有返回函数或源码位置。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld frames were accepted by llvm-symbolizer but returned no function or source location."
+          }
+        }
+      }
+    },
+    "%lld 截图 · %lld 录屏":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "%1$lld 截图 · %2$lld 录屏"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld screenshots · %lld recordings"
+          }
+        }
+      }
+    },
+    "%lld 条":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld entries"
+          }
+        }
+      }
+    },
+    "%lld 次":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld times"
+          }
+        }
+      }
+    },
+    "%lld 项已启用":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld enabled"
+          }
+        }
+      }
+    },
+    "+%@ 秒":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "+%@ sec"
+          }
+        }
+      }
+    },
+    "-%@ 秒":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "-%@ sec"
+          }
+        }
+      }
+    },
+    "0.000 秒":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "0.000 sec"
+          }
+        }
+      }
+    },
+    "10,000 条":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "10,000 entries"
+          }
+        }
+      }
+    },
+    "100,000 条":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "100,000 entries"
+          }
+        }
+      }
+    },
+    "50,000 条":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "50,000 entries"
+          }
+        }
+      }
+    },
+    "6 位配对码":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "6-digit pairing code"
+          }
+        }
+      }
+    },
+    "720p 兼容":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "720p Compatible"
+          }
+        }
+      }
+    },
+    "ADB":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "ADB"
+          }
+        }
+      }
+    },
+    "ADB 与隐私设置":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "ADB & Privacy Settings"
+          }
+        }
+      }
+    },
+    "ADB 命令失败（退出码 %d）":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "ADB command failed (exit code %d)"
+          }
+        }
+      }
+    },
+    "ADB 命令执行超时。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "ADB command timed out."
+          }
+        }
+      }
+    },
+    "ADB 尚未就绪":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "ADB is not ready"
+          }
+        }
+      }
+    },
+    "ADB 工具":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "ADB Tool"
+          }
+        }
+      }
+    },
+    "ADB 已就绪":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "ADB Ready"
+          }
+        }
+      }
+    },
+    "ADB 异常":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "ADB Error"
+          }
+        }
+      }
+    },
+    "ADB 无法使用":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "ADB Unavailable"
+          }
+        }
+      }
+    },
+    "ADB 未返回连接结果。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "ADB returned no connection result."
+          }
+        }
+      }
+    },
+    "ADB 未返回配对结果。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "ADB returned no pairing result."
+          }
+        }
+      }
+    },
+    "Android 设备":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Android Device"
+          }
+        }
+      }
+    },
+    "Android 设备已断开，正在等待重连":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Android device disconnected; waiting to reconnect"
+          }
+        }
+      }
+    },
+    "Android 设备已重连，会话已恢复":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Android device reconnected; session resumed"
+          }
+        }
+      }
+    },
+    "Buffer":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Buffer"
+          }
+        }
+      }
+    },
+    "Crash / ANR":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Crash / ANR"
+          }
+        }
+      }
+    },
+    "ELF 位宽或字节序不受支持。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unsupported ELF class or byte order."
+          }
+        }
+      }
+    },
+    "ELF 元数据范围无效。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Invalid ELF metadata range."
+          }
+        }
+      }
+    },
+    "GameLog":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "GameLog"
+          }
+        }
+      }
+    },
+    "GameLog 只处理本地文件，不会上传日志。自动规则无法识别所有业务敏感信息，分享前仍建议检查导出目录。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "GameLog only processes local files and never uploads logs. Automatic rules cannot identify every type of sensitive business data, so review the export folder before sharing."
+          }
+        }
+      }
+    },
+    "GameLog 默认使用随 App 提供的 ADB；外部路径仅作为高级覆盖。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "GameLog uses the bundled ADB by default. An external path is only an advanced override."
+          }
+        }
+      }
+    },
+    "IP 地址":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "IP Address"
+          }
+        }
+      }
+    },
+    "Java 崩溃":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Java Crash"
+          }
+        }
+      }
+    },
+    "NDK Native 符号化":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "NDK Native Symbolication"
+          }
+        }
+      }
+    },
+    "Native 崩溃":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Native Crash"
+          }
+        }
+      }
+    },
+    "PID / TID":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "PID / TID"
+          }
+        }
+      }
+    },
+    "Raw Text":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Raw Text"
+          }
+        }
+      }
+    },
+    "Tag":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Tag"
+          }
+        }
+      }
+    },
+    "Tag 变化（绝对差值前 20）":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Tag Changes (Top 20 by Absolute Difference)"
+          }
+        }
+      }
+    },
+    "Tag 计数从 %lld 增加到 %lld。":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "Tag 计数从 %1$lld 增加到 %2$lld。"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Tag count increased from %lld to %lld."
+          }
+        }
+      }
+    },
+    "Token / 密钥":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Token / Secret"
+          }
+        }
+      }
+    },
+    "Unity 游戏":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unity Game"
+          }
+        }
+      }
+    },
+    "llvm-symbolizer":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "llvm-symbolizer"
+          }
+        }
+      }
+    },
+    "llvm-symbolizer 执行失败。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "llvm-symbolizer failed."
+          }
+        }
+      }
+    },
+    "llvm-symbolizer 执行超时。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "llvm-symbolizer timed out."
+          }
+        }
+      }
+    },
+    "llvm-symbolizer 未返回可用函数或源码位置。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "llvm-symbolizer returned no usable function or source location."
+          }
+        }
+      }
+    },
+    "‹已脱敏:%@›":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "‹Redacted:%@›"
+          }
+        }
+      }
+    },
+    "‹已脱敏:自定义规则›":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "‹Redacted:Custom Rule›"
+          }
+        }
+      }
+    },
+    "上一个匹配":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Previous Match"
+          }
+        }
+      }
+    },
+    "下一个匹配":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Next Match"
+          }
+        }
+      }
+    },
+    "下载失败":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Download Failed"
+          }
+        }
+      }
+    },
+    "不是有效的 ELF 符号文件。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Not a valid ELF symbol file."
+          }
+        }
+      }
+    },
+    "不限":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unlimited"
+          }
+        }
+      }
+    },
+    "丢弃":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Discard"
+          }
+        }
+      }
+    },
+    "丢弃会话失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to discard session: %@"
+          }
+        }
+      }
+    },
+    "丢弃当前会话…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Discard Current Session…"
+          }
+        }
+      }
+    },
+    "丢弃当前会话？":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Discard Current Session?"
+          }
+        }
+      }
+    },
+    "严重":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Critical"
+          }
+        }
+      }
+    },
+    "临时会话清理失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to clean temporary sessions: %@"
+          }
+        }
+      }
+    },
+    "主机接收":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Host Received"
+          }
+        }
+      }
+    },
+    "仅合并注释与标签":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Merge Notes and Tags Only"
+          }
+        }
+      }
+    },
+    "仅显示此 PID":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Show Only This PID"
+          }
+        }
+      }
+    },
+    "仅显示此 Tag":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Show Only This Tag"
+          }
+        }
+      }
+    },
+    "仅错误":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Errors Only"
+          }
+        }
+      }
+    },
+    "仍有活动会话，无法更改共享会话目录。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The shared session folder cannot be changed while a session is active."
+          }
+        }
+      }
+    },
+    "优先自动读取 ANDROID_NDK_HOME / ANDROID_HOME，也可手动选择。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Automatically use ANDROID_NDK_HOME / ANDROID_HOME first, or select a tool manually."
+          }
+        }
+      }
+    },
+    "会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session"
+          }
+        }
+      }
+    },
+    "会话包包含符号链接、越界路径或异常大小，已停止导入。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The session package contains symbolic links, paths outside the package, or unusual sizes. Import was stopped."
+          }
+        }
+      }
+    },
+    "会话包完整性校验失败，文件可能已被修改或损坏。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session package integrity check failed. Files may have been modified or damaged."
+          }
+        }
+      }
+    },
+    "会话媒体目录不可写。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The session media folder is not writable."
+          }
+        }
+      }
+    },
+    "会话尚未完成":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session Not Finished"
+          }
+        }
+      }
+    },
+    "会话已停止，可导出或在 Finder 中查看":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session stopped. You can export it or view it in Finder."
+          }
+        }
+      }
+    },
+    "会话已创建，等待 %@ 进程启动…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session created; waiting for %@ to start…"
+          }
+        }
+      }
+    },
+    "会话已存在，已安全合并注释与 %lld 个标签":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session already exists. Notes and %lld tags were safely merged."
+          }
+        }
+      }
+    },
+    "会话已自动恢复":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session Restored Automatically"
+          }
+        }
+      }
+    },
+    "会话开始":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session Started"
+          }
+        }
+      }
+    },
+    "会话开始时间":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session Start Time"
+          }
+        }
+      }
+    },
+    "会话归档":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session Archive"
+          }
+        }
+      }
+    },
+    "会话归档与对比":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session Archive & Comparison"
+          }
+        }
+      }
+    },
+    "会话标题":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session Title"
+          }
+        }
+      }
+    },
+    "会话注释已保存":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session notes saved"
+          }
+        }
+      }
+    },
+    "会话目录":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session Folder"
+          }
+        }
+      }
+    },
+    "会话目录已更新":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session folder updated"
+          }
+        }
+      }
+    },
+    "会话符号化":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session Symbolication"
+          }
+        }
+      }
+    },
+    "传输丢失 %@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Transport Loss %@"
+          }
+        }
+      }
+    },
+    "使用此目录":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Use This Folder"
+          }
+        }
+      }
+    },
+    "使用系统快速查看预览文件":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Preview the file with Quick Look"
+          }
+        }
+      }
+    },
+    "例如 1234, 5678":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "For example: 1234, 5678"
+          }
+        }
+      }
+    },
+    "保存":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Save"
+          }
+        }
+      }
+    },
+    "保存会话注释失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to save session notes: %@"
+          }
+        }
+      }
+    },
+    "保存修改":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Save Changes"
+          }
+        }
+      }
+    },
+    "保存回归规则失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to save regression rules: %@"
+          }
+        }
+      }
+    },
+    "保存当前过滤条件":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Save Current Filters"
+          }
+        }
+      }
+    },
+    "保存注释":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Save Notes"
+          }
+        }
+      }
+    },
+    "保存规则":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Save Rule"
+          }
+        }
+      }
+    },
+    "保存问题说明失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to save issue notes: %@"
+          }
+        }
+      }
+    },
+    "保持 USB 连接，等待设备恢复；当前会话数据不会被清除。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Keep USB connected and wait for the device to recover. Current session data will not be cleared."
+          }
+        }
+      }
+    },
+    "停止":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop"
+          }
+        }
+      }
+    },
+    "停止中":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stopping"
+          }
+        }
+      }
+    },
+    "停止会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop Session"
+          }
+        }
+      }
+    },
+    "停止会话失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to stop session: %@"
+          }
+        }
+      }
+    },
+    "停止当前任务":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop Current Task"
+          }
+        }
+      }
+    },
+    "停止当前会话 (⌘R)":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop Current Session (⌘R)"
+          }
+        }
+      }
+    },
+    "停止录屏":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop Recording"
+          }
+        }
+      }
+    },
+    "停止设备录屏并保存 (⌥⌘R)":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop Device Recording and Save (⌥⌘R)"
+          }
+        }
+      }
+    },
+    "全部":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "All"
+          }
+        }
+      }
+    },
+    "全部日志":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "All Logs"
+          }
+        }
+      }
+    },
+    "全部清理":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Clean All"
+          }
+        }
+      }
+    },
+    "全部等级":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "All Levels"
+          }
+        }
+      }
+    },
+    "全部设备日志":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "All Device Logs"
+          }
+        }
+      }
+    },
+    "全部项目":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "All Projects"
+          }
+        }
+      }
+    },
+    "共同日志锚点":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Common Log Anchors"
+          }
+        }
+      }
+    },
+    "共同诊断":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Common Diagnostics"
+          }
+        }
+      }
+    },
+    "共同诊断锚点":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Common Diagnostic Anchors"
+          }
+        }
+      }
+    },
+    "内存事件上限":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "In-Memory Event Limit"
+          }
+        }
+      }
+    },
+    "内置 ADB":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Bundled ADB"
+          }
+        }
+      }
+    },
+    "内置 ADB 无法使用":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Bundled ADB Unavailable"
+          }
+        }
+      }
+    },
+    "内置 ADB 缺失或不可执行；请重新安装 GameLog，或选择外部 ADB":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The bundled ADB is missing or not executable. Reinstall GameLog or select an external ADB."
+          }
+        }
+      }
+    },
+    "写入视频帧失败":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to write video frame"
+          }
+        }
+      }
+    },
+    "准备":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Ready"
+          }
+        }
+      }
+    },
+    "准备读取会话归档":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Ready to Read Session Archive"
+          }
+        }
+      }
+    },
+    "分析尚不可用":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Analysis Not Available"
+          }
+        }
+      }
+    },
+    "删除":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Delete"
+          }
+        }
+      }
+    },
+    "删除过滤预设？":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Delete Filter Preset?"
+          }
+        }
+      }
+    },
+    "刷新设备":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Refresh Devices"
+          }
+        }
+      }
+    },
+    "剩余空间":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Free Space"
+          }
+        }
+      }
+    },
+    "包名格式无效。请输入类似 com.example.game 的 Android 包名。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Invalid package name. Enter an Android package name such as com.example.game."
+          }
+        }
+      }
+    },
+    "包名格式无效；请输入类似 com.example.game 的 Android 包名":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Invalid package name. Enter an Android package name such as com.example.game"
+          }
+        }
+      }
+    },
+    "包名范围无效；可使用 com.example.game 或 com.example.*。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Invalid package scope. Use com.example.game or com.example.*."
+          }
+        }
+      }
+    },
+    "包名范围（留空、精确包名或 com.example.*）":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Package Scope (blank, exact package, or com.example.*)"
+          }
+        }
+      }
+    },
+    "包含 Tag":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Include Tags"
+          }
+        }
+      }
+    },
+    "包含等级":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Include Levels"
+          }
+        }
+      }
+    },
+    "区分大小写":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Case Sensitive"
+          }
+        }
+      }
+    },
+    "单个 Tag":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Single Tag"
+          }
+        }
+      }
+    },
+    "原始":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Original"
+          }
+        }
+      }
+    },
+    "双会话差异":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Two-Session Difference"
+          }
+        }
+      }
+    },
+    "发现 %lld 处可能的敏感信息":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld potentially sensitive items found"
+          }
+        }
+      }
+    },
+    "发现未完成会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unfinished Sessions Found"
+          }
+        }
+      }
+    },
+    "发现相同会话 ID，但设备、目标或创建时间不一致。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The same session ID was found with a different device, target, or creation time."
+          }
+        }
+      }
+    },
+    "取消":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Cancel"
+          }
+        }
+      }
+    },
+    "取消书签":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Remove Bookmark"
+          }
+        }
+      }
+    },
+    "只移除 GameLog 索引，不删除源符号文件":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Remove only the GameLog index, not the source symbol files"
+          }
+        }
+      }
+    },
+    "合并注释":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Merge Notes"
+          }
+        }
+      }
+    },
+    "同一会话仍在采集中，无法合并导入注释。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The same session is still being captured, so imported notes cannot be merged."
+          }
+        }
+      }
+    },
+    "同项目会话（相对当前基准）":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Same-Project Sessions (relative to current baseline)"
+          }
+        }
+      }
+    },
+    "名称":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Name"
+          }
+        }
+      }
+    },
+    "后续对比中忽略同一诊断或指标，可在告警规则中恢复":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Ignore the same diagnostic or metric in future comparisons. Restore it in Alert Rules."
+          }
+        }
+      }
+    },
+    "后续对比会隐藏同一项，可在告警规则中恢复":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Hide the same item in future comparisons. Restore it in Alert Rules."
+          }
+        }
+      }
+    },
+    "启动中":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Starting"
+          }
+        }
+      }
+    },
+    "启动会话失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to start session: %@"
+          }
+        }
+      }
+    },
+    "告警所需的基线最少日志条数":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Minimum Baseline Log Count for Alerts"
+          }
+        }
+      }
+    },
+    "告警规则与降噪":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Alert Rules & Noise Reduction"
+          }
+        }
+      }
+    },
+    "回到最新":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Back to Latest"
+          }
+        }
+      }
+    },
+    "回归基线":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Regression Baseline"
+          }
+        }
+      }
+    },
+    "回归规则的目标包或阈值无效。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The regression rule has an invalid target package or threshold."
+          }
+        }
+      }
+    },
+    "在 Finder 中显示":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Show in Finder"
+          }
+        }
+      }
+    },
+    "在 Finder 中显示这个文件":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Show This File in Finder"
+          }
+        }
+      }
+    },
+    "在左侧选择会话后查看分析和本地注释。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select a session in the sidebar to view its analysis and local notes."
+          }
+        }
+      }
+    },
+    "在日志中选择最接近录屏开始的位置":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select the log nearest the recording start"
+          }
+        }
+      }
+    },
+    "在日志中选择最接近录屏结束的位置":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select the log nearest the recording end"
+          }
+        }
+      }
+    },
+    "在检查器中显示":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Show in Inspector"
+          }
+        }
+      }
+    },
+    "基准":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Baseline"
+          }
+        }
+      }
+    },
+    "基线最少日志":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Minimum Baseline Logs"
+          }
+        }
+      }
+    },
+    "复制原始日志":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Copy Raw Log"
+          }
+        }
+      }
+    },
+    "复制完整结果":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Copy Full Result"
+          }
+        }
+      }
+    },
+    "复制所选多行（结构化）":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Copy Selected Rows (Structured)"
+          }
+        }
+      }
+    },
+    "复制文件路径":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Copy File Path"
+          }
+        }
+      }
+    },
+    "复制消息":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Copy Message"
+          }
+        }
+      }
+    },
+    "复现步骤或补充说明":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Reproduction steps or additional notes"
+          }
+        }
+      }
+    },
+    "外观":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Appearance"
+          }
+        }
+      }
+    },
+    "外部 ADB":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "External ADB"
+          }
+        }
+      }
+    },
+    "大小":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Size"
+          }
+        }
+      }
+    },
+    "失败":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed"
+          }
+        }
+      }
+    },
+    "存储":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Storage"
+          }
+        }
+      }
+    },
+    "完成包含 Crash 或 ANR 的会话后会在这里形成趋势。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Complete sessions containing a Crash or ANR to build a trend here."
+          }
+        }
+      }
+    },
+    "完整性":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Integrity"
+          }
+        }
+      }
+    },
+    "完整性已验证":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Integrity Verified"
+          }
+        }
+      }
+    },
+    "实时":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Live"
+          }
+        }
+      }
+    },
+    "实际路径":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Resolved Path"
+          }
+        }
+      }
+    },
+    "对比":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Compare"
+          }
+        }
+      }
+    },
+    "对比会话偏移":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Comparison Session Offset"
+          }
+        }
+      }
+    },
+    "导入":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Import"
+          }
+        }
+      }
+    },
+    "导入 GameLog 会话包":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Import GameLog Session Package"
+          }
+        }
+      }
+    },
+    "导入为新会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Import as New Session"
+          }
+        }
+      }
+    },
+    "导入会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Import Session"
+          }
+        }
+      }
+    },
+    "导入会话包…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Import Session Package…"
+          }
+        }
+      }
+    },
+    "导入其他成员导出的 GameLog 会话目录（⇧⌘I）":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Import a GameLog session folder exported by another team member (⇧⌘I)"
+          }
+        }
+      }
+    },
+    "导入失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Import failed: %@"
+          }
+        }
+      }
+    },
+    "导入预检":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Import Preflight"
+          }
+        }
+      }
+    },
+    "导入预检失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Import preflight failed: %@"
+          }
+        }
+      }
+    },
+    "导出":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export"
+          }
+        }
+      }
+    },
+    "导出…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export…"
+          }
+        }
+      }
+    },
+    "导出会话或日志 (⇧⌘E)":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export Session or Logs (⇧⌘E)"
+          }
+        }
+      }
+    },
+    "导出后":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "After Export"
+          }
+        }
+      }
+    },
+    "导出失败，原始会话已保留：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export failed; the original session was preserved: %@"
+          }
+        }
+      }
+    },
+    "导出完整会话…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export Full Session…"
+          }
+        }
+      }
+    },
+    "导出当前过滤结果…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export Current Filter Results…"
+          }
+        }
+      }
+    },
+    "导出所选日志…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export Selected Logs…"
+          }
+        }
+      }
+    },
+    "导出所选证据…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export Selected Evidence…"
+          }
+        }
+      }
+    },
+    "导出文本…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export Text…"
+          }
+        }
+      }
+    },
+    "导出时自动脱敏":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Automatically Redact on Export"
+          }
+        }
+      }
+    },
+    "导出最近问题包…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export Latest Issue Package…"
+          }
+        }
+      }
+    },
+    "导出符号化结果":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export Symbolication Results"
+          }
+        }
+      }
+    },
+    "导出符号化结果失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to export symbolication results: %@"
+          }
+        }
+      }
+    },
+    "导出脱敏预览":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export Redaction Preview"
+          }
+        }
+      }
+    },
+    "导出证据":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export Evidence"
+          }
+        }
+      }
+    },
+    "导出这个证据文件":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export This Evidence File"
+          }
+        }
+      }
+    },
+    "导出问题包…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Export Issue Package…"
+          }
+        }
+      }
+    },
+    "尚未为该目标添加符号目录。选择包含未剥离 .so 的目录即可递归索引 ABI 和 GNU Build ID。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No symbol folder has been added for this target. Select a folder containing unstripped .so files to recursively index ABI and GNU Build ID."
+          }
+        }
+      }
+    },
+    "尚未找到 Android NDK llvm-symbolizer":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Android NDK llvm-symbolizer Not Found"
+          }
+        }
+      }
+    },
+    "尚未添加自定义规则。系统内置六类常见敏感信息规则仍会默认启用。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No custom rules have been added. The six built-in categories of common sensitive data remain enabled by default."
+          }
+        }
+      }
+    },
+    "屏幕录制":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Screen Recording"
+          }
+        }
+      }
+    },
+    "屏幕截图":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Screenshot"
+          }
+        }
+      }
+    },
+    "屏幕截图 · %@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Screenshot · %@"
+          }
+        }
+      }
+    },
+    "屏幕截图失败":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Screenshot Failed"
+          }
+        }
+      }
+    },
+    "屏幕截图已保存":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Screenshot Saved"
+          }
+        }
+      }
+    },
+    "屏幕截图已取消":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Screenshot Canceled"
+          }
+        }
+      }
+    },
+    "工作区":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Workspace"
+          }
+        }
+      }
+    },
+    "已保存 %@ 的回归阈值":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Saved regression thresholds for %@"
+          }
+        }
+      }
+    },
+    "已保存过滤预设“%@”":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Saved filter preset “%@”"
+          }
+        }
+      }
+    },
+    "已停止":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stopped"
+          }
+        }
+      }
+    },
+    "已删除过滤预设“%@”":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Deleted filter preset “%@”"
+          }
+        }
+      }
+    },
+    "已加载 %lld 个应用进程":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Loaded %lld app processes"
+          }
+        }
+      }
+    },
+    "已取消启动会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Session start canceled"
+          }
+        }
+      }
+    },
+    "已取消导入":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Import canceled"
+          }
+        }
+      }
+    },
+    "已复制完整符号化结果":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Full symbolication result copied"
+          }
+        }
+      }
+    },
+    "已存过滤器":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Saved Filters"
+          }
+        }
+      }
+    },
+    "已导入 %@，共 %lld 条事件":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "已导入 %1$@，共 %2$lld 条事件"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Imported %@ with %lld events"
+          }
+        }
+      }
+    },
+    "已导出到 %@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Exported to %@"
+          }
+        }
+      }
+    },
+    "已将该会话设为 %@ 的回归基线":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Set this session as the regression baseline for %@"
+          }
+        }
+      }
+    },
+    "已应用 %@ 过滤预设":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Applied built-in %@ log preset"
+          }
+        }
+      }
+    },
+    "已应用过滤预设“%@”":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Applied filter preset “%@”"
+          }
+        }
+      }
+    },
+    "已忽略该告警规则，可在告警规则中恢复":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "This alert rule is ignored. Restore it in Alert Rules."
+          }
+        }
+      }
+    },
+    "已恢复 %@ 的全部已忽略告警":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Restored all ignored alerts for %@"
+          }
+        }
+      }
+    },
+    "已恢复未完成会话的数据，可导出或在 Finder 中查看":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unfinished session data restored. You can export it or view it in Finder."
+          }
+        }
+      }
+    },
+    "已恢复目标进程日志":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Target process logs restored"
+          }
+        }
+      }
+    },
+    "已消失":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Resolved"
+          }
+        }
+      }
+    },
+    "已清理 %lld 个异常会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Cleaned %lld abnormal sessions"
+          }
+        }
+      }
+    },
+    "已清理 %lld 个过期临时会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Cleaned %lld expired temporary sessions"
+          }
+        }
+      }
+    },
+    "已清理未完成会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unfinished sessions cleaned"
+          }
+        }
+      }
+    },
+    "已符号化":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Symbolicated"
+          }
+        }
+      }
+    },
+    "已索引 %lld 个会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Indexed %lld sessions"
+          }
+        }
+      }
+    },
+    "已解析":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Parsed"
+          }
+        }
+      }
+    },
+    "已连接":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Connected"
+          }
+        }
+      }
+    },
+    "已连接 %@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Connected to %@"
+          }
+        }
+      }
+    },
+    "已选 %lld 项":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld selected"
+          }
+        }
+      }
+    },
+    "已选择 %@ · PID %@":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "已选择 %1$@ · PID %2$@"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Selected %@ · PID %@"
+          }
+        }
+      }
+    },
+    "已选择 %@；开始会话后将等待进程启动":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Selected %@. The session will wait for the process to start."
+          }
+        }
+      }
+    },
+    "已选择 %lld 条；下方显示第一条":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld entries selected; the first is shown below"
+          }
+        }
+      }
+    },
+    "已选择 llvm-symbolizer":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "llvm-symbolizer selected"
+          }
+        }
+      }
+    },
+    "已隐藏 %lld 项已知告警":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Hidden %lld known alerts"
+          }
+        }
+      }
+    },
+    "常用位置中的 ADB":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "ADB in Common Locations"
+          }
+        }
+      }
+    },
+    "平衡（4 Mbps）":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Balanced (4 Mbps)"
+          }
+        }
+      }
+    },
+    "应用内置 %@ 日志预设":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Apply Built-In %@ Log Preset"
+          }
+        }
+      }
+    },
+    "建立索引":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Build Index"
+          }
+        }
+      }
+    },
+    "建议选择相同目标包的两个会话进行对比。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Choose two sessions with the same target package for comparison."
+          }
+        }
+      }
+    },
+    "开始":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Start"
+          }
+        }
+      }
+    },
+    "开始会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Start Session"
+          }
+        }
+      }
+    },
+    "开始会话后使用工具栏的截图或录屏按钮，证据会保存到当前会话目录。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "After starting a session, use the screenshot or recording button in the toolbar. Evidence is saved in the current session folder."
+          }
+        }
+      }
+    },
+    "开始录屏":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Start Recording"
+          }
+        }
+      }
+    },
+    "开始设备录屏；再次点击停止 (⌥⌘R)":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Start device recording; click again to stop (⌥⌘R)"
+          }
+        }
+      }
+    },
+    "开始调试会话 (⌘R)":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Start Debug Session (⌘R)"
+          }
+        }
+      }
+    },
+    "异常会话保留：%lld 天":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Keep Abnormal Sessions: %lld days"
+          }
+        }
+      }
+    },
+    "异常会话清理失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to clean abnormal sessions: %@"
+          }
+        }
+      }
+    },
+    "归档会话数量":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Archived Session Count"
+          }
+        }
+      }
+    },
+    "归档操作进行中":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Archive Operation in Progress"
+          }
+        }
+      }
+    },
+    "归档状态":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Archive Status"
+          }
+        }
+      }
+    },
+    "当前会话已丢弃":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Current session discarded"
+          }
+        }
+      }
+    },
+    "当前会话的日志、截图、录屏和书签将被永久删除。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The current session’s logs, screenshots, recordings, and bookmarks will be permanently deleted."
+          }
+        }
+      }
+    },
+    "当前没有可写入的活动会话。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "There is no active writable session."
+          }
+        }
+      }
+    },
+    "当前没有可导出的会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "There is no session to export"
+          }
+        }
+      }
+    },
+    "当前目标":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Current Target"
+          }
+        }
+      }
+    },
+    "当前筛选下没有 Native 帧。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No Native frames match the current filters."
+          }
+        }
+      }
+    },
+    "录制":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Record"
+          }
+        }
+      }
+    },
+    "录屏":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording"
+          }
+        }
+      }
+    },
+    "录屏 %@ 秒":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording %@ sec"
+          }
+        }
+      }
+    },
+    "录屏 %lld":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording %lld"
+          }
+        }
+      }
+    },
+    "录屏%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording%@"
+          }
+        }
+      }
+    },
+    "录屏中":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording"
+          }
+        }
+      }
+    },
+    "录屏中断，远端文件待恢复 · %@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording interrupted; remote file pending recovery · %@"
+          }
+        }
+      }
+    },
+    "录屏中断；重连设备后可尝试恢复":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording interrupted. Reconnect the device to attempt recovery."
+          }
+        }
+      }
+    },
+    "录屏仍保留在设备 %@，可重连后恢复：%@":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "录屏仍保留在设备 %1$@，可重连后恢复：%2$@"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The recording remains on device %@ and can be recovered after reconnecting: %@"
+          }
+        }
+      }
+    },
+    "录屏分段无有效视频轨道":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording segments contain no valid video track"
+          }
+        }
+      }
+    },
+    "录屏失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording failed: %@"
+          }
+        }
+      }
+    },
+    "录屏已保存到当前会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording saved to the current session"
+          }
+        }
+      }
+    },
+    "录屏已取消":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording canceled"
+          }
+        }
+      }
+    },
+    "录屏已取消，未生成可播放文件":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording canceled; no playable file was generated"
+          }
+        }
+      }
+    },
+    "录屏已恢复 · %@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording recovered · %@"
+          }
+        }
+      }
+    },
+    "录屏开始":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording Started"
+          }
+        }
+      }
+    },
+    "录屏待重连恢复":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording Pending Reconnection Recovery"
+          }
+        }
+      }
+    },
+    "录屏恢复失败，远端文件已保留：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording recovery failed; the remote file was preserved: %@"
+          }
+        }
+      }
+    },
+    "录屏文件为空。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The recording file is empty."
+          }
+        }
+      }
+    },
+    "录屏期间每 5 秒检查 Mac 与设备剩余空间":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Check free space on the Mac and device every 5 seconds during recording"
+          }
+        }
+      }
+    },
+    "录屏未开始：Mac 磁盘空间不足":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording not started: insufficient Mac disk space"
+          }
+        }
+      }
+    },
+    "录屏由工具栏手动开始和停止，不设置固定时长。设备仅支持短分段时会自动续录并合并；录制期间每 5 秒检查 Mac 与设备空间。录屏不包含音频。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording is started and stopped manually from the toolbar, with no fixed duration. If the device only supports short segments, GameLog automatically continues and merges them. Mac and device storage are checked every 5 seconds. Recordings do not include audio."
+          }
+        }
+      }
+    },
+    "录屏结束 · %@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording Ended · %@"
+          }
+        }
+      }
+    },
+    "录屏继续进行；剩余空间偏低":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording continues; free space is low"
+          }
+        }
+      }
+    },
+    "录屏继续进行；空间严重不足，请尽快停止并保存":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording continues; storage is critically low. Stop and save soon."
+          }
+        }
+      }
+    },
+    "录屏编码失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording encoding failed: %@"
+          }
+        }
+      }
+    },
+    "待恢复录屏":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recoverable Recording"
+          }
+        }
+      }
+    },
+    "待恢复录屏的路径信息无效，已拒绝执行设备命令。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The recoverable recording path is invalid. The device command was rejected."
+          }
+        }
+      }
+    },
+    "待授权":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Authorization Required"
+          }
+        }
+      }
+    },
+    "快速查看":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Quick Look"
+          }
+        }
+      }
+    },
+    "快速过滤":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Quick Filters"
+          }
+        }
+      }
+    },
+    "忽略此项":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Ignore This Item"
+          }
+        }
+      }
+    },
+    "恢复中":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recovering"
+          }
+        }
+      }
+    },
+    "恢复会话失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to restore session: %@"
+          }
+        }
+      }
+    },
+    "恢复内置 ADB":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Restore Bundled ADB"
+          }
+        }
+      }
+    },
+    "恢复已忽略项（%lld）":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Restore Ignored Items (%lld)"
+          }
+        }
+      }
+    },
+    "恢复推荐阈值":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Restore Recommended Thresholds"
+          }
+        }
+      }
+    },
+    "恢复数据":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Restore Data"
+          }
+        }
+      }
+    },
+    "截取设备屏幕 (⌥⌘S)":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Capture Device Screen (⌥⌘S)"
+          }
+        }
+      }
+    },
+    "截图":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Screenshot"
+          }
+        }
+      }
+    },
+    "截图 %lld":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Screenshot %lld"
+          }
+        }
+      }
+    },
+    "截图失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Screenshot failed: %@"
+          }
+        }
+      }
+    },
+    "截图已保存到当前会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Screenshot saved to the current session"
+          }
+        }
+      }
+    },
+    "截图已取消":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Screenshot canceled"
+          }
+        }
+      }
+    },
+    "所有未完成会话的日志、截图、录屏与待恢复文件都会被删除，此操作无法撤销。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Logs, screenshots, recordings, and pending recovery files from all unfinished sessions will be deleted. This cannot be undone."
+          }
+        }
+      }
+    },
+    "所有项目 · %@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "All Projects · %@"
+          }
+        }
+      }
+    },
+    "所选 llvm-symbolizer 不可执行。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The selected llvm-symbolizer is not executable."
+          }
+        }
+      }
+    },
+    "所选目录不可写：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The selected folder is not writable: %@"
+          }
+        }
+      }
+    },
+    "所选目录不是有效的 GameLog 会话包。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The selected folder is not a valid GameLog session package."
+          }
+        }
+      }
+    },
+    "所选进程不是有效的 Android 包名":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The selected process is not a valid Android package name"
+          }
+        }
+      }
+    },
+    "打开 USB 调试并在设备上允许这台 Mac，然后刷新设备列表。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Enable USB debugging, allow this Mac on the device, then refresh the device list."
+          }
+        }
+      }
+    },
+    "找不到所选符号目录。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The selected symbol folder could not be found."
+          }
+        }
+      }
+    },
+    "找不到指定会话。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The specified session could not be found."
+          }
+        }
+      }
+    },
+    "找不到指定的问题标记。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The specified issue marker could not be found."
+          }
+        }
+      }
+    },
+    "找到 %lld 个同名库，缺少可用于消歧的 Build ID 或 ABI。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Found %lld libraries with the same name but no Build ID or ABI to distinguish them."
+          }
+        }
+      }
+    },
+    "持续存在":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Still Present"
+          }
+        }
+      }
+    },
+    "指定 PID":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Specified PID"
+          }
+        }
+      }
+    },
+    "指标":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Metric"
+          }
+        }
+      }
+    },
+    "排除 Tag":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Exclude Tags"
+          }
+        }
+      }
+    },
+    "排除此 Tag":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Exclude This Tag"
+          }
+        }
+      }
+    },
+    "提示":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Hint"
+          }
+        }
+      }
+    },
+    "搜索 Tag 或消息":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Search Tags or Messages"
+          }
+        }
+      }
+    },
+    "搜索匹配":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Search Matches"
+          }
+        }
+      }
+    },
+    "整体日志":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Overall Logs"
+          }
+        }
+      }
+    },
+    "整体日志量增加":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Overall Log Volume Increased"
+          }
+        }
+      }
+    },
+    "断开":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Disconnect"
+          }
+        }
+      }
+    },
+    "断开失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Disconnect failed: %@"
+          }
+        }
+      }
+    },
+    "新增":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "New"
+          }
+        }
+      }
+    },
+    "新增%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "New %@"
+          }
+        }
+      }
+    },
+    "新增出现次数":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "New Occurrences"
+          }
+        }
+      }
+    },
+    "新建日志窗口":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "New Log Window"
+          }
+        }
+      }
+    },
+    "新预设名称":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "New Preset Name"
+          }
+        }
+      }
+    },
+    "方式":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Method"
+          }
+        }
+      }
+    },
+    "无":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "None"
+          }
+        }
+      }
+    },
+    "无新增标签":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No New Tags"
+          }
+        }
+      }
+    },
+    "无标题":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Untitled"
+          }
+        }
+      }
+    },
+    "无法使用符号化工具：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unable to use symbolication tool: %@"
+          }
+        }
+      }
+    },
+    "无法创建会话目录。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unable to create session folder."
+          }
+        }
+      }
+    },
+    "无法创建录屏合并任务":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unable to create recording merge task"
+          }
+        }
+      }
+    },
+    "无法创建录屏合并轨道":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unable to create recording merge track"
+          }
+        }
+      }
+    },
+    "无法创建视频帧":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unable to create video frame"
+          }
+        }
+      }
+    },
+    "无法启动编码器":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unable to start encoder"
+          }
+        }
+      }
+    },
+    "无法解码视频帧":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unable to decode video frame"
+          }
+        }
+      }
+    },
+    "无法解码首帧":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unable to decode first frame"
+          }
+        }
+      }
+    },
+    "无线 ADB 地址无效。请输入主机地址和 1–65535 端口。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Invalid wireless ADB address. Enter a host and a port from 1–65535."
+          }
+        }
+      }
+    },
+    "无线设备已断开":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Wireless Device Disconnected"
+          }
+        }
+      }
+    },
+    "无线设备已连接":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Wireless Device Connected"
+          }
+        }
+      }
+    },
+    "无线调试（Android 11+）":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Wireless Debugging (Android 11+)"
+          }
+        }
+      }
+    },
+    "无音频":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No Audio"
+          }
+        }
+      }
+    },
+    "日志":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Logs"
+          }
+        }
+      }
+    },
+    "日志、截图和录屏文件将一并删除，此操作无法撤销。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Log, screenshot, and recording files will also be deleted. This cannot be undone."
+          }
+        }
+      }
+    },
+    "日志从 %lld 增加到 %lld，建议检查重复输出。":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "日志从 %1$lld 增加到 %2$lld，建议检查重复输出。"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Logs increased from %lld to %lld. Check for duplicate output."
+          }
+        }
+      }
+    },
+    "日志列":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Log Columns"
+          }
+        }
+      }
+    },
+    "日志已有":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Already in Log"
+          }
+        }
+      }
+    },
+    "日志已有函数名，但未找到对应符号文件。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The log already contains a function name, but no matching symbol file was found."
+          }
+        }
+      }
+    },
+    "日志已有符号":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Already Symbolicated"
+          }
+        }
+      }
+    },
+    "日志流已中断，等待设备恢复：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Log stream interrupted; waiting for device recovery: %@"
+          }
+        }
+      }
+    },
+    "日志流已恢复":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Log stream restored"
+          }
+        }
+      }
+    },
+    "日志流已结束，等待恢复":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Log stream ended; waiting to recover"
+          }
+        }
+      }
+    },
+    "日志流已重新连接":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Log stream reconnected"
+          }
+        }
+      }
+    },
+    "日志等级":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Log Levels"
+          }
+        }
+      }
+    },
+    "日志详情":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Log Details"
+          }
+        }
+      }
+    },
+    "日志需同时满足最低等级和包含等级":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Logs must satisfy both Minimum Level and Included Levels"
+          }
+        }
+      }
+    },
+    "旧格式，未提供校验清单":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Legacy format; no verification manifest provided"
+          }
+        }
+      }
+    },
+    "时间":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Time"
+          }
+        }
+      }
+    },
+    "时间轴对齐":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Timeline Alignment"
+          }
+        }
+      }
+    },
+    "时间轴对齐失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Timeline alignment failed: %@"
+          }
+        }
+      }
+    },
+    "显示 %@ / %@":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "显示 %1$@ / %2$@"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Showing %@ / %@"
+          }
+        }
+      }
+    },
+    "显示全部":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Show All"
+          }
+        }
+      }
+    },
+    "显示或隐藏检查器":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Show or Hide Inspector"
+          }
+        }
+      }
+    },
+    "显示检查器":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Show Inspector"
+          }
+        }
+      }
+    },
+    "暂停跟随":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Pause Following"
+          }
+        }
+      }
+    },
+    "暂无可聚合诊断":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No diagnostics to aggregate"
+          }
+        }
+      }
+    },
+    "暂无已保存会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No saved sessions"
+          }
+        }
+      }
+    },
+    "更改目录…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Change Folder…"
+          }
+        }
+      }
+    },
+    "替换文本（留空使用默认文案）":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Replacement Text (leave blank for default)"
+          }
+        }
+      }
+    },
+    "最低等级":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Minimum Level"
+          }
+        }
+      }
+    },
+    "最近 %@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Last %@"
+          }
+        }
+      }
+    },
+    "未发现 Android 设备":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No Android devices found"
+          }
+        }
+      }
+    },
+    "未发现常见敏感信息":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No common sensitive information found"
+          }
+        }
+      }
+    },
+    "未发现常见敏感信息；请确认后导出":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No common sensitive information found. Confirm before exporting."
+          }
+        }
+      }
+    },
+    "未发现显著回归":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No significant regressions found"
+          }
+        }
+      }
+    },
+    "未发现设备":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No Devices Found"
+          }
+        }
+      }
+    },
+    "未启用":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Disabled"
+          }
+        }
+      }
+    },
+    "未完成":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Incomplete"
+          }
+        }
+      }
+    },
+    "未就绪":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Not Ready"
+          }
+        }
+      }
+    },
+    "未录制":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Not Recorded"
+          }
+        }
+      }
+    },
+    "未找到":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Not Found"
+          }
+        }
+      }
+    },
+    "未找到 ADB":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "ADB Not Found"
+          }
+        }
+      }
+    },
+    "未找到 llvm-symbolizer，请选择 Android NDK 中的可执行文件。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "llvm-symbolizer not found. Select the executable from the Android NDK."
+          }
+        }
+      }
+    },
+    "未找到应用进程":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No app processes found"
+          }
+        }
+      }
+    },
+    "未知":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unknown"
+          }
+        }
+      }
+    },
+    "未知函数":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unknown Function"
+          }
+        }
+      }
+    },
+    "未知架构":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unknown Architecture"
+          }
+        }
+      }
+    },
+    "未解析":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unparsed"
+          }
+        }
+      }
+    },
+    "未解析原因与处理建议":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Reason Not Parsed and Suggested Action"
+          }
+        }
+      }
+    },
+    "未选择":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Not Selected"
+          }
+        }
+      }
+    },
+    "未配置":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Not Configured"
+          }
+        }
+      }
+    },
+    "本地日志和证据不会被替换；将按更新时间合并%@及%@。":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "本地日志和证据不会被替换；将按更新时间合并%1$@及%2$@。"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Local logs and evidence will not be replaced. %@ and %@ will be merged by modification time."
+          }
+        }
+      }
+    },
+    "本地日志视图已清空":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Local log view cleared"
+          }
+        }
+      }
+    },
+    "本地注释":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Local Notes"
+          }
+        }
+      }
+    },
+    "本地视图已清空；设备 Logcat 缓冲区未改变":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Local view cleared. The device Logcat buffer was not changed."
+          }
+        }
+      }
+    },
+    "本地路径":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Local Path"
+          }
+        }
+      }
+    },
+    "条数":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Count"
+          }
+        }
+      }
+    },
+    "来源":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Source"
+          }
+        }
+      }
+    },
+    "查看脱敏示例":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "View Redaction Examples"
+          }
+        }
+      }
+    },
+    "查看自动识别的 Crash / ANR":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "View Automatically Detected Crash / ANR"
+          }
+        }
+      }
+    },
+    "标签，逗号分隔":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Tags, comma-separated"
+          }
+        }
+      }
+    },
+    "标记当前问题并自动截图 (⌥⌘M)":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Mark Current Issue and Capture Screenshot (⌥⌘M)"
+          }
+        }
+      }
+    },
+    "标记问题":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Mark Issue"
+          }
+        }
+      }
+    },
+    "标记问题失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to mark issue: %@"
+          }
+        }
+      }
+    },
+    "标题“%@”":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Title “%@”"
+          }
+        }
+      }
+    },
+    "检查器":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Inspector"
+          }
+        }
+      }
+    },
+    "检查未完成会话失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to check unfinished sessions: %@"
+          }
+        }
+      }
+    },
+    "模拟器":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Emulator"
+          }
+        }
+      }
+    },
+    "次数":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Occurrences"
+          }
+        }
+      }
+    },
+    "正则表达式":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Regular Expression"
+          }
+        }
+      }
+    },
+    "正则表达式无效：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Invalid regular expression: %@"
+          }
+        }
+      }
+    },
+    "正在下载并校验":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Downloading and Verifying"
+          }
+        }
+      }
+    },
+    "正在停止会话并写入磁盘…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stopping session and writing to disk…"
+          }
+        }
+      }
+    },
+    "正在停止录屏":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stopping Recording"
+          }
+        }
+      }
+    },
+    "正在停止录屏并保存文件…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stopping recording and saving file…"
+          }
+        }
+      }
+    },
+    "正在创建调试会话…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Creating debug session…"
+          }
+        }
+      }
+    },
+    "正在刷新设备…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Refreshing devices…"
+          }
+        }
+      }
+    },
+    "正在原子导出并应用脱敏规则…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Exporting atomically and applying redaction rules…"
+          }
+        }
+      }
+    },
+    "正在启动录屏":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Starting Recording"
+          }
+        }
+      }
+    },
+    "正在录屏；再次点击录屏按钮结束…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recording. Click the recording button again to stop…"
+          }
+        }
+      }
+    },
+    "正在恢复设备端录屏…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Recovering device recording…"
+          }
+        }
+      }
+    },
+    "正在截取设备屏幕…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Capturing device screen…"
+          }
+        }
+      }
+    },
+    "正在扫描 ELF 符号文件…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Scanning ELF symbol files…"
+          }
+        }
+      }
+    },
+    "正在捕获 %@ 的日志":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Capturing logs from %@"
+          }
+        }
+      }
+    },
+    "正在查找 ADB…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Finding ADB…"
+          }
+        }
+      }
+    },
+    "正在校验会话包，生成导入预检…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Validating session package and generating import preflight…"
+          }
+        }
+      }
+    },
+    "正在校验并导入会话包…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Validating and importing session package…"
+          }
+        }
+      }
+    },
+    "正在检查":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Checking"
+          }
+        }
+      }
+    },
+    "正在检查 ADB":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Checking ADB"
+          }
+        }
+      }
+    },
+    "正在检查导出内容中的敏感信息…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Checking exported content for sensitive information…"
+          }
+        }
+      }
+    },
+    "正在符号化 %@…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Symbolicating %@…"
+          }
+        }
+      }
+    },
+    "正在读取会话归档…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Reading session archive…"
+          }
+        }
+      }
+    },
+    "正在连接…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Connecting…"
+          }
+        }
+      }
+    },
+    "正在配对…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Pairing…"
+          }
+        }
+      }
+    },
+    "正在重新分析全部会话…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Reanalyzing all sessions…"
+          }
+        }
+      }
+    },
+    "此旧格式会话通过了结构和内容校验，但没有 SHA-256 协作清单；请确认来源可信。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "This legacy session passed structural and content validation but has no SHA-256 collaboration manifest. Confirm that you trust its source."
+          }
+        }
+      }
+    },
+    "比例":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Ratio"
+          }
+        }
+      }
+    },
+    "没有可清理的异常会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No abnormal sessions to clean"
+          }
+        }
+      }
+    },
+    "没有过期临时会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No expired temporary sessions"
+          }
+        }
+      }
+    },
+    "活动会话中修改的缓冲区将在下次会话生效。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Buffer changes made during an active session take effect in the next session."
+          }
+        }
+      }
+    },
+    "浅色":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Light"
+          }
+        }
+      }
+    },
+    "消息":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Message"
+          }
+        }
+      }
+    },
+    "淘汰 %@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Evicted %@"
+          }
+        }
+      }
+    },
+    "深色":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Dark"
+          }
+        }
+      }
+    },
+    "添加/取消书签":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Toggle Bookmark"
+          }
+        }
+      }
+    },
+    "添加书签":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Add Bookmark"
+          }
+        }
+      }
+    },
+    "添加包含对应 ABI 未剥离 .so 的目录；同名库较多时需保留 Build ID。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Add a folder containing unstripped .so files for the matching ABI. Preserve Build IDs when many libraries share a name."
+          }
+        }
+      }
+    },
+    "添加目录…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Add Folder…"
+          }
+        }
+      }
+    },
+    "添加规则":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Add Rule"
+          }
+        }
+      }
+    },
+    "清理":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Clean"
+          }
+        }
+      }
+    },
+    "清理全部异常会话？":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Clean All Abnormal Sessions?"
+          }
+        }
+      }
+    },
+    "清理失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Cleanup failed: %@"
+          }
+        }
+      }
+    },
+    "清理未完成会话？":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Clean Unfinished Sessions?"
+          }
+        }
+      }
+    },
+    "清理过期临时会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Clean Expired Temporary Sessions"
+          }
+        }
+      }
+    },
+    "清空":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Clear"
+          }
+        }
+      }
+    },
+    "清空日志":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Clear Logs"
+          }
+        }
+      }
+    },
+    "清空日志 (⌘K)":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Clear Logs (⌘K)"
+          }
+        }
+      }
+    },
+    "点击工具栏“重新分析”生成该会话的统计。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Click Reanalyze in the toolbar to generate statistics for this session."
+          }
+        }
+      }
+    },
+    "状态":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Status"
+          }
+        }
+      }
+    },
+    "环境中的 ADB":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "ADB from Environment"
+          }
+        }
+      }
+    },
+    "生成脱敏预览失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to generate redaction preview: %@"
+          }
+        }
+      }
+    },
+    "目录中没有可识别的 ELF .so 文件。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No recognizable ELF .so files were found in the folder."
+          }
+        }
+      }
+    },
+    "目标包":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Target Package"
+          }
+        }
+      }
+    },
+    "目标进程":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Target Process"
+          }
+        }
+      }
+    },
+    "目标进程已启动":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Target Process Started"
+          }
+        }
+      }
+    },
+    "目标进程已退出 · 原 PID %@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Target Process Exited · Previous PID %@"
+          }
+        }
+      }
+    },
+    "目标进程已重启":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Target Process Restarted"
+          }
+        }
+      }
+    },
+    "相对增量":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Relative Increase"
+          }
+        }
+      }
+    },
+    "码率策略":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Bitrate Strategy"
+          }
+        }
+      }
+    },
+    "确认导入":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Confirm Import"
+          }
+        }
+      }
+    },
+    "磁盘剩余空间不足 500 MB":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Less than 500 MB of disk space remaining"
+          }
+        }
+      }
+    },
+    "磁盘空间不足；请更改位置或清理临时会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Insufficient disk space. Change the location or clean temporary sessions."
+          }
+        }
+      }
+    },
+    "离线":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Offline"
+          }
+        }
+      }
+    },
+    "移除符号索引失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to remove symbol index: %@"
+          }
+        }
+      }
+    },
+    "移除索引":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Remove Index"
+          }
+        }
+      }
+    },
+    "空间严重不足":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Critically Low Space"
+          }
+        }
+      }
+    },
+    "空间偏低":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Low Space"
+          }
+        }
+      }
+    },
+    "空间充足":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Sufficient Space"
+          }
+        }
+      }
+    },
+    "立即清理全部…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Clean All Now…"
+          }
+        }
+      }
+    },
+    "符号":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Symbols"
+          }
+        }
+      }
+    },
+    "符号化失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Symbolication failed: %@"
+          }
+        }
+      }
+    },
+    "符号化完成：%lld / %lld 个 Native 帧":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "符号化完成：%1$lld / %2$lld 个 Native 帧"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Symbolication complete: %lld / %lld Native frames"
+          }
+        }
+      }
+    },
+    "符号化所选会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Symbolicate Selected Session"
+          }
+        }
+      }
+    },
+    "符号化报告与会话不匹配。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The symbolication report does not match the session."
+          }
+        }
+      }
+    },
+    "符号化结果已导出":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Symbolication results exported"
+          }
+        }
+      }
+    },
+    "符号文件：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Symbol File: %@"
+          }
+        }
+      }
+    },
+    "符号目录":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Symbol Folder"
+          }
+        }
+      }
+    },
+    "符号目录已从索引移除，源文件未删除":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Symbol folder removed from the index. Source files were not deleted."
+          }
+        }
+      }
+    },
+    "符号目录超过 50,000 个库文件，请缩小目录范围。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The symbol folder contains more than 50,000 library files. Choose a narrower folder."
+          }
+        }
+      }
+    },
+    "符号索引失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Symbol indexing failed: %@"
+          }
+        }
+      }
+    },
+    "符号索引完成，共 %lld 个库":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Symbol index complete: %lld libraries"
+          }
+        }
+      }
+    },
+    "等待 %@ 重新启动…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Waiting for %@ to restart…"
+          }
+        }
+      }
+    },
+    "管理过滤预设":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Manage Filter Presets"
+          }
+        }
+      }
+    },
+    "类型":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Type"
+          }
+        }
+      }
+    },
+    "系统不接受 H.264 输出参数":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The system rejected the H.264 output settings"
+          }
+        }
+      }
+    },
+    "级别":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Level"
+          }
+        }
+      }
+    },
+    "结束":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "End"
+          }
+        }
+      }
+    },
+    "结果":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Result"
+          }
+        }
+      }
+    },
+    "绝对增量":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Absolute Increase"
+          }
+        }
+      }
+    },
+    "编码器不在写入状态":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Encoder is not in the writing state"
+          }
+        }
+      }
+    },
+    "编码器异常":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Encoder Error"
+          }
+        }
+      }
+    },
+    "编码未完成":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Encoding did not complete"
+          }
+        }
+      }
+    },
+    "编辑":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Edit"
+          }
+        }
+      }
+    },
+    "编辑规则":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Edit Rule"
+          }
+        }
+      }
+    },
+    "缺少 %@ 的匹配符号文件。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Missing matching symbol file for %@."
+          }
+        }
+      }
+    },
+    "缺少或无法唯一匹配：":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Missing or Ambiguous Match:"
+          }
+        }
+      }
+    },
+    "缺少符号":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Missing Symbols"
+          }
+        }
+      }
+    },
+    "缺少符号文件":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Missing Symbol File"
+          }
+        }
+      }
+    },
+    "置信度":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Confidence"
+          }
+        }
+      }
+    },
+    "自动":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Automatic"
+          }
+        }
+      }
+    },
+    "自动回归基线检查":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Automatic Regression Baseline Check"
+          }
+        }
+      }
+    },
+    "自动诊断":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Automatic Diagnostics"
+          }
+        }
+      }
+    },
+    "范围与 Tag":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Scope & Tags"
+          }
+        }
+      }
+    },
+    "覆盖率 ":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Coverage "
+          }
+        }
+      }
+    },
+    "规则只在本机导出阶段执行。自定义正则会按目标包名范围启用，并在导出预览中单独显示命中数量。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Rules run locally only during export. Custom regular expressions are enabled by target package scope and show their match count separately in the export preview."
+          }
+        }
+      }
+    },
+    "规则名称":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Rule Name"
+          }
+        }
+      }
+    },
+    "视图":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "View"
+          }
+        }
+      }
+    },
+    "解析失败":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Parsing Failed"
+          }
+        }
+      }
+    },
+    "解锁 Android 设备，并在 RSA 授权弹窗中选择允许这台 Mac。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Unlock the Android device and choose Allow this Mac in the RSA authorization dialog."
+          }
+        }
+      }
+    },
+    "警告":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Warning"
+          }
+        }
+      }
+    },
+    "警告及以上":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Warnings and Above"
+          }
+        }
+      }
+    },
+    "设为回归基线":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Set as Regression Baseline"
+          }
+        }
+      }
+    },
+    "设备":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device"
+          }
+        }
+      }
+    },
+    "设备 %@ 已断开，正在等待重连…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device %@ disconnected; waiting to reconnect…"
+          }
+        }
+      }
+    },
+    "设备 IP 或主机名":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device IP or Hostname"
+          }
+        }
+      }
+    },
+    "设备原生":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device Native"
+          }
+        }
+      }
+    },
+    "设备尚未授权或处于离线状态":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The device is unauthorized or offline"
+          }
+        }
+      }
+    },
+    "设备已断开 · %@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device Disconnected · %@"
+          }
+        }
+      }
+    },
+    "设备已连接；未找到应用进程":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device connected; no app processes found"
+          }
+        }
+      }
+    },
+    "设备已重连 · PID %@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device Reconnected · PID %@"
+          }
+        }
+      }
+    },
+    "设备已重连，等待 %@ 进程启动…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device reconnected; waiting for %@ to start…"
+          }
+        }
+      }
+    },
+    "设备序列号":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device Serial Number"
+          }
+        }
+      }
+    },
+    "设备录屏中断，可在重连后恢复":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device recording interrupted; recover after reconnecting"
+          }
+        }
+      }
+    },
+    "设备录屏失败":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device Recording Failed"
+          }
+        }
+      }
+    },
+    "设备录屏已取消":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device Recording Canceled"
+          }
+        }
+      }
+    },
+    "设备录屏开始":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device Recording Started"
+          }
+        }
+      }
+    },
+    "设备录屏结束，文件已保存":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device recording ended and file saved"
+          }
+        }
+      }
+    },
+    "设备恢复失败，2 秒后重试：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device recovery failed. Retrying in 2 seconds: %@"
+          }
+        }
+      }
+    },
+    "设备或 ADB 尚未就绪":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device or ADB is not ready"
+          }
+        }
+      }
+    },
+    "设备没有返回有效的 PNG 截图。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The device did not return a valid PNG screenshot."
+          }
+        }
+      }
+    },
+    "设备离线":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device Offline"
+          }
+        }
+      }
+    },
+    "设备端录屏已恢复并校验":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device recording recovered and verified"
+          }
+        }
+      }
+    },
+    "设备证据":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Device Evidence"
+          }
+        }
+      }
+    },
+    "设备返回的画面帧不足，无法生成录屏。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The device returned too few image frames to generate a recording."
+          }
+        }
+      }
+    },
+    "设置回归基线失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to set regression baseline: %@"
+          }
+        }
+      }
+    },
+    "证据":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Evidence"
+          }
+        }
+      }
+    },
+    "证据导出失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Evidence export failed: %@"
+          }
+        }
+      }
+    },
+    "证据已导出":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Evidence exported"
+          }
+        }
+      }
+    },
+    "诊断":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Diagnostics"
+          }
+        }
+      }
+    },
+    "该操作不会删除日志或会话数据。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "This action will not delete logs or session data."
+          }
+        }
+      }
+    },
+    "请先停止当前会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop the current session first"
+          }
+        }
+      }
+    },
+    "请先停止当前会话，再切换 ADB":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop the current session before switching ADB"
+          }
+        }
+      }
+    },
+    "请先停止当前会话，再切换目标包名":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop the current session before switching the target package"
+          }
+        }
+      }
+    },
+    "请先停止当前会话，再切换目标进程":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop the current session before switching the target process"
+          }
+        }
+      }
+    },
+    "请先停止当前会话，再切换设备":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop the current session before switching devices"
+          }
+        }
+      }
+    },
+    "请先停止当前会话，再更改 ADB 路径":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop the current session before changing the ADB path"
+          }
+        }
+      }
+    },
+    "请先停止当前会话，再更改会话目录":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop the current session before changing the session folder"
+          }
+        }
+      }
+    },
+    "请先停止当前会话，再重新检测 ADB":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop the current session before detecting ADB again"
+          }
+        }
+      }
+    },
+    "请先停止录屏，确保问题包包含完整视频":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Stop recording first so the issue package includes the complete video"
+          }
+        }
+      }
+    },
+    "请先开始调试会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Start a debug session first"
+          }
+        }
+      }
+    },
+    "请先选择符号目录对应的目标包":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select the target package for the symbol folder first"
+          }
+        }
+      }
+    },
+    "请先选择要导出的日志":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select logs to export first"
+          }
+        }
+      }
+    },
+    "请在设备上允许 USB 调试":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Allow USB debugging on the device"
+          }
+        }
+      }
+    },
+    "请输入正则表达式。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Enter a regular expression."
+          }
+        }
+      }
+    },
+    "请输入规则名称。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Enter a rule name."
+          }
+        }
+      }
+    },
+    "请连接原设备 %@ 后重试":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Reconnect the original device %@ and try again"
+          }
+        }
+      }
+    },
+    "请选择两个不同会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select two different sessions"
+          }
+        }
+      }
+    },
+    "请选择目标包名或应用进程":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select a target package or app process"
+          }
+        }
+      }
+    },
+    "请重新安装 GameLog，或临时选择一个可用的外部 ADB。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Reinstall GameLog or temporarily select a working external ADB."
+          }
+        }
+      }
+    },
+    "读取会话归档失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to read session archive: %@"
+          }
+        }
+      }
+    },
+    "读取进程失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Failed to read processes: %@"
+          }
+        }
+      }
+    },
+    "调试端口":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Debug Port"
+          }
+        }
+      }
+    },
+    "账号标识":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Account Identifier"
+          }
+        }
+      }
+    },
+    "趋势":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Trends"
+          }
+        }
+      }
+    },
+    "跟随最新":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Follow Latest"
+          }
+        }
+      }
+    },
+    "跟随系统":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Follow System"
+          }
+        }
+      }
+    },
+    "跨会话 Crash / ANR 趋势":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Cross-Session Crash / ANR Trends"
+          }
+        }
+      }
+    },
+    "跳到录屏开始":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Jump to Recording Start"
+          }
+        }
+      }
+    },
+    "跳到录屏结束":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Jump to Recording End"
+          }
+        }
+      }
+    },
+    "输入包名":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Enter Package Name"
+          }
+        }
+      }
+    },
+    "过滤条件":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Filters"
+          }
+        }
+      }
+    },
+    "这些选项作用于工具栏的“搜索 Tag 或消息”":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "These options apply to the toolbar’s Search Tags or Messages field"
+          }
+        }
+      }
+    },
+    "进程范围":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Process Scope"
+          }
+        }
+      }
+    },
+    "连接":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Connect"
+          }
+        }
+      }
+    },
+    "连接 Android 测试机":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Connect Android Test Device"
+          }
+        }
+      }
+    },
+    "连接原设备并尝试恢复":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Connect Original Device and Try Recovery"
+          }
+        }
+      }
+    },
+    "连接失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Connection failed: %@"
+          }
+        }
+      }
+    },
+    "选择":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select"
+          }
+        }
+      }
+    },
+    "选择 Android NDK llvm-symbolizer":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select Android NDK llvm-symbolizer"
+          }
+        }
+      }
+    },
+    "选择 Android 设备":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select Android Device"
+          }
+        }
+      }
+    },
+    "选择 GameLog 会话目录":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select GameLog Session Folder"
+          }
+        }
+      }
+    },
+    "选择 NDK 符号目录":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select NDK Symbol Folder"
+          }
+        }
+      }
+    },
+    "选择 adb 可执行文件":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select adb Executable"
+          }
+        }
+      }
+    },
+    "选择一个会话":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select a Session"
+          }
+        }
+      }
+    },
+    "选择一条日志后在这里查看完整内容。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select a log entry to view its full content here."
+          }
+        }
+      }
+    },
+    "选择会话导出位置":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select Session Export Location"
+          }
+        }
+      }
+    },
+    "选择位置并导出…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Choose Location and Export…"
+          }
+        }
+      }
+    },
+    "选择包含 Native Crash 的会话并执行符号化，结果会保存到会话目录的 symbolication.json。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select a session containing a Native Crash and run symbolication. Results are saved as symbolication.json in the session folder."
+          }
+        }
+      }
+    },
+    "选择外部 ADB…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select External ADB…"
+          }
+        }
+      }
+    },
+    "选择工具…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select Tool…"
+          }
+        }
+      }
+    },
+    "选择目标":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select Target"
+          }
+        }
+      }
+    },
+    "选择设备":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select Device"
+          }
+        }
+      }
+    },
+    "选择运行中的应用进程":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select Running App Process"
+          }
+        }
+      }
+    },
+    "选择问题包导出位置":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Select Issue Package Export Location"
+          }
+        }
+      }
+    },
+    "逗号分隔":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Comma-Separated"
+          }
+        }
+      }
+    },
+    "通用":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "General"
+          }
+        }
+      }
+    },
+    "邮箱地址":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Email Address"
+          }
+        }
+      }
+    },
+    "配对":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Pair"
+          }
+        }
+      }
+    },
+    "配对失败：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Pairing failed: %@"
+          }
+        }
+      }
+    },
+    "配对成功；请输入设备显示的调试端口进行连接":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Pairing succeeded. Enter the debug port shown on the device to connect."
+          }
+        }
+      }
+    },
+    "配对码应为 6 位数字。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The pairing code must contain 6 digits."
+          }
+        }
+      }
+    },
+    "配对端口":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Pairing Port"
+          }
+        }
+      }
+    },
+    "配对端口与调试端口通常不同，请分别使用设备“使用配对码配对”和“无线调试”页面显示的端口。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "The pairing and debug ports are usually different. Use the ports shown on the device’s Pair device with pairing code and Wireless debugging pages respectively."
+          }
+        }
+      }
+    },
+    "采集中":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Capturing"
+          }
+        }
+      }
+    },
+    "重命名…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Rename…"
+          }
+        }
+      }
+    },
+    "重命名过滤预设":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Rename Filter Preset"
+          }
+        }
+      }
+    },
+    "重复 %lld 次":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Repeated %lld times"
+          }
+        }
+      }
+    },
+    "重复诊断":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Repeated Diagnostics"
+          }
+        }
+      }
+    },
+    "重复诊断绝对增量":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Repeated Diagnostic Absolute Increase"
+          }
+        }
+      }
+    },
+    "重新分析":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Reanalyze"
+          }
+        }
+      }
+    },
+    "重新检查":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Check Again"
+          }
+        }
+      }
+    },
+    "重新检测":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Detect Again"
+          }
+        }
+      }
+    },
+    "重新读取日志并刷新归档分析":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Read Logs Again and Refresh Archive Analysis"
+          }
+        }
+      }
+    },
+    "重置":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Reset"
+          }
+        }
+      }
+    },
+    "重置所有高级过滤条件":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Reset All Advanced Filters"
+          }
+        }
+      }
+    },
+    "错误":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Error"
+          }
+        }
+      }
+    },
+    "错误 / Fatal":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Error / Fatal"
+          }
+        }
+      }
+    },
+    "错误与 Fatal 日志从 %lld 增加到 %lld。":  {
+      "localizations":  {
+        "zh-Hans":  {
+          "stringUnit":  {
+            "state":  "new",
+            "value":  "错误与 Fatal 日志从 %1$lld 增加到 %2$lld。"
+          }
+        },
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Error and Fatal logs increased from %lld to %lld."
+          }
+        }
+      }
+    },
+    "错误日志显著增加":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Error Logs Increased Significantly"
+          }
+        }
+      }
+    },
+    "锚点：%@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Anchor: %@"
+          }
+        }
+      }
+    },
+    "问题":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Issue"
+          }
+        }
+      }
+    },
+    "问题 %@":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Issue %@"
+          }
+        }
+      }
+    },
+    "问题名称":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Issue Name"
+          }
+        }
+      }
+    },
+    "问题已标记":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Issue Marked"
+          }
+        }
+      }
+    },
+    "问题已标记，正在补充现场截图…":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Issue marked; capturing a context screenshot…"
+          }
+        }
+      }
+    },
+    "问题已标记；当前截图任务完成后可手动补充证据":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Issue marked. Add evidence manually after the current screenshot task finishes."
+          }
+        }
+      }
+    },
+    "问题标记":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Issue Marker"
+          }
+        }
+      }
+    },
+    "问题说明已保存":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Issue notes saved"
+          }
+        }
+      }
+    },
+    "阈值同时满足“绝对增量”和“相对增量”中的较高者时才告警。新增 Crash / ANR 仍会直接标为严重。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "An alert is raised only when the higher of the Absolute Increase and Relative Increase thresholds is met. New Crash / ANR issues are still marked Critical immediately."
+          }
+        }
+      }
+    },
+    "隐私":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Privacy"
+          }
+        }
+      }
+    },
+    "隐藏检查器":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Hide Inspector"
+          }
+        }
+      }
+    },
+    "项目级脱敏规则":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Project Redaction Rules"
+          }
+        }
+      }
+    },
+    "项目级规则":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Project Rules"
+          }
+        }
+      }
+    },
+    "项目范围必须留空、使用完整包名或形如 com.example.*。":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Project scope must be blank, a full package name, or a pattern such as com.example.*."
+          }
+        }
+      }
+    },
+    "预检完成，请确认导入内容":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Preflight Complete; Confirm Import"
+          }
+        }
+      }
+    },
+    "预览":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Preview"
+          }
+        }
+      }
+    },
+    "高级过滤":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Advanced Filters"
+          }
+        }
+      }
+    },
+    "高质量（8 Mbps）":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "High Quality (8 Mbps)"
+          }
+        }
+      }
+    },
+    "高频 Tag":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "High-Frequency Tags"
+          }
+        }
+      }
+    },
+    "默认 Logcat 缓冲区":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Default Logcat Buffers"
+          }
+        }
+      }
+    },
+    "默认分辨率":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Default Resolution"
+          }
+        }
+      }
+    },
+    "默认显示检查器":  {
+      "localizations":  {
+        "en":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Show Inspector by Default"
+          }
+        }
+      }
+    }
+  },
+  "version":  "1.1"
+}

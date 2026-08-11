@@ -406,7 +406,7 @@ struct CaptureService: Sendable {
             throw CaptureError.recoverableRecording(
                 remotePath: remotePath,
                 localFileName: localURL.lastPathComponent,
-                reason: lastError?.localizedDescription ?? "下载失败"
+                reason: lastError?.localizedDescription ?? String(localized: "下载失败")
             )
         }.value
     }
@@ -481,14 +481,14 @@ enum CaptureError: LocalizedError, Sendable {
 
     var errorDescription: String? {
         switch self {
-        case .invalidScreenshot: "设备没有返回有效的 PNG 截图。"
-        case .emptyRecording: "录屏文件为空。"
-        case .insufficientFrames: "设备返回的画面帧不足，无法生成录屏。"
-        case .videoEncodingFailed(let message): "录屏编码失败：\(message)"
-        case .directoryNotWritable: "会话媒体目录不可写。"
-        case .invalidRecoveryMetadata: "待恢复录屏的路径信息无效，已拒绝执行设备命令。"
+        case .invalidScreenshot: String(localized: "设备没有返回有效的 PNG 截图。")
+        case .emptyRecording: String(localized: "录屏文件为空。")
+        case .insufficientFrames: String(localized: "设备返回的画面帧不足，无法生成录屏。")
+        case .videoEncodingFailed(let message): String(localized: "录屏编码失败：\(message)")
+        case .directoryNotWritable: String(localized: "会话媒体目录不可写。")
+        case .invalidRecoveryMetadata: String(localized: "待恢复录屏的路径信息无效，已拒绝执行设备命令。")
         case .recoverableRecording(let remotePath, _, let reason):
-            "录屏仍保留在设备 \(remotePath)，可重连后恢复：\(reason)"
+            String(localized: "录屏仍保留在设备 \(remotePath)，可重连后恢复：\(reason)")
         }
     }
 }

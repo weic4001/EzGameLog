@@ -6,9 +6,9 @@ struct SidebarView: View {
 
     var body: some View {
         List {
-            Section("设备") {
+            Section(String(localized: "设备")) {
                 if model.devices.isEmpty {
-                    Label("未发现设备", systemImage: "cable.connector.slash")
+                    Label(String(localized: "未发现设备"), systemImage: "cable.connector.slash")
                         .foregroundStyle(.secondary)
                 } else {
                     ForEach(model.devices) { device in
@@ -40,7 +40,7 @@ struct SidebarView: View {
                 }
             }
 
-            Section("快速过滤") {
+            Section(String(localized: "快速过滤")) {
                 ForEach(LogPreset.allCases) { preset in
                     Button {
                         model.preset = preset
@@ -59,40 +59,40 @@ struct SidebarView: View {
                 }
             }
 
-            Section("当前目标") {
+            Section(String(localized: "当前目标")) {
                 TargetSelectorView()
             }
 
-            Section("过滤条件") {
+            Section(String(localized: "过滤条件")) {
                 FilterControlsView()
             }
 
-            Section("已存过滤器") {
+            Section(String(localized: "已存过滤器")) {
                 SavedFiltersView()
             }
 
-            Section("证据") {
-                Label("截图 \(screenshotCount)", systemImage: "camera")
-                Label("录屏 \(recordingCount)", systemImage: "record.circle")
-                Button("在 Finder 中显示") {
+            Section(String(localized: "证据")) {
+                Label(String(localized: "截图 \(screenshotCount)"), systemImage: "camera")
+                Label(String(localized: "录屏 \(recordingCount)"), systemImage: "record.circle")
+                Button(String(localized: "在 Finder 中显示")) {
                     model.revealOutputDirectory()
                 }
                 if model.sessionState == .stopped, model.currentSession != nil {
-                    Button("丢弃当前会话…", role: .destructive) {
+                    Button(String(localized: "丢弃当前会话…"), role: .destructive) {
                         Task { await model.discardCurrentSession() }
                     }
                 }
             }
 
-            Section("工作区") {
+            Section(String(localized: "工作区")) {
                 Button {
                     openWindow(id: "archive")
                 } label: {
-                    Label("会话归档与对比", systemImage: "archivebox")
+                    Label(String(localized: "会话归档与对比"), systemImage: "archivebox")
                 }
                 .buttonStyle(.plain)
                 SettingsLink {
-                    Label("ADB 与隐私设置", systemImage: "gearshape")
+                    Label(String(localized: "ADB 与隐私设置"), systemImage: "gearshape")
                 }
             }
         }
@@ -111,7 +111,7 @@ struct SidebarView: View {
                     Image(systemName: "arrow.clockwise")
                 }
                 .buttonStyle(.borderless)
-                .help("刷新设备")
+                .help(String(localized: "刷新设备"))
             }
             .font(.caption)
             .foregroundStyle(.secondary)
@@ -126,10 +126,10 @@ struct SidebarView: View {
 
     private var adbStatusText: String {
         switch model.adbAvailability {
-        case .checking: "正在检查 ADB"
-        case .ready: "ADB 已就绪"
-        case .missing: "未找到 ADB"
-        case .failed: "ADB 异常"
+        case .checking: String(localized: "正在检查 ADB")
+        case .ready: String(localized: "ADB 已就绪")
+        case .missing: String(localized: "未找到 ADB")
+        case .failed: String(localized: "ADB 异常")
         }
     }
 
@@ -150,7 +150,7 @@ struct SidebarView: View {
     }
 
     private func deviceDetail(_ device: AndroidDevice) -> String {
-        var parts = [device.serial, device.connectionType.rawValue, device.state.displayName]
+        var parts = [device.serial, device.connectionType.displayName, device.state.displayName]
         if let version = device.androidVersion {
             var android = "Android \(version)"
             if let api = device.apiLevel {

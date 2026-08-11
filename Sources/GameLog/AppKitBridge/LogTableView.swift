@@ -55,11 +55,11 @@ struct LogTableView: NSViewRepresentable {
         tableView.autosaveName = "GameLog.LogTable.Columns.v1"
         tableView.autosaveTableColumns = true
 
-        addColumn(to: tableView, id: "time", title: "时间", width: 126, minWidth: 116)
-        addColumn(to: tableView, id: "level", title: "级别", width: 52, minWidth: 48)
+        addColumn(to: tableView, id: "time", title: String(localized: "时间"), width: 126, minWidth: 116)
+        addColumn(to: tableView, id: "level", title: String(localized: "级别"), width: 52, minWidth: 48)
         addColumn(to: tableView, id: "pid", title: "PID/TID", width: 96, minWidth: 82)
         addColumn(to: tableView, id: "tag", title: "Tag", width: 180, minWidth: 100)
-        addColumn(to: tableView, id: "message", title: "消息", width: 560, minWidth: 240)
+        addColumn(to: tableView, id: "message", title: String(localized: "消息"), width: 560, minWidth: 240)
 
         let menu = NSMenu()
         menu.delegate = context.coordinator
@@ -251,18 +251,18 @@ struct LogTableView: NSViewRepresentable {
         func menuNeedsUpdate(_ menu: NSMenu) {
             menu.removeAllItems()
             guard let event = rowsForCurrentSelection().first else { return }
-            addMenuItem("复制消息", action: #selector(copyMessage(_:)), to: menu)
-            addMenuItem("复制原始日志", action: #selector(copyRawText(_:)), to: menu)
-            addMenuItem("复制所选多行（结构化）", action: #selector(copyStructuredText(_:)), to: menu)
+            addMenuItem(String(localized: "复制消息"), action: #selector(copyMessage(_:)), to: menu)
+            addMenuItem(String(localized: "复制原始日志"), action: #selector(copyRawText(_:)), to: menu)
+            addMenuItem(String(localized: "复制所选多行（结构化）"), action: #selector(copyStructuredText(_:)), to: menu)
 
             if event.isMarker {
                 menu.addItem(.separator())
-                addMenuItem("在检查器中显示", action: #selector(showInInspector(_:)), to: menu)
+                addMenuItem(String(localized: "在检查器中显示"), action: #selector(showInInspector(_:)), to: menu)
                 if let evidenceID = event.evidenceID {
-                    addMenuItem("快速查看", action: #selector(previewEvidence(_:)), to: menu)
-                    addMenuItem("在 Finder 中显示", action: #selector(revealEvidence(_:)), to: menu)
-                    addMenuItem("复制文件路径", action: #selector(copyEvidencePath(_:)), to: menu)
-                    addMenuItem("导出所选证据…", action: #selector(exportEvidence(_:)), to: menu)
+                    addMenuItem(String(localized: "快速查看"), action: #selector(previewEvidence(_:)), to: menu)
+                    addMenuItem(String(localized: "在 Finder 中显示"), action: #selector(revealEvidence(_:)), to: menu)
+                    addMenuItem(String(localized: "复制文件路径"), action: #selector(copyEvidencePath(_:)), to: menu)
+                    addMenuItem(String(localized: "导出所选证据…"), action: #selector(exportEvidence(_:)), to: menu)
                     if evidenceURL(evidenceID) == nil {
                         for item in menu.items.suffix(4) {
                             item.isEnabled = false
@@ -271,11 +271,11 @@ struct LogTableView: NSViewRepresentable {
                 }
             } else {
                 menu.addItem(.separator())
-                addMenuItem("仅显示此 Tag", action: #selector(showOnlyTag(_:)), to: menu)
-                addMenuItem("排除此 Tag", action: #selector(excludeTag(_:)), to: menu)
-                addMenuItem("仅显示此 PID", action: #selector(showOnlyPID(_:)), to: menu)
-                addMenuItem("添加/取消书签", action: #selector(toggleBookmark(_:)), to: menu)
-                menu.item(withTitle: "仅显示此 PID")?.isEnabled = event.pid != nil
+                addMenuItem(String(localized: "仅显示此 Tag"), action: #selector(showOnlyTag(_:)), to: menu)
+                addMenuItem(String(localized: "排除此 Tag"), action: #selector(excludeTag(_:)), to: menu)
+                addMenuItem(String(localized: "仅显示此 PID"), action: #selector(showOnlyPID(_:)), to: menu)
+                addMenuItem(String(localized: "添加/取消书签"), action: #selector(toggleBookmark(_:)), to: menu)
+                menu.item(withTitle: String(localized: "仅显示此 PID"))?.isEnabled = event.pid != nil
             }
         }
 

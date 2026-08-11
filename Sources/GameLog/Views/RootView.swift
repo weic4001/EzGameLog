@@ -18,7 +18,7 @@ struct RootView: View {
             InspectorView()
                 .inspectorColumnWidth(min: 300, ideal: 350, max: 460)
         }
-        .searchable(text: $model.searchText, placement: .toolbar, prompt: "搜索 Tag 或消息")
+        .searchable(text: $model.searchText, placement: .toolbar, prompt: String(localized: "搜索 Tag 或消息"))
         .toolbar {
             MainToolbar()
         }

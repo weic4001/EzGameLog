@@ -8,7 +8,7 @@ struct TargetSelectorView: View {
 
         VStack(alignment: .leading, spacing: 7) {
             HStack(spacing: 6) {
-                TextField("输入包名", text: $model.packageInput)
+                TextField(String(localized: "输入包名"), text: $model.packageInput)
                     .textFieldStyle(.roundedBorder)
                     .onSubmit(selectInput)
                     .disabled(model.sessionState.isActive)

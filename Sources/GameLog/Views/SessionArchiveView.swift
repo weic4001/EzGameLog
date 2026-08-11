@@ -13,13 +13,13 @@ struct SessionArchiveView: View {
             }
             TabView {
                 ArchiveBrowserView()
-                    .tabItem { Label("会话", systemImage: "archivebox") }
+                    .tabItem { Label(String(localized: "会话"), systemImage: "archivebox") }
                 DiagnosticTrendsView()
-                    .tabItem { Label("趋势", systemImage: "chart.line.uptrend.xyaxis") }
+                    .tabItem { Label(String(localized: "趋势"), systemImage: "chart.line.uptrend.xyaxis") }
                 SessionComparisonView()
-                    .tabItem { Label("对比", systemImage: "rectangle.split.2x1") }
+                    .tabItem { Label(String(localized: "对比"), systemImage: "rectangle.split.2x1") }
                 SymbolicationWorkspaceView()
-                    .tabItem { Label("符号", systemImage: "curlybraces.square") }
+                    .tabItem { Label(String(localized: "符号"), systemImage: "curlybraces.square") }
             }
         }
         .toolbar {
@@ -27,34 +27,34 @@ struct SessionArchiveView: View {
                 if model.isLoading || model.isPreviewingImport || model.isImporting {
                     ProgressView()
                         .controlSize(.small)
-                        .accessibilityLabel("归档操作进行中")
+                        .accessibilityLabel(String(localized: "归档操作进行中"))
                 }
                 Button {
                     Task { await model.chooseAndImportSession() }
                 } label: {
-                    Label("导入会话", systemImage: "square.and.arrow.down")
+                    Label(String(localized: "导入会话"), systemImage: "square.and.arrow.down")
                 }
                 .disabled(model.isImporting || model.isPreviewingImport)
-                .help("导入其他成员导出的 GameLog 会话目录（⇧⌘I）")
+                .help(String(localized: "导入其他成员导出的 GameLog 会话目录（⇧⌘I）"))
                 Button {
                     Task { await model.refresh(forceAnalysis: true) }
                 } label: {
-                    Label("重新分析", systemImage: "arrow.clockwise")
+                    Label(String(localized: "重新分析"), systemImage: "arrow.clockwise")
                 }
                 .disabled(model.isLoading)
-                .help("重新读取日志并刷新归档分析")
+                .help(String(localized: "重新读取日志并刷新归档分析"))
             }
         }
         .safeAreaInset(edge: .bottom) {
             HStack {
                 Text(model.statusMessage)
                     .lineLimit(1)
-                    .accessibilityLabel("归档状态")
+                    .accessibilityLabel(String(localized: "归档状态"))
                     .accessibilityValue(model.statusMessage)
                 Spacer()
-                Text("\(model.entries.count) 个会话")
+                Text(String(localized: "\(model.entries.count) 个会话"))
                     .monospacedDigit()
-                    .accessibilityLabel("归档会话数量")
+                    .accessibilityLabel(String(localized: "归档会话数量"))
                     .accessibilityValue("\(model.entries.count)")
             }
             .font(.caption)
@@ -90,7 +90,7 @@ private struct ArchiveBrowserView: View {
                         if entry.isInProgress {
                             Image(systemName: "record.circle")
                                 .foregroundStyle(.orange)
-                                .accessibilityLabel("会话尚未完成")
+                                .accessibilityLabel(String(localized: "会话尚未完成"))
                         }
                         if let report = model.automaticRegressionReport(
                             for: entry.id
@@ -98,8 +98,8 @@ private struct ArchiveBrowserView: View {
                         let severity = report.highestSeverity {
                             Image(systemName: regressionImage(severity))
                                 .foregroundStyle(regressionColor(severity))
-                                .help("\(severity.title)回归告警")
-                                .accessibilityLabel("\(severity.title)回归告警")
+                                .help(String(localized: "\(severity.title)回归告警"))
+                                .accessibilityLabel(String(localized: "\(severity.title)回归告警"))
                         }
                     }
                     Text(
@@ -116,7 +116,7 @@ private struct ArchiveBrowserView: View {
                 .tag(entry.id)
             }
             .listStyle(.sidebar)
-            .navigationTitle("会话归档")
+            .navigationTitle(String(localized: "会话归档"))
             .navigationSplitViewColumnWidth(min: 220, ideal: 270, max: 340)
         } detail: {
             if let entry = model.selectedEntry {
@@ -124,9 +124,9 @@ private struct ArchiveBrowserView: View {
                     .id(entry.id)
             } else {
                 ContentUnavailableView(
-                    "选择一个会话",
+                    String(localized: "选择一个会话"),
                     systemImage: "archivebox",
-                    description: Text("在左侧选择会话后查看分析和本地注释。")
+                    description: Text(String(localized: "在左侧选择会话后查看分析和本地注释。"))
                 )
             }
         }
@@ -177,10 +177,10 @@ private struct ArchiveSessionDetailView: View {
                     Spacer()
                     HStack {
                         if model.isOfficialBaseline(entry.id) {
-                            Label("回归基线", systemImage: "checkmark.seal.fill")
+                            Label(String(localized: "回归基线"), systemImage: "checkmark.seal.fill")
                                 .foregroundStyle(.green)
                         } else {
-                            Button("设为回归基线") {
+                            Button(String(localized: "设为回归基线")) {
                                 Task {
                                     await model.setRegressionBaseline(
                                         sessionID: entry.id
@@ -188,7 +188,7 @@ private struct ArchiveSessionDetailView: View {
                                 }
                             }
                         }
-                        Button("在 Finder 中显示") {
+                        Button(String(localized: "在 Finder 中显示")) {
                             model.revealSelectedSession()
                         }
                     }
@@ -200,17 +200,17 @@ private struct ArchiveSessionDetailView: View {
                     topTags(snapshot)
                 } else {
                     ContentUnavailableView(
-                        "分析尚不可用",
+                        String(localized: "分析尚不可用"),
                         systemImage: "chart.bar.doc.horizontal",
-                        description: Text("点击工具栏“重新分析”生成该会话的统计。")
+                        description: Text(String(localized: "点击工具栏“重新分析”生成该会话的统计。"))
                     )
                     .frame(maxWidth: .infinity)
                 }
 
-                GroupBox("本地注释") {
+                GroupBox(String(localized: "本地注释")) {
                     VStack(alignment: .leading, spacing: 10) {
-                        TextField("会话标题", text: $title)
-                        TextField("标签，逗号分隔", text: $labels)
+                        TextField(String(localized: "会话标题"), text: $title)
+                        TextField(String(localized: "标签，逗号分隔"), text: $labels)
                         TextEditor(text: $note)
                             .font(.body)
                             .frame(minHeight: 90)
@@ -220,7 +220,7 @@ private struct ArchiveSessionDetailView: View {
                             }
                         HStack {
                             Spacer()
-                            Button("保存注释") {
+                            Button(String(localized: "保存注释")) {
                                 Task {
                                     await model.saveAnnotation(
                                         sessionID: entry.id,
@@ -243,7 +243,7 @@ private struct ArchiveSessionDetailView: View {
     private var sessionSubtitle: String {
         let duration = entry.session.endedAt.map {
             $0.timeIntervalSince(entry.session.createdAt).formattedDuration
-        } ?? "未完成"
+        } ?? String(localized: "未完成")
         return "\(entry.session.device.displayName) · "
             + "\(entry.session.createdAt.formatted(date: .long, time: .standard)) · "
             + duration
@@ -251,11 +251,11 @@ private struct ArchiveSessionDetailView: View {
 
     private func metrics(_ snapshot: SessionAnalysisSnapshot) -> some View {
         HStack(spacing: 10) {
-            ArchiveMetricCard(title: "日志", value: "\(snapshot.logEventCount)")
-            ArchiveMetricCard(title: "错误", value: "\(snapshot.errorCount)")
-            ArchiveMetricCard(title: "诊断", value: "\(snapshot.diagnosticIssues.count)")
-            ArchiveMetricCard(title: "问题", value: "\(snapshot.incidentCount)")
-            ArchiveMetricCard(title: "证据", value: "\(snapshot.artifactCount)")
+            ArchiveMetricCard(title: String(localized: "日志"), value: "\(snapshot.logEventCount)")
+            ArchiveMetricCard(title: String(localized: "错误"), value: "\(snapshot.errorCount)")
+            ArchiveMetricCard(title: String(localized: "诊断"), value: "\(snapshot.diagnosticIssues.count)")
+            ArchiveMetricCard(title: String(localized: "问题"), value: "\(snapshot.incidentCount)")
+            ArchiveMetricCard(title: String(localized: "证据"), value: "\(snapshot.artifactCount)")
         }
     }
 
@@ -270,7 +270,7 @@ private struct ArchiveSessionDetailView: View {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(issue.title)
                                     .lineLimit(2)
-                                Text("\(issue.kind.title) · \(issue.occurrenceCount) 次")
+                                Text(String(localized: "\(issue.kind.title) · \(issue.occurrenceCount) 次"))
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                                 let symbolicated = model.symbolicatedFrames(
@@ -294,7 +294,7 @@ private struct ArchiveSessionDetailView: View {
     }
 
     private func topTags(_ snapshot: SessionAnalysisSnapshot) -> some View {
-        GroupBox("高频 Tag") {
+        GroupBox(String(localized: "高频 Tag")) {
             VStack(spacing: 7) {
                 ForEach(snapshot.topTags.prefix(10)) { item in
                     HStack {
@@ -321,11 +321,11 @@ private struct DiagnosticTrendsView: View {
 
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("跨会话 Crash / ANR 趋势")
+                Text(String(localized: "跨会话 Crash / ANR 趋势"))
                     .font(.title2.weight(.semibold))
                 Spacer()
-                Picker("目标包", selection: $model.trendPackageFilter) {
-                    Text("全部项目").tag("")
+                Picker(String(localized: "目标包"), selection: $model.trendPackageFilter) {
+                    Text(String(localized: "全部项目")).tag("")
                     ForEach(model.availablePackages, id: \.self) {
                         Text($0).tag($0)
                     }
@@ -335,9 +335,9 @@ private struct DiagnosticTrendsView: View {
 
             if model.trends.isEmpty {
                 ContentUnavailableView(
-                    "暂无可聚合诊断",
+                    String(localized: "暂无可聚合诊断"),
                     systemImage: "chart.line.uptrend.xyaxis",
-                    description: Text("完成包含 Crash 或 ANR 的会话后会在这里形成趋势。")
+                    description: Text(String(localized: "完成包含 Crash 或 ANR 的会话后会在这里形成趋势。"))
                 )
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
@@ -350,9 +350,9 @@ private struct DiagnosticTrendsView: View {
                             Text(trend.title)
                                 .font(.headline)
                             HStack(spacing: 12) {
-                                Text("\(trend.sessionCount) 个会话")
-                                Text("\(trend.occurrenceCount) 次")
-                                Text("最近 \(trend.lastOccurredAt.formatted(date: .abbreviated, time: .shortened))")
+                                Text(String(localized: "\(trend.sessionCount) 个会话"))
+                                Text(String(localized: "\(trend.occurrenceCount) 次"))
+                                Text(String(localized: "最近 \(trend.lastOccurredAt.formatted(date: .abbreviated, time: .shortened))"))
                             }
                             .font(.caption)
                             .foregroundStyle(.secondary)
@@ -385,13 +385,13 @@ private struct SessionComparisonView: View {
 
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                Text("双会话差异")
+                Text(String(localized: "双会话差异"))
                     .font(.title2.weight(.semibold))
                 HStack {
-                    sessionPicker("基准", selection: $model.baselineSessionID)
+                    sessionPicker(String(localized: "基准"), selection: $model.baselineSessionID)
                     Image(systemName: "arrow.right")
                         .foregroundStyle(.secondary)
-                    sessionPicker("对比", selection: $model.comparisonSessionID)
+                    sessionPicker(String(localized: "对比"), selection: $model.comparisonSessionID)
                 }
 
                 if let comparison = model.comparison {
@@ -410,9 +410,9 @@ private struct SessionComparisonView: View {
                     changedTags(comparison)
                 } else {
                     ContentUnavailableView(
-                        "请选择两个不同会话",
+                        String(localized: "请选择两个不同会话"),
                         systemImage: "rectangle.split.2x1",
-                        description: Text("建议选择相同目标包的两个会话进行对比。")
+                        description: Text(String(localized: "建议选择相同目标包的两个会话进行对比。"))
                     )
                     .frame(maxWidth: .infinity, minHeight: 320)
                 }
@@ -428,10 +428,10 @@ private struct SessionComparisonView: View {
             let configuration = model.regressionConfiguration(
                 for: targetPackage
             )
-            GroupBox("自动回归基线检查") {
+            GroupBox(String(localized: "自动回归基线检查")) {
                 VStack(alignment: .leading, spacing: 8) {
                     if report.alerts.isEmpty {
-                        Label("未发现显著回归", systemImage: "checkmark.circle.fill")
+                        Label(String(localized: "未发现显著回归"), systemImage: "checkmark.circle.fill")
                             .foregroundStyle(.green)
                     } else {
                         ForEach(report.alerts) { alert in
@@ -455,20 +455,20 @@ private struct SessionComparisonView: View {
                                     }
                                 } label: {
                                     Label(
-                                        "忽略此项",
+                                        String(localized: "忽略此项"),
                                         systemImage: "speaker.slash"
                                     )
                                     .labelStyle(.iconOnly)
                                 }
                                 .buttonStyle(.borderless)
-                                .help("后续对比中忽略同一诊断或指标，可在告警规则中恢复")
-                                .accessibilityHint("后续对比会隐藏同一项，可在告警规则中恢复")
+                                .help(String(localized: "后续对比中忽略同一诊断或指标，可在告警规则中恢复"))
+                                .accessibilityHint(String(localized: "后续对比会隐藏同一项，可在告警规则中恢复"))
                             }
                         }
                     }
                     if report.suppressedAlertCount > 0 {
                         Label(
-                            "已隐藏 \(report.suppressedAlertCount) 项已知告警",
+                            String(localized: "已隐藏 \(report.suppressedAlertCount) 项已知告警"),
                             systemImage: "speaker.slash.fill"
                         )
                         .font(.caption)
@@ -476,7 +476,7 @@ private struct SessionComparisonView: View {
                     }
                     Divider()
                         .padding(.vertical, 2)
-                    DisclosureGroup("告警规则与降噪") {
+                    DisclosureGroup(String(localized: "告警规则与降噪")) {
                         RegressionConfigurationEditor(
                             configuration: configuration
                         )
@@ -493,23 +493,23 @@ private struct SessionComparisonView: View {
     @ViewBuilder
     private var alignmentSummary: some View {
         if let alignment = model.alignment {
-            GroupBox("时间轴对齐") {
+            GroupBox(String(localized: "时间轴对齐")) {
                 HStack {
-                    LabeledContent("方式", value: alignment.method.title)
+                    LabeledContent(String(localized: "方式"), value: alignment.method.title)
                     Divider()
                     LabeledContent(
-                        "对比会话偏移",
+                        String(localized: "对比会话偏移"),
                         value: signedSeconds(alignment.comparisonOffset)
                     )
                     Divider()
                     LabeledContent(
-                        "置信度",
+                        String(localized: "置信度"),
                         value: alignment.confidence.formatted(.percent.precision(
                             .fractionLength(0)
                         ))
                     )
                 }
-                Text("锚点：\(alignment.anchor.title)")
+                Text(String(localized: "锚点：\(alignment.anchor.title)"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .lineLimit(2)
@@ -517,7 +517,7 @@ private struct SessionComparisonView: View {
                 if model.timelineAlignments.count > 1 {
                     Divider()
                         .padding(.vertical, 4)
-                    Text("同项目会话（相对当前基准）")
+                    Text(String(localized: "同项目会话（相对当前基准）"))
                         .font(.caption.weight(.semibold))
                     ForEach(
                         model.timelineAlignments,
@@ -544,7 +544,7 @@ private struct SessionComparisonView: View {
         selection: Binding<UUID?>
     ) -> some View {
         Picker(title, selection: selection) {
-            Text("未选择").tag(Optional<UUID>.none)
+            Text(String(localized: "未选择")).tag(Optional<UUID>.none)
             ForEach(model.snapshots) { snapshot in
                 Text(
                     "\(snapshot.targetPackage) · "
@@ -562,17 +562,17 @@ private struct SessionComparisonView: View {
     private func comparisonDiagnostics(_ comparison: SessionComparison) -> some View {
         HStack(alignment: .top, spacing: 12) {
             DiagnosticDifferenceGroup(
-                title: "新增",
+                title: String(localized: "新增"),
                 color: .red,
                 issues: comparison.addedDiagnostics
             )
             DiagnosticDifferenceGroup(
-                title: "已消失",
+                title: String(localized: "已消失"),
                 color: .green,
                 issues: comparison.resolvedDiagnostics
             )
             DiagnosticDifferenceGroup(
-                title: "持续存在",
+                title: String(localized: "持续存在"),
                 color: .orange,
                 issues: comparison.recurringDiagnostics
             )
@@ -580,7 +580,7 @@ private struct SessionComparisonView: View {
     }
 
     private func changedTags(_ comparison: SessionComparison) -> some View {
-        GroupBox("Tag 变化（绝对差值前 20）") {
+        GroupBox(String(localized: "Tag 变化（绝对差值前 20）")) {
             VStack(spacing: 7) {
                 ForEach(comparison.changedTags) { tag in
                     HStack {
@@ -607,8 +607,8 @@ private struct SessionComparisonView: View {
         let formatted = abs(value).formatted(
             .number.precision(.fractionLength(3))
         )
-        if value == 0 { return "0.000 秒" }
-        return value > 0 ? "+\(formatted) 秒" : "-\(formatted) 秒"
+        if value == 0 { return String(localized: "0.000 秒") }
+        return value > 0 ? String(localized: "+\(formatted) 秒") : String(localized: "-\(formatted) 秒")
     }
 
     private func regressionIcon(_ severity: RegressionSeverity) -> String {
@@ -649,7 +649,7 @@ private struct DiagnosticDifferenceGroup: View {
         GroupBox {
             VStack(alignment: .leading, spacing: 7) {
                 if issues.isEmpty {
-                    Text("无")
+                    Text(String(localized: "无"))
                         .foregroundStyle(.secondary)
                 }
                 ForEach(issues.prefix(8)) { issue in

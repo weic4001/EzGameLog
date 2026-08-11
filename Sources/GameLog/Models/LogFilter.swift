@@ -9,9 +9,9 @@ enum LogPIDScope: String, Codable, CaseIterable, Identifiable, Sendable {
 
     var title: String {
         switch self {
-        case .target: "目标进程"
-        case .all: "全部设备日志"
-        case .custom: "指定 PID"
+        case .target: String(localized: "目标进程")
+        case .all: String(localized: "全部设备日志")
+        case .custom: String(localized: "指定 PID")
         }
     }
 }
@@ -48,7 +48,7 @@ enum BuiltInFilterPreset: String, CaseIterable, Identifiable, Sendable {
 
     var name: String {
         switch self {
-        case .unity: "Unity 游戏"
+        case .unity: String(localized: "Unity 游戏")
         case .unreal: "Unreal Engine"
         }
     }
@@ -79,7 +79,7 @@ enum LogFilterError: LocalizedError, Sendable {
     var errorDescription: String? {
         switch self {
         case .invalidRegularExpression(let message):
-            "正则表达式无效：\(message)"
+            String(localized: "正则表达式无效：\(message)")
         }
     }
 }

@@ -19,7 +19,7 @@ enum ScreenshotVideoEncoder {
         init(firstFrameData: Data, outputURL: URL) throws {
             guard let source = CGImageSourceCreateWithData(firstFrameData as CFData, nil),
                   let image = CGImageSourceCreateImageAtIndex(source, 0, nil) else {
-                throw CaptureError.videoEncodingFailed("无法解码首帧")
+                throw CaptureError.videoEncodingFailed(String(localized: "无法解码首帧"))
             }
 
             outputSize = ScreenshotVideoEncoder.scaledSize(
@@ -52,12 +52,12 @@ enum ScreenshotVideoEncoder {
             )
 
             guard writer.canAdd(input) else {
-                throw CaptureError.videoEncodingFailed("系统不接受 H.264 输出参数")
+                throw CaptureError.videoEncodingFailed(String(localized: "系统不接受 H.264 输出参数"))
             }
             writer.add(input)
             guard writer.startWriting() else {
                 throw CaptureError.videoEncodingFailed(
-                    writer.error?.localizedDescription ?? "无法启动编码器"
+                    writer.error?.localizedDescription ?? String(localized: "无法启动编码器")
                 )
             }
             writer.startSession(atSourceTime: .zero)
@@ -66,17 +66,17 @@ enum ScreenshotVideoEncoder {
         func append(pngData: Data, presentationTime: TimeInterval) throws {
             guard !isFinished, writer.status == .writing else {
                 throw CaptureError.videoEncodingFailed(
-                    writer.error?.localizedDescription ?? "编码器不在写入状态"
+                    writer.error?.localizedDescription ?? String(localized: "编码器不在写入状态")
                 )
             }
             guard let source = CGImageSourceCreateWithData(pngData as CFData, nil),
                   let image = CGImageSourceCreateImageAtIndex(source, 0, nil) else {
-                throw CaptureError.videoEncodingFailed("无法解码视频帧")
+                throw CaptureError.videoEncodingFailed(String(localized: "无法解码视频帧"))
             }
             while !input.isReadyForMoreMediaData {
                 guard writer.status == .writing else {
                     throw CaptureError.videoEncodingFailed(
-                        writer.error?.localizedDescription ?? "编码器异常"
+                        writer.error?.localizedDescription ?? String(localized: "编码器异常")
                     )
                 }
                 Thread.sleep(forTimeInterval: 0.002)
@@ -87,7 +87,7 @@ enum ScreenshotVideoEncoder {
                 height: outputSize.height,
                 pool: adaptor.pixelBufferPool
             ) else {
-                throw CaptureError.videoEncodingFailed("无法创建视频帧")
+                throw CaptureError.videoEncodingFailed(String(localized: "无法创建视频帧"))
             }
             let time = CMTime(
                 seconds: max(0, presentationTime),
@@ -95,7 +95,7 @@ enum ScreenshotVideoEncoder {
             )
             guard adaptor.append(pixelBuffer, withPresentationTime: time) else {
                 throw CaptureError.videoEncodingFailed(
-                    writer.error?.localizedDescription ?? "写入视频帧失败"
+                    writer.error?.localizedDescription ?? String(localized: "写入视频帧失败")
                 )
             }
         }
@@ -111,7 +111,7 @@ enum ScreenshotVideoEncoder {
             semaphore.wait()
             guard writer.status == .completed else {
                 throw CaptureError.videoEncodingFailed(
-                    writer.error?.localizedDescription ?? "编码未完成"
+                    writer.error?.localizedDescription ?? String(localized: "编码未完成")
                 )
             }
         }

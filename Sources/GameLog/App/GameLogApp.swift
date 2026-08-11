@@ -42,7 +42,7 @@ struct GameLogApp: App {
             GameLogCommands(archiveModel: archiveModel)
         }
 
-        Window("会话归档", id: "archive") {
+        Window(String(localized: "会话归档"), id: "archive") {
             SessionArchiveView()
                 .environment(archiveModel)
                 .preferredColorScheme(AppAppearance(rawValue: appearance)?.colorScheme)

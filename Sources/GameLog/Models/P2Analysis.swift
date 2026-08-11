@@ -13,7 +13,7 @@ enum NativeABI: String, Codable, CaseIterable, Sendable {
         case .arm: "ARMv7"
         case .x86_64: "x86_64"
         case .x86: "x86"
-        case .unknown: "未知架构"
+        case .unknown: String(localized: "未知架构")
         }
     }
 }
@@ -71,11 +71,11 @@ enum SymbolicationFrameStatus: String, Codable, CaseIterable, Sendable {
 
     var title: String {
         switch self {
-        case .symbolicated: "已符号化"
-        case .alreadySymbolicated: "日志已有符号"
-        case .missingSymbolFile: "缺少符号文件"
-        case .unresolved: "未解析"
-        case .failed: "解析失败"
+        case .symbolicated: String(localized: "已符号化")
+        case .alreadySymbolicated: String(localized: "日志已有符号")
+        case .missingSymbolFile: String(localized: "缺少符号文件")
+        case .unresolved: String(localized: "未解析")
+        case .failed: String(localized: "解析失败")
         }
     }
 }
@@ -260,9 +260,9 @@ enum TimelineAlignmentMethod: String, Codable, Sendable {
 
     var title: String {
         switch self {
-        case .matchingEvent: "共同日志锚点"
-        case .matchingDiagnostic: "共同诊断锚点"
-        case .sessionStart: "会话开始时间"
+        case .matchingEvent: String(localized: "共同日志锚点")
+        case .matchingDiagnostic: String(localized: "共同诊断锚点")
+        case .sessionStart: String(localized: "会话开始时间")
         }
     }
 }
@@ -295,9 +295,9 @@ enum RegressionSeverity: String, Codable, CaseIterable, Sendable {
 
     var title: String {
         switch self {
-        case .info: "提示"
-        case .warning: "警告"
-        case .critical: "严重"
+        case .info: String(localized: "提示")
+        case .warning: String(localized: "警告")
+        case .critical: String(localized: "严重")
         }
     }
 }

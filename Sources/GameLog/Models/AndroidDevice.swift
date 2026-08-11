@@ -8,10 +8,10 @@ enum DeviceConnectionState: String, Codable, Sendable {
 
     var displayName: String {
         switch self {
-        case .online: "已连接"
-        case .offline: "离线"
-        case .unauthorized: "待授权"
-        case .unknown: "未知"
+        case .online: String(localized: "已连接")
+        case .offline: String(localized: "离线")
+        case .unauthorized: String(localized: "待授权")
+        case .unknown: String(localized: "未知")
         }
     }
 }
@@ -21,6 +21,15 @@ enum DeviceConnectionType: String, Codable, Sendable {
     case wireless = "Wi-Fi"
     case emulator = "模拟器"
     case unknown = "未知"
+
+    var displayName: String {
+        switch self {
+        case .usb: "USB"
+        case .wireless: "Wi-Fi"
+        case .emulator: String(localized: "模拟器")
+        case .unknown: String(localized: "未知")
+        }
+    }
 }
 
 struct AndroidDevice: Identifiable, Hashable, Codable, Sendable {
