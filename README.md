@@ -140,7 +140,23 @@ GAMELOG_REQUIRE_NOTARIZATION=1 \
 - [技术架构与模块接口](Docs/GameLog-Technical-Architecture.md)
 - [实现与验收审计](Docs/GameLog-Implementation-Audit.md)
 - [iOS 真机支持范围与计划](Docs/GameLog-iOS-Physical-Device-Plan.md)
+- [开发者指南](Docs/Development.md)
+- [发布与公证指南](Docs/Release.md)
+- [隐私与数据处理](Docs/Privacy.md)
+- [第三方组件声明](Docs/Third-Party-Notices.md)
+- [贡献指南](CONTRIBUTING.md)
+- [安全策略](SECURITY.md)
+- [支持与问题反馈](SUPPORT.md)
+- [变更记录](CHANGELOG.md)
 - [选定的 macOS 26 界面稿](Docs/Assets/gamelog-macos26-selected-concept.png)
+
+英文入口：[README.en.md](README.en.md)。
+
+## 开源项目说明
+
+GameLog 使用 [MIT License](LICENSE) 开源。仓库内的 ADB、libimobiledevice、OpenSSL 及其他设备工具保留各自的上游许可证，详见 [第三方组件声明](Docs/Third-Party-Notices.md) 及 `ThirdParty/` 目录中的原始许可文件。
+
+欢迎提交问题、改进文档和代码。开始之前请阅读 [贡献指南](CONTRIBUTING.md)；提交设备日志、截图或录屏前，请先阅读 [隐私与数据处理](Docs/Privacy.md) 并完成脱敏。
 
 ## 已知产品约束
 
