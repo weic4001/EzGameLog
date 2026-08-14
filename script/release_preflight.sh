@@ -17,6 +17,21 @@ ADB_NOTICE="$APP_BUNDLE/Contents/Resources/ThirdPartyNotices/ADB/NOTICE.txt"
 ADB_SOURCE_PROPERTIES="$APP_BUNDLE/Contents/Resources/ThirdPartyNotices/ADB/source.properties"
 SOURCE_ADB="$PROJECT_ROOT/ThirdParty/ADB/adb"
 EXPECTED_SOURCE_ADB_SHA256="92105d0c0f006a6fbdd8a91e82b791d23e4746491062b62d5ecc34abecf9086b"
+IOS_SOURCE_ROOT="$PROJECT_ROOT/ThirdParty/iOSDeviceTools"
+IOS_SOURCE_PROPERTIES="$IOS_SOURCE_ROOT/source.properties"
+IOS_NOTICE="$APP_BUNDLE/Contents/Resources/ThirdPartyNotices/iOSDeviceTools/NOTICE.txt"
+IOS_BUNDLED_SOURCE_PROPERTIES="$APP_BUNDLE/Contents/Resources/ThirdPartyNotices/iOSDeviceTools/source.properties"
+IOS_TOOLS_DIR="$APP_BUNDLE/Contents/MacOS"
+IOS_LIBRARIES_DIR="$APP_BUNDLE/Contents/Frameworks"
+IOS_TOOLS=(idevice_id ideviceinfo idevicepair idevicesyslog)
+IOS_LIBRARIES=(
+    libcrypto.3.dylib
+    libimobiledevice-1.0.6.dylib
+    libimobiledevice-glue-1.0.0.dylib
+    libplist-2.0.4.dylib
+    libssl.3.dylib
+    libusbmuxd-2.0.7.dylib
+)
 REQUIRE_DEVELOPER_ID="${GAMELOG_REQUIRE_DEVELOPER_ID:-0}"
 REQUIRE_NOTARIZATION="${GAMELOG_REQUIRE_NOTARIZATION:-0}"
 
@@ -33,6 +48,10 @@ read_plist() {
     /usr/libexec/PlistBuddy -c "Print :$2" "$1"
 }
 
+read_property() {
+    /usr/bin/awk -F= -v key="$1" '$1 == key { sub(/^[^=]*=/, ""); print; exit }' "$2"
+}
+
 test -d "$APP_BUNDLE" || fail "missing app bundle: $APP_BUNDLE"
 test -f "$APP_INFO" || fail "missing app Info.plist"
 test -x "$APP_EXECUTABLE" || fail "missing app executable"
@@ -40,6 +59,17 @@ test -x "$BUNDLED_ADB" || fail "missing bundled ADB executable"
 test -s "$ADB_NOTICE" || fail "missing bundled ADB notices"
 test -s "$ADB_SOURCE_PROPERTIES" || fail "missing bundled ADB source.properties"
 test -x "$SOURCE_ADB" || fail "missing managed ADB source binary"
+test -s "$IOS_SOURCE_PROPERTIES" || fail "missing iOS device-tool source.properties"
+test -s "$IOS_NOTICE" || fail "missing bundled iOS device-tool notices"
+test -s "$IOS_BUNDLED_SOURCE_PROPERTIES" || fail "missing bundled iOS device-tool source.properties"
+for tool in "${IOS_TOOLS[@]}"; do
+    test -x "$IOS_SOURCE_ROOT/bin/$tool" || fail "missing managed iOS tool: $tool"
+    test -x "$IOS_TOOLS_DIR/$tool" || fail "missing bundled iOS tool: $tool"
+done
+for library in "${IOS_LIBRARIES[@]}"; do
+    test -f "$IOS_SOURCE_ROOT/lib/$library" || fail "missing managed iOS library: $library"
+    test -f "$IOS_LIBRARIES_DIR/$library" || fail "missing bundled iOS library: $library"
+done
 test -d "$XCARCHIVE" || fail "missing Xcode archive: $XCARCHIVE"
 test -f "$ZIP_ARCHIVE" || fail "missing release ZIP: $ZIP_ARCHIVE"
 
@@ -47,6 +77,20 @@ SOURCE_ADB_SHA256="$(/usr/bin/shasum -a 256 "$SOURCE_ADB" | /usr/bin/awk '{print
 [[ "$SOURCE_ADB_SHA256" == "$EXPECTED_SOURCE_ADB_SHA256" ]] \
     || fail "managed ADB source hash changed: $SOURCE_ADB_SHA256"
 pass "managed ADB source hash matches the reviewed binary"
+
+for item in "${IOS_TOOLS[@]}" "${IOS_LIBRARIES[@]}"; do
+    if [[ -f "$IOS_SOURCE_ROOT/bin/$item" ]]; then
+        source_item="$IOS_SOURCE_ROOT/bin/$item"
+    else
+        source_item="$IOS_SOURCE_ROOT/lib/$item"
+    fi
+    expected_hash="$(read_property "$item.SHA256" "$IOS_SOURCE_PROPERTIES")"
+    [[ -n "$expected_hash" ]] || fail "missing reviewed SHA-256 for $item"
+    actual_hash="$(/usr/bin/shasum -a 256 "$source_item" | /usr/bin/awk '{print $1}')"
+    [[ "$actual_hash" == "$expected_hash" ]] \
+        || fail "managed iOS component hash changed for $item: $actual_hash"
+done
+pass "managed iOS device-tool hashes match the reviewed Apple Silicon binaries"
 
 /usr/bin/plutil -lint "$SOURCE_INFO" "$APP_INFO" "$XCARCHIVE/Info.plist" >/dev/null
 pass "property lists are valid"
@@ -75,13 +119,25 @@ ARCHIVE_VERSION="$(read_plist "$ARCHIVE_APP/Contents/Info.plist" CFBundleShortVe
 ARCHIVE_BUILD="$(read_plist "$ARCHIVE_APP/Contents/Info.plist" CFBundleVersion)"
 ARCHIVE_ADB="$ARCHIVE_APP/Contents/MacOS/adb"
 ARCHIVE_ADB_NOTICE="$ARCHIVE_APP/Contents/Resources/ThirdPartyNotices/ADB/NOTICE.txt"
+ARCHIVE_IOS_TOOLS_DIR="$ARCHIVE_APP/Contents/MacOS"
+ARCHIVE_IOS_LIBRARIES_DIR="$ARCHIVE_APP/Contents/Frameworks"
+ARCHIVE_IOS_NOTICE="$ARCHIVE_APP/Contents/Resources/ThirdPartyNotices/iOSDeviceTools/NOTICE.txt"
 [[ "$ARCHIVE_VERSION" == "$VERSION" ]] \
     || fail "archived app version is $ARCHIVE_VERSION, expected $VERSION"
 [[ "$ARCHIVE_BUILD" == "$BUILD" ]] \
     || fail "archived app build is $ARCHIVE_BUILD, expected $BUILD"
 test -x "$ARCHIVE_ADB" || fail "Xcode archive does not contain bundled ADB"
 test -s "$ARCHIVE_ADB_NOTICE" || fail "Xcode archive does not contain ADB notices"
-pass "Xcode archive contains the expected app, bundled ADB, notices, and version"
+test -s "$ARCHIVE_IOS_NOTICE" || fail "Xcode archive does not contain iOS device-tool notices"
+for tool in "${IOS_TOOLS[@]}"; do
+    test -x "$ARCHIVE_IOS_TOOLS_DIR/$tool" \
+        || fail "Xcode archive does not contain iOS tool: $tool"
+done
+for library in "${IOS_LIBRARIES[@]}"; do
+    test -f "$ARCHIVE_IOS_LIBRARIES_DIR/$library" \
+        || fail "Xcode archive does not contain iOS library: $library"
+done
+pass "Xcode archive contains the app, Android and iOS tools, licenses, and version"
 
 ARCHITECTURES="$(/usr/bin/lipo -archs "$APP_EXECUTABLE")"
 case " $ARCHITECTURES " in
@@ -113,7 +169,38 @@ echo "$ADB_VERSION_OUTPUT" | /usr/bin/grep -q "Version $ADB_REVISION" \
     || fail "bundled ADB version does not match source.properties ($ADB_REVISION)"
 pass "bundled ADB $ADB_REVISION executes and contains arm64 and x86_64"
 
+IOS_ARCHITECTURES="$(read_property Package.Architectures "$IOS_BUNDLED_SOURCE_PROPERTIES")"
+[[ "$IOS_ARCHITECTURES" == "arm64" ]] \
+    || fail "unexpected declared iOS tool architecture: $IOS_ARCHITECTURES"
+for item in "${IOS_TOOLS[@]}" "${IOS_LIBRARIES[@]}"; do
+    if [[ -f "$IOS_TOOLS_DIR/$item" ]]; then
+        bundled_item="$IOS_TOOLS_DIR/$item"
+    else
+        bundled_item="$IOS_LIBRARIES_DIR/$item"
+    fi
+    item_architectures="$(/usr/bin/lipo -archs "$bundled_item")"
+    case " $item_architectures " in
+        *" arm64 "*) ;;
+        *) fail "bundled iOS component has no arm64 slice ($item): $item_architectures" ;;
+    esac
+    if /usr/bin/otool -L "$bundled_item" | /usr/bin/grep -q '/opt/homebrew'; then
+        fail "bundled iOS component retains a Homebrew load path: $item"
+    fi
+done
+IOS_VERSION_OUTPUT="$("$IOS_TOOLS_DIR/idevice_id" --version 2>&1)" \
+    || fail "bundled idevice_id cannot execute"
+echo "$IOS_VERSION_OUTPUT" | /usr/bin/grep -q "idevice_id" \
+    || fail "bundled executable did not identify itself as idevice_id"
+pass "bundled iOS device tools execute with relative dependencies on Apple Silicon"
+
 /usr/bin/codesign --verify --strict --verbose=2 "$BUNDLED_ADB"
+/usr/bin/codesign --verify --strict --verbose=2 "$IOS_TOOLS_DIR/idevice_id"
+for item in "${IOS_TOOLS[@]}"; do
+    /usr/bin/codesign --verify --strict --verbose=2 "$IOS_TOOLS_DIR/$item"
+done
+for item in "${IOS_LIBRARIES[@]}"; do
+    /usr/bin/codesign --verify --strict --verbose=2 "$IOS_LIBRARIES_DIR/$item"
+done
 /usr/bin/codesign --verify --deep --strict --verbose=2 "$APP_BUNDLE"
 SIGNING_DETAILS="$(/usr/bin/codesign -dvvv "$APP_BUNDLE" 2>&1)"
 ADB_SIGNING_DETAILS="$(/usr/bin/codesign -dvvv "$BUNDLED_ADB" 2>&1)"
@@ -121,11 +208,23 @@ echo "$SIGNING_DETAILS" | /usr/bin/grep -q "runtime" \
     || fail "Hardened Runtime flag is missing"
 echo "$ADB_SIGNING_DETAILS" | /usr/bin/grep -q "runtime" \
     || fail "bundled ADB Hardened Runtime flag is missing"
+if ! echo "$SIGNING_DETAILS" | /usr/bin/grep -q "Signature=adhoc"; then
+    for item in "${IOS_TOOLS[@]}"; do
+        nested_details="$(/usr/bin/codesign -dvvv "$IOS_TOOLS_DIR/$item" 2>&1)"
+        echo "$nested_details" | /usr/bin/grep -q "runtime" \
+            || fail "Hardened Runtime flag is missing from iOS tool: $item"
+    done
+    for item in "${IOS_LIBRARIES[@]}"; do
+        nested_details="$(/usr/bin/codesign -dvvv "$IOS_LIBRARIES_DIR/$item" 2>&1)"
+        echo "$nested_details" | /usr/bin/grep -q "runtime" \
+            || fail "Hardened Runtime flag is missing from iOS library: $item"
+    done
+fi
 if /usr/bin/codesign -d --entitlements - "$APP_BUNDLE" 2>&1 \
     | /usr/bin/grep -q "com.apple.security.app-sandbox"; then
     fail "App Sandbox entitlement is enabled, but this distribution launches ADB"
 fi
-pass "app and bundled ADB signatures are valid, Hardened Runtime is enabled, and App Sandbox is disabled"
+pass "app and nested device-tool signatures are valid, Hardened Runtime is enabled, and App Sandbox is disabled"
 
 if [[ "$REQUIRE_DEVELOPER_ID" == "1" ]]; then
     echo "$SIGNING_DETAILS" | /usr/bin/grep -q "Signature=adhoc" \
@@ -142,10 +241,27 @@ if [[ "$REQUIRE_DEVELOPER_ID" == "1" ]]; then
     ADB_TEAM="$(echo "$ADB_SIGNING_DETAILS" | /usr/bin/sed -n 's/^TeamIdentifier=//p')"
     [[ "$APP_TEAM" == "$ADB_TEAM" ]] \
         || fail "app and bundled ADB use different TeamIdentifiers"
-    pass "app and bundled ADB use the same Developer ID Application identity"
+    for item in "${IOS_TOOLS[@]}"; do
+        nested_details="$(/usr/bin/codesign -dvvv "$IOS_TOOLS_DIR/$item" 2>&1)"
+        echo "$nested_details" | /usr/bin/grep -q "Authority=Developer ID Application:" \
+            || fail "iOS tool Developer ID Application authority is missing: $item"
+        nested_team="$(echo "$nested_details" | /usr/bin/sed -n 's/^TeamIdentifier=//p')"
+        [[ "$APP_TEAM" == "$nested_team" ]] \
+            || fail "app and iOS tool use different TeamIdentifiers: $item"
+    done
+    for item in "${IOS_LIBRARIES[@]}"; do
+        nested_details="$(/usr/bin/codesign -dvvv "$IOS_LIBRARIES_DIR/$item" 2>&1)"
+        echo "$nested_details" | /usr/bin/grep -q "Authority=Developer ID Application:" \
+            || fail "iOS library Developer ID Application authority is missing: $item"
+        nested_team="$(echo "$nested_details" | /usr/bin/sed -n 's/^TeamIdentifier=//p')"
+        [[ "$APP_TEAM" == "$nested_team" ]] \
+            || fail "app and iOS library use different TeamIdentifiers: $item"
+    done
+    pass "app and all nested device tools use the same Developer ID Application identity"
 else
     if echo "$SIGNING_DETAILS" | /usr/bin/grep -q "Signature=adhoc"; then
         echo "ℹ app is ad-hoc signed; suitable for local validation, not external distribution"
+        echo "ℹ nested iOS tools omit Hardened Runtime locally because ad-hoc signatures have no shared Team ID"
     fi
 fi
 
@@ -157,6 +273,16 @@ echo "$ZIP_LIST" | /usr/bin/grep -q '^GameLog\.app/Contents/MacOS/adb$' \
     || fail "release ZIP does not contain bundled ADB"
 echo "$ZIP_LIST" | /usr/bin/grep -q '^GameLog\.app/Contents/Resources/ThirdPartyNotices/ADB/NOTICE\.txt$' \
     || fail "release ZIP does not contain ADB notices"
+for tool in "${IOS_TOOLS[@]}"; do
+    echo "$ZIP_LIST" | /usr/bin/grep -q "^GameLog\\.app/Contents/MacOS/$tool$" \
+        || fail "release ZIP does not contain iOS tool: $tool"
+done
+for library in "${IOS_LIBRARIES[@]}"; do
+    echo "$ZIP_LIST" | /usr/bin/grep -q "^GameLog\\.app/Contents/Frameworks/$library$" \
+        || fail "release ZIP does not contain iOS library: $library"
+done
+echo "$ZIP_LIST" | /usr/bin/grep -q '^GameLog\.app/Contents/Resources/ThirdPartyNotices/iOSDeviceTools/NOTICE\.txt$' \
+    || fail "release ZIP does not contain iOS device-tool notices"
 if echo "$ZIP_LIST" | /usr/bin/grep -Eq '(^/|(^|/)\.\.(/|$))'; then
     fail "release ZIP contains an unsafe path"
 fi

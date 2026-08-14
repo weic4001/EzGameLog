@@ -8,7 +8,7 @@ struct SettingsView: View {
             GeneralSettingsView()
                 .tabItem { Label(String(localized: "通用"), systemImage: "gearshape") }
             ADBSettingsView()
-                .tabItem { Label("ADB", systemImage: "terminal") }
+                .tabItem { Label(String(localized: "设备工具"), systemImage: "terminal") }
             RecordingSettingsView()
                 .tabItem { Label(String(localized: "录制"), systemImage: "record.circle") }
             PrivacySettingsView()
@@ -41,7 +41,7 @@ private struct GeneralSettingsView: View {
                 Text(String(localized: "100,000 条")).tag(100_000)
             }
 
-            Section(String(localized: "默认 Logcat 缓冲区")) {
+            Section(String(localized: "Android 默认 Logcat 缓冲区")) {
                 ForEach([LogBufferName.main, .system, .crash], id: \.self) { buffer in
                     Toggle(
                         buffer.rawValue,
@@ -98,6 +98,35 @@ private struct ADBSettingsView: View {
                     .foregroundStyle(.secondary)
             }
 
+            Section(String(localized: "iOS 真机工具")) {
+                LabeledContent(String(localized: "状态"), value: iosStatus)
+                LabeledContent(
+                    String(localized: "来源"),
+                    value: model.iosDeviceToolSource?.title ?? String(localized: "未就绪")
+                )
+                LabeledContent(String(localized: "实际路径")) {
+                    Text(
+                        model.iosDeviceToolPath.isEmpty
+                            ? String(localized: "未配置")
+                            : model.iosDeviceToolPath
+                    )
+                    .font(.caption.monospaced())
+                    .lineLimit(3)
+                    .textSelection(.enabled)
+                }
+                Text(String(localized: "iOS 日志工具随 App 提供；真机首次连接时，需要在设备上解锁并信任这台 Mac。"))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Text(String(localized: "截图使用 macOS 的 iPhone 屏幕采集通道，并仅在点击截图时请求相机权限。"))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Label(
+                    String(localized: "iOS 无侵入录屏：已列入计划，当前版本暂不支持"),
+                    systemImage: "calendar.badge.clock"
+                )
+                .foregroundStyle(.secondary)
+            }
+
             Section(String(localized: "无线调试（Android 11+）")) {
                 TextField(String(localized: "设备 IP 或主机名"), text: $wirelessHost)
                 HStack {
@@ -149,6 +178,15 @@ private struct ADBSettingsView: View {
 
     private var adbStatus: String {
         switch model.adbAvailability {
+        case .checking: String(localized: "正在检查")
+        case .ready(let version): version
+        case .missing: String(localized: "未找到")
+        case .failed(let message): message
+        }
+    }
+
+    private var iosStatus: String {
+        switch model.iosDeviceToolAvailability {
         case .checking: String(localized: "正在检查")
         case .ready(let version): version
         case .missing: String(localized: "未找到")

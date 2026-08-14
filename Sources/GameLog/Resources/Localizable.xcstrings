@@ -7088,6 +7088,144 @@
           }
         }
       }
+    },
+    "ADB 截图服务尚未就绪":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "The ADB screenshot service is not ready" } } }
+    },
+    "ADB 日志服务尚未就绪":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "The ADB log service is not ready" } } }
+    },
+    "ADB 设备服务尚未就绪":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "The ADB device service is not ready" } } }
+    },
+    "Android 与 iOS 已就绪":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Android and iOS Ready" } } }
+    },
+    "Android 已就绪":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Android Ready" } } }
+    },
+    "Android 请允许 USB 调试；iOS 请解锁并信任这台 Mac。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "On Android, allow USB debugging. On iOS, unlock the device and trust this Mac." } } }
+    },
+    "Android 默认 Logcat 缓冲区":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Default Android Logcat Buffers" } } }
+    },
+    "App 内置":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Bundled with App" } } }
+    },
+    "iOS 已就绪":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "iOS Ready" } } }
+    },
+    "iOS 无侵入录屏：已列入计划，当前版本暂不支持":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Non-invasive iOS recording: planned, not supported in this version" } } }
+    },
+    "iOS 日志工具随 App 提供；真机首次连接时，需要在设备上解锁并信任这台 Mac。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "iOS logging tools are bundled with the app. On first connection, unlock the device and trust this Mac." } } }
+    },
+    "iOS 日志服务尚未就绪":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "The iOS log service is not ready" } } }
+    },
+    "iOS 真机工具":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "iOS Device Tools" } } }
+    },
+    "iOS 真机无侵入录屏已列入计划，当前版本暂不支持":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Non-invasive iOS device recording is planned and not supported in this version" } } }
+    },
+    "iOS 设备工具不完整。请重新安装 GameLog。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "The iOS device tools are incomplete. Reinstall GameLog." } } }
+    },
+    "iOS 设备服务尚未就绪":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "The iOS device service is not ready" } } }
+    },
+    "iOS 进程名无效。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "The iOS process name is invalid." } } }
+    },
+    "iPhone 返回的截图数据无效。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "The screenshot data returned by the iPhone is invalid." } } }
+    },
+    "使用 USB 连接设备，完成调试授权或信任确认，然后刷新设备列表。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Connect a device by USB, approve debugging or trust, then refresh the device list." } } }
+    },
+    "内置 iOS 设备工具不完整。请重新安装 GameLog。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "The bundled iOS device tools are incomplete. Reinstall GameLog." } } }
+    },
+    "内置设备工具无法使用":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Bundled Device Tools Unavailable" } } }
+    },
+    "当前 Mac 架构暂不支持内置 iOS 设备工具。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Bundled iOS device tools do not yet support this Mac architecture." } } }
+    },
+    "截图使用 macOS 的 iPhone 屏幕采集通道，并仅在点击截图时请求相机权限。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Screenshots use the macOS iPhone screen capture channel and request camera access only when you click Screenshot." } } }
+    },
+    "所选设备不是 iOS 设备。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "The selected device is not an iOS device." } } }
+    },
+    "所选进程名无效":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "The selected process name is invalid" } } }
+    },
+    "无法启用 iOS 屏幕采集设备。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Could not enable iOS screen capture devices." } } }
+    },
+    "无法建立 iPhone 屏幕采集会话。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Could not create an iPhone screen capture session." } } }
+    },
+    "无法解析 iOS 设备信息。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Could not parse iOS device information." } } }
+    },
+    "未发现 Android 或 iOS 设备":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "No Android or iOS Devices Found" } } }
+    },
+    "未找到 iPhone 屏幕采集源。请解锁设备、确认信任此 Mac，并重新插拔 USB 线后重试。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "No iPhone screen source was found. Unlock the device, trust this Mac, reconnect USB, and try again." } } }
+    },
+    "本地视图已清空；设备日志缓冲区未改变":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "The local view was cleared; the device log buffer was not changed" } } }
+    },
+    "移动设备":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Mobile Device" } } }
+    },
+    "移动设备已断开，正在等待重连":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Mobile device disconnected; waiting to reconnect" } } }
+    },
+    "移动设备已重连，会话已恢复":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Mobile device reconnected; session restored" } } }
+    },
+    "等待 iPhone 屏幕画面超时。请保持设备解锁后重试。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Timed out waiting for the iPhone screen. Keep the device unlocked and try again." } } }
+    },
+    "设备工具":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Device Tools" } } }
+    },
+    "设备工具与隐私设置":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Device Tools and Privacy Settings" } } }
+    },
+    "设备工具尚未就绪":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Device tools are not ready" } } }
+    },
+    "设备工具未就绪":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Device Tools Not Ready" } } }
+    },
+    "请在设备上允许连接":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Allow the Connection on the Device" } } }
+    },
+    "请重新安装 GameLog。Android 也可以临时选择一个可用的外部 ADB。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Reinstall GameLog. For Android, you may also select a working external ADB temporarily." } } }
+    },
+    "输入进程名":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Enter Process Name" } } }
+    },
+    "进程名格式无效；请输入 iOS 进程列表中显示的名称":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Invalid process name. Enter a name shown in the iOS process list." } } }
+    },
+    "连接 Android 或 iOS 测试机":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Connect an Android or iOS Test Device" } } }
+    },
+    "选择 Android 或 iOS 设备":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Select an Android or iOS Device" } } }
+    },
+    "需要允许相机访问，才能通过 macOS 的 iPhone 屏幕采集通道截图。":  {
+      "localizations":  { "en":  { "stringUnit":  { "state":  "translated", "value":  "Camera access is required to capture the iPhone screen through macOS." } } }
     }
   },
   "version":  "1.1"

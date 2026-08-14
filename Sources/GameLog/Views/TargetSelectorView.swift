@@ -8,7 +8,7 @@ struct TargetSelectorView: View {
 
         VStack(alignment: .leading, spacing: 7) {
             HStack(spacing: 6) {
-                TextField(String(localized: "输入包名"), text: $model.packageInput)
+                TextField(targetPlaceholder, text: $model.packageInput)
                     .textFieldStyle(.roundedBorder)
                     .onSubmit(selectInput)
                     .disabled(model.sessionState.isActive)
@@ -43,5 +43,11 @@ struct TargetSelectorView: View {
 
     private func selectInput() {
         Task { await model.selectPackageName(model.packageInput) }
+    }
+
+    private var targetPlaceholder: String {
+        model.selectedDevice?.platform == .iOS
+            ? String(localized: "输入进程名")
+            : String(localized: "输入包名")
     }
 }

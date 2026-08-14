@@ -16,7 +16,7 @@ struct MainToolbar: ToolbarContent {
                         if device.serial == model.selectedDeviceSerial {
                             Label(device.displayName, systemImage: "checkmark")
                         } else {
-                            Text(device.displayName)
+                            Label(device.displayName, systemImage: device.platform.systemImage)
                         }
                     }
                     .disabled(device.state != .online)
@@ -26,9 +26,12 @@ struct MainToolbar: ToolbarContent {
                     Task { await model.refreshDevices() }
                 }
             } label: {
-                Label(model.selectedDevice?.displayName ?? String(localized: "选择设备"), systemImage: "iphone.gen3")
+                Label(
+                    model.selectedDevice?.displayName ?? String(localized: "选择设备"),
+                    systemImage: model.selectedDevice?.platform.systemImage ?? "iphone.gen3"
+                )
             }
-            .help(String(localized: "选择 Android 设备"))
+            .help(String(localized: "选择 Android 或 iOS 设备"))
 
             Menu {
                 ForEach(model.recentPackages, id: \.self) { package in
@@ -113,10 +116,8 @@ struct MainToolbar: ToolbarContent {
                 )
             }
             .foregroundStyle(model.isRecording ? .red : .primary)
-            .help(model.isRecording
-                ? String(localized: "停止设备录屏并保存 (⌥⌘R)")
-                : String(localized: "开始设备录屏；再次点击停止 (⌥⌘R)"))
-            .disabled(!model.sessionState.isActive)
+            .help(recordingHelp)
+            .disabled(!model.sessionState.isActive || !model.canRecordScreen)
 
             Menu {
                 Button(String(localized: "导出完整会话…")) {
@@ -149,5 +150,14 @@ struct MainToolbar: ToolbarContent {
             }
             .help(String(localized: "显示或隐藏检查器"))
         }
+    }
+
+    private var recordingHelp: String {
+        if !model.canRecordScreen, model.selectedDevice?.platform == .iOS {
+            return String(localized: "iOS 真机无侵入录屏已列入计划，当前版本暂不支持")
+        }
+        return model.isRecording
+            ? String(localized: "停止设备录屏并保存 (⌥⌘R)")
+            : String(localized: "开始设备录屏；再次点击停止 (⌥⌘R)")
     }
 }

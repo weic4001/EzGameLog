@@ -1,7 +1,7 @@
 # GameLog 技术架构与 Swift 模块接口清单
 
 > 文档版本：1.2.2  
-> 日期：2026-07-30  
+> 日期：2026-08-11
 > 目标平台：macOS 26 及以上  
 > UI 技术：SwiftUI + 小范围 AppKit 互操作  
 > 并发模型：Swift 6 Concurrency
@@ -18,18 +18,19 @@
 - `NavigationSplitView` + `.inspector`。
 - 系统 Toolbar、Search 和 macOS 26 Liquid Glass。
 - `NSTableView` 通过 `NSViewRepresentable` 承担高吞吐日志显示。
-- Foundation `Process` + `Pipe` 启动和读取 ADB。
+- Foundation `Process` + `Pipe` 启动和读取 ADB 与 iOS 设备工具。
+- CoreMediaIO + AVFoundation 从已信任的 iPhone 屏幕采集源读取用户触发的单帧截图。
 - `@MainActor` 隔离应用状态，`actor` 隔离会话写入，Sendable Service 隔离 ADB 与媒体任务。
 - AVKit 播放录屏，ImageIO/NSImage 处理截图和缩略图。
 
 ## 2. 架构原则
 
 1. **业务状态只有一个来源**：SwiftUI/AppModel 持有选择和界面状态，AppKit 不复制业务模型。
-2. **UI 与 ADB 解耦**：界面依赖协议，不直接创建 `Process`。
+2. **UI 与设备工具解耦**：界面依赖协议，不直接创建 `Process`。
 3. **数据流持续、UI 批量**：后台逐块读取，解析后批量推送 UI。
 4. **日志内存有界、会话文件可持续写入**：环形缓存限制 UI 内存，导出数据不依赖内存是否仍保留。
 5. **媒体按需加载**：列表只保存证据元数据，缩略图和视频由 Inspector 加载。
-6. **命令参数化**：所有 ADB 调用使用可执行 URL 与参数数组，不通过 Shell。
+6. **命令参数化**：所有 ADB/iOS 工具调用使用可执行 URL 与参数数组，不通过 Shell。
 7. **可测试替换**：设备、日志流、截图和录屏均可使用 Fake 实现。
 8. **窗口状态隔离**：每个日志窗口拥有独立 `AppModel`；ADB/会话目录偏好和 `SessionStore` 属于应用共享边界。
 
@@ -38,8 +39,8 @@
 ```mermaid
 flowchart LR
     UI[SwiftUI AppModel] --> COORD[SessionCoordinator]
-    COORD --> ADB[ADB Service]
-    ADB --> PROC[Foundation Process + Pipe]
+    COORD --> DEVICE[Android / iOS Device Services]
+    DEVICE --> PROC[Foundation Process + Pipe]
     PROC --> PIPE[Log Pipeline Actor]
     PIPE --> PARSER[Logcat Parser]
     PARSER --> BUFFER[Ring Buffer Actor]
@@ -85,6 +86,7 @@ GameLog/
 │   └── Settings/
 ├── Services/
 │   ├── ADB/
+│   ├── iOS/
 │   ├── LogPipeline/
 │   ├── Capture/
 │   ├── Sessions/
@@ -108,6 +110,12 @@ GameLog/
 | SessionCoordinator | 会话生命周期编排 | 具体 Process 实现 |
 | ADBExecutableLocator | 定位和校验 adb | 下载 SDK |
 | ADBExecutor | 一次性及流式命令执行 | 业务命令拼装 |
+| IOSDeviceToolLocator | 定位和校验内置 iOS 工具集 | 下载或静默安装系统组件 |
+| IOSDeviceToolExecutor | iOS 工具一次性及流式执行 | UI 状态与日志解析 |
+| IOSDeviceService | iPhone 发现、元数据、配对状态、进程和 PID | App 安装或调试器附加 |
+| IOSLogStreamingService | 构造并取消目标进程日志流 | Android Logcat 能力检测 |
+| IOSLogParser | iOS syslog Data/Line 到 LogEvent | 缓存和筛选 |
+| IOSScreenCaptureService | 用户触发的 iPhone 单帧 PNG | iOS 录屏或远程控制 |
 | DeviceMonitor | 设备状态变化 | UI 呈现 |
 | ProcessQueryService | 包名、PID 和进程状态 | 日志过滤 UI |
 | LogStreamService | 构造并启动 Logcat 流 | 解析具体日志行 |
@@ -451,6 +459,38 @@ protocol WirelessADBManaging: Sendable {
 
 无线入口在 Service 调用前验证主机字符、端口范围和 6 位配对码。配对码仅存在于设置 View 的临时 `@State`，不进入 AppModel 持久化或日志。
 
+### 7.4 iOS 真机工具接口
+
+```swift
+enum IOSDeviceTool: String, CaseIterable, Sendable {
+    case deviceID = "idevice_id"
+    case deviceInfo = "ideviceinfo"
+    case devicePair = "idevicepair"
+    case deviceSyslog = "idevicesyslog"
+}
+
+protocol IOSDeviceExecuting: Sendable {
+    func run(
+        _ tool: IOSDeviceTool,
+        arguments: [String],
+        timeout: Duration
+    ) async throws -> ADBCommandResult
+
+    func stream(
+        _ tool: IOSDeviceTool,
+        arguments: [String]
+    ) -> AsyncThrowingStream<ProcessStreamEvent, Error>
+}
+```
+
+实现约束：
+
+- App 包内四个工具必须成套存在并通过 `idevice_id --version` 校验；任一缺失时 iOS 能力整体标记为不可用，但不得阻塞 Android。
+- UDID、进程名等参数只通过数组传递；进程目标必须经过长度和危险字符校验。
+- 当前设备信息来自 `ideviceinfo --xml`，日志与进程列表来自 `idevicesyslog`。
+- 取消日志流必须只终止当前子进程，不影响其他窗口或 Android ADB Server。
+- 当前受管工具为 Apple Silicon `arm64`；Intel 机器不尝试启动不兼容工具。
+
 ## 8. Logcat 管线接口
 
 ### 8.1 能力检测
@@ -604,8 +644,10 @@ protocol ScreenRecording: Sendable {
 
 实现约束：
 
-- 截图优先使用 `adb exec-out screencap -p` 直接读取 PNG。
-- 录屏使用设备端临时 MP4，再 `pull` 到本地。
+- Android 截图使用 `adb exec-out screencap -p` 直接读取 PNG。
+- iOS 截图在用户点击后请求视频采集权限，启用公开的 CoreMediaIO iOS 屏幕采集设备，再由 AVFoundation 读取单帧 PNG；必须按 UDID 或精确设备名匹配，不能误采 Continuity Camera。
+- Android 录屏使用设备端临时 MP4，再 `pull` 到本地。
+- iOS 录屏当前不实现；能力开关必须保持关闭。
 - 本地校验成功后才能删除设备端临时文件。
 - 用户录屏不设置固定时长；设备原生录屏每 180 秒自动续段，停止后通过 AVFoundation 合并。
 - `RecordingSafetyEvaluator` 每 5 秒使用 Mac volume capacity 和 `adb shell df -k /data/local/tmp` 计算两端有效余量；只产生状态和警告，不自动停止任务。
@@ -1100,6 +1142,15 @@ Runtime。`--verify` 除签名结构校验外，还要求启动进程保持存�
 - 发行脚本按“嵌套 ADB → 外层 App”顺序签名，不使用 `codesign --deep` 代替逐层签名。
 - Archive、ZIP、签名、Hardened Runtime、版本、双架构、来源哈希和 NOTICE 均纳入预检。
 - 更新 ADB 时必须同步更新二进制、NOTICE、`source.properties`、来源说明和审核哈希。
+
+内置 iOS 设备工具：
+
+- Xcode Copy Files Phase 将 `idevice_id`、`ideviceinfo`、`idevicepair`、`idevicesyslog` 放入 `Contents/MacOS`，运行库放入 `Contents/Frameworks`。
+- Mach-O 依赖只能使用 `@executable_path`、`@loader_path` 或 `@rpath`，不得残留 Homebrew 绝对路径。
+- 许可、来源、架构和 SHA-256 材料放入 `Contents/Resources/ThirdPartyNotices/iOSDeviceTools`。
+- 发行脚本按“iOS 动态库 → iOS 工具 → ADB → 外层 App”逐层签名；预检验证全部嵌套签名、Hardened Runtime、来源哈希、架构和 ZIP 内容。
+- 本地 ad-hoc 验证时 iOS 子工具不启用 Hardened Runtime，因为 ad-hoc 签名没有可供动态库校验的共同 Team ID；Developer ID 正式发行仍要求所有层使用同一 Team 并启用 Hardened Runtime。
+- 当前发行集为 Apple Silicon `arm64`；不得据此宣称 Intel iOS 支持。
 
 若使用用户提供的外部 ADB：
 

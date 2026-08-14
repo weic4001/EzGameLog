@@ -1,16 +1,16 @@
 # GameLog 实现与验收审计
 
 > 版本：1.2.2  
-> 审计日期：2026-07-30  
+> 审计日期：2026-08-11
 > 对照文档：`GameLog-PRD.md`、`GameLog-Interaction-Spec.md`、`GameLog-Technical-Architecture.md`
 
 ## 1. 结论
 
-GameLog `1.2.2` 已完成 P0–P2 本地能力与 P2.1 精修，并将 Universal ADB、许可材料和版本来源内置到 App。新安装无需 Android SDK；设置中仍保留外部 ADB 高级覆盖，发行脚本对嵌套 ADB 和外层 App 分层签名与验证。
+GameLog `1.2.2` 已完成 P0–P2 本地能力与 P2.1 精修，并将 Universal ADB、许可材料和版本来源内置到 App。当前增量进一步实现 iOS 真机发现、目标进程日志和用户触发的即时截图；iOS 无侵入录屏只列入计划，执行入口保持关闭。Apple Silicon 新安装无需 Android SDK、Homebrew 或单独安装 iOS 命令行工具。
 
 云端归档、实时团队评论和问题单系统未接入：这些能力需要新增外部服务、账号权限和数据治理授权，不属于 1.2 的本地 P2 交付范围。
 
-工程仍有五类发行资格工作依赖发布环境、真实无线设备或较长测试窗口：Developer ID/Apple 公证、30 分钟交互式 soak、无线 ADB 真机配对矩阵、物理 USB 拔插矩阵、VoiceOver 与辅助显示模式人工复核。这些不是本地实现缺口，必须在向外部分发前完成。
+工程仍有发行资格工作依赖发布环境、真实设备或较长测试窗口：Developer ID/Apple 公证、30 分钟交互式 soak、无线 ADB 真机配对矩阵、Android/iOS 物理 USB 拔插矩阵、iOS 截图权限与锁屏矩阵、VoiceOver 与辅助显示模式人工复核。这些必须在向外部分发前完成。
 
 ## 2. P0 需求逐项映射
 
@@ -98,11 +98,22 @@ GameLog `1.2.2` 已完成 P0–P2 本地能力与 P2.1 精修，并将 Universal
 | FR-SYM-003 | ✅ | `SessionSymbolicationReport` 汇总覆盖率、五类状态和缺失库；符号页展示原因/建议并可筛选、复制、导出包含原始帧、内联帧、路径和错误的文本。 |
 | FR-REG-002 | ✅ | `.regression-configurations.json` 按包保存归一化阈值和忽略键；告警使用稳定 `metric` 键，页面可忽略、显示隐藏数并一键恢复。 |
 
+### 2.4 iOS 真机增量映射
+
+| 范围 | 状态 | 实现与验证证据 |
+| --- | --- | --- |
+| 设备发现 | ✅ 实现 | `IOSDeviceService` 使用受管 `idevice_id`/`ideviceinfo` 返回 iOS 平台、UDID、设备名、硬件型号与系统版本；Android/iOS 独立失败，不互相阻塞。 |
+| 目标进程 | ✅ 实现 | `idevicesyslog pidlist` 解析运行进程和 PID；进程名在进入工具参数前校验。 |
+| 实时日志 | ✅ 实现 | `IOSLogStreamingService` 按目标进程采集，`IOSLogParser` 覆盖分块、年份推断、等级映射与多行消息。 |
+| 即时截图 | ✅ 实现 / 待真机权限验收 | 用户点击后才请求视频采集权限；CoreMediaIO/AVFoundation 精确匹配目标 iPhone 并保存单帧 PNG、缩略图、证据事件和元数据。 |
+| 无侵入录屏 | 🗓️ 计划 | `supportsScreenRecording` 对 iOS 返回 false；工具栏和 `AppModel` 执行入口均拒绝启动，产品计划记录长时采集验收条件。 |
+| 独立安装 | ✅ Apple Silicon | Xcode 嵌入四个工具、六个运行库和完整许可；来源 SHA-256、相对依赖、嵌套签名、Archive 和 ZIP 进入发行预检。Intel iOS 支持尚未交付。 |
+
 ## 3. 设置、系统状态与可访问性
 
 | 范围 | 状态 | 说明 |
 | --- | --- | --- |
-| Settings | ✅ | 通用、ADB、录制、隐私、存储五页；无线调试和项目脱敏规则已纳入原生设置窗口。 |
+| Settings | ✅ | 通用、设备工具、录制、隐私、存储五页；设备工具页同时展示 ADB 与 iOS 工具实际来源、路径、状态、权限和录屏计划。 |
 | 状态覆盖 | ✅ | ADB 缺失/失败、无设备、未授权、离线、未选目标、启动、采集、暂停跟随、恢复、录屏、磁盘不足、导出失败均有文字与恢复动作。 |
 | 快捷键 | ✅ | `⌘F`、`⌘↓`、`⌥⌘P`、`⌥⌘S`、`⌥⌘M`、`⌥⌘R`、`⌘K`、`⌥⌘I`、`⇧⌘I`、`⇧⌘E`、`⌘.`；核心操作同时有可见控件和菜单。 |
 | macOS 26 UI | ✅ | 系统 `WindowGroup`、辅助 `Window`、`NavigationSplitView`、Toolbar、Search、Inspector、Settings；内容区不自绘玻璃。 |
@@ -116,6 +127,10 @@ GameLog `1.2.2` 已完成 P0–P2 本地能力与 P2.1 精修，并将 Universal
 | AppModel | 会话、过滤、截图、录屏、导出、恢复和设置的用户意图入口 | `@MainActor` |
 | ADBLocator | `locate(savedPath:)` | Sendable、异步校验 |
 | ADBExecuting / ADBExecutor | `run(_:serial:timeout:)`、`stream(_:serial:)` | 每个 Process 独立取消；stdout/stderr 同时排空 |
+| IOSDeviceToolLocator / Executor | `locate()`、`run`、`stream` | 成套工具校验；参数数组；每个 Process 可独立取消 |
+| IOSDeviceService | `listDevices()`、`listProcesses(serial:)`、`pids(forProcess:serial:)` | Sendable；元数据 actor cache |
+| IOSLogStreamingService / IOSLogParser | `events(serial:processName:)`、`consume`、`finish` | detached 流读取；值类型分块解析 |
+| IOSScreenCaptureService | `takeScreenshot(device:destinationDirectory:)` | 用户触发权限；AVFoundation 单帧；不实现录屏 |
 | DeviceService | `listDevices()`、`listProcesses(serial:)`、`pids(forPackage:serial:)` | Sendable；元数据 actor cache |
 | DeviceService | `availableStorageBytes(serial:)` | 解析设备 `df -k`，供录屏安全轮询 |
 | LogcatCapabilities | `parse(helpText:)` | 纯值类型 |
@@ -141,9 +156,9 @@ GameLog `1.2.2` 已完成 P0–P2 本地能力与 P2.1 精修，并将 Universal
 
 ## 5. 自动化与性能证据
 
-当前 1.2.2 完整 `swift test`：
+当前 1.2.2 + iOS 增量完整 `swift test`：
 
-- 73 项测试，0 failure。
+- 82 项测试，0 failure。
 - ADB 一次性命令取消与超时。
 - 外部 ADB 覆盖内置版本、内置版本优先于环境路径、无效外部覆盖回退内置版本。
 - 在线/未授权/离线设备和多 PID。
@@ -166,6 +181,7 @@ GameLog `1.2.2` 已完成 P0–P2 本地能力与 P2.1 精修，并将 Universal
 - 导入预检只读、新建/合并策略识别和 SHA-256 完整性状态。
 - 符号化覆盖率、缺失库汇总及完整文本内容。
 - 自定义回归阈值、稳定忽略键过滤和项目配置持久化。
+- iOS 设备元数据、进程/PID、危险进程过滤、旧会话平台兼容、日志分块/多行/等级映射与流参数。
 - 100,000 条管线：约 0.23 秒。
 - 5,000 行单块解析：约 0.24 秒。
 - 100,000 条完整会话导出：约 4.1 秒。
@@ -223,6 +239,14 @@ GameLog `1.2.2` 已完成 P0–P2 本地能力与 P2.1 精修，并将 Universal
 8. `release_preflight.sh` 可重复验证源配置、App、xcarchive 与 ZIP 的版本/Build 一致性、Bundle ID、macOS 目标、Universal 架构、Hardened Runtime、App Sandbox 和压缩包路径安全；1.2.2 进一步验证受管 ADB 来源哈希、版本、双架构、嵌套签名、NOTICE 及归档/ZIP 内容。严格模式会拒绝 ad-hoc 签名，并可进一步要求 staple 与 Gatekeeper 通过。
 9. 当前开发机 `security find-identity -p codesigning -v` 返回 0 个有效签名身份。本机 ad-hoc 预检通过，Developer ID 严格预检按预期停止并报告缺少发行签名。
 10. Shared Scheme 的 Analyze 动作只分析 App Target，避免将仅在 Debug 开启 `@testable` 的测试模块错误带入 Release 分析；Release arm64/x86_64 静态分析通过。
+
+2026-08-11 iOS 增量工程验证：
+
+1. Xcode Release 编译同时覆盖 arm64 与 x86_64 App 主体；四个 iOS 工具、六个动态库、来源清单和完整许可文件进入预期 App 目录。
+2. 包内 `idevice_id 1.4.0` 脱离 Homebrew 执行成功，所有嵌套组件均无 `/opt/homebrew` 动态加载路径。
+3. `package_release.sh` 生成 Universal App、xcarchive 和 ZIP；预检验证 10 个 iOS 组件来源 SHA-256、Apple Silicon 架构、相对依赖、逐层签名、许可与压缩包内容。
+4. 本地 ad-hoc 签名对 iOS 子工具关闭 Hardened Runtime，避免无 Team ID 时的动态库校验冲突；Developer ID 分支仍要求全部层使用同一 Team 和 Hardened Runtime。
+5. 完整 SwiftPM 测试为 82 项、0 failure。iOS 截图真实权限弹窗与图像结果仍需在连接并解锁的 iPhone 上人工验收，不能由解析器测试替代。
 
 ## 7. 发行资格待办
 

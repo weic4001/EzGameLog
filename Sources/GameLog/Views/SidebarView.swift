@@ -16,7 +16,7 @@ struct SidebarView: View {
                             Task { await model.selectDevice(device.serial) }
                         } label: {
                             HStack(spacing: 8) {
-                                Image(systemName: device.state == .online ? "iphone.gen3" : "exclamationmark.triangle")
+                                Image(systemName: device.state == .online ? device.platform.systemImage : "exclamationmark.triangle")
                                     .foregroundStyle(device.state == .online ? .green : .orange)
                                 VStack(alignment: .leading, spacing: 1) {
                                     Text(device.displayName)
@@ -92,7 +92,7 @@ struct SidebarView: View {
                 }
                 .buttonStyle(.plain)
                 SettingsLink {
-                    Label(String(localized: "ADB 与隐私设置"), systemImage: "gearshape")
+                    Label(String(localized: "设备工具与隐私设置"), systemImage: "gearshape")
                 }
             }
         }
@@ -102,7 +102,7 @@ struct SidebarView: View {
                 Circle()
                     .fill(statusColor)
                     .frame(width: 7, height: 7)
-                Text(adbStatusText)
+                Text(deviceToolStatusText)
                     .lineLimit(1)
                 Spacer()
                 Button {
@@ -124,21 +124,20 @@ struct SidebarView: View {
     private var screenshotCount: Int { model.evidence.filter { $0.kind == .screenshot }.count }
     private var recordingCount: Int { model.evidence.filter { $0.kind == .recording }.count }
 
-    private var adbStatusText: String {
-        switch model.adbAvailability {
-        case .checking: String(localized: "正在检查 ADB")
-        case .ready: String(localized: "ADB 已就绪")
-        case .missing: String(localized: "未找到 ADB")
-        case .failed: String(localized: "ADB 异常")
-        }
+    private var deviceToolStatusText: String {
+        let androidReady = if case .ready = model.adbAvailability { true } else { false }
+        let iosReady = if case .ready = model.iosDeviceToolAvailability { true } else { false }
+        if androidReady && iosReady { return String(localized: "Android 与 iOS 已就绪") }
+        if androidReady { return String(localized: "Android 已就绪") }
+        if iosReady { return String(localized: "iOS 已就绪") }
+        return String(localized: "设备工具未就绪")
     }
 
     private var statusColor: Color {
-        switch model.adbAvailability {
-        case .ready: .green
-        case .checking: .yellow
-        case .missing, .failed: .red
-        }
+        if model.hasAnyDeviceToolReady { return .green }
+        if case .checking = model.adbAvailability { return .yellow }
+        if case .checking = model.iosDeviceToolAvailability { return .yellow }
+        return .red
     }
 
     private func icon(for preset: LogPreset) -> String {
@@ -151,12 +150,12 @@ struct SidebarView: View {
 
     private func deviceDetail(_ device: AndroidDevice) -> String {
         var parts = [device.serial, device.connectionType.displayName, device.state.displayName]
-        if let version = device.androidVersion {
-            var android = "Android \(version)"
-            if let api = device.apiLevel {
-                android += " / API \(api)"
+        if let version = device.operatingSystemVersion {
+            var system = "\(device.platform.displayName) \(version)"
+            if device.platform == .android, let api = device.apiLevel {
+                system += " / API \(api)"
             }
-            parts.append(android)
+            parts.append(system)
         }
         return parts.joined(separator: " · ")
     }

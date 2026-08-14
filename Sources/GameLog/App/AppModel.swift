@@ -10,6 +10,13 @@ enum ADBAvailability: Equatable, Sendable {
     case failed(message: String)
 }
 
+enum IOSDeviceToolAvailability: Equatable, Sendable {
+    case checking
+    case ready(version: String)
+    case missing
+    case failed(message: String)
+}
+
 private enum ADBPreferenceKey {
     static let customExecutablePath = "customADBExecutablePath"
     static let bundledADBMigrated = "bundledADBMigrated"
@@ -23,6 +30,10 @@ final class AppModel {
     private(set) var adbPath = ""
     private(set) var adbVersion = ""
     private(set) var adbSource: ADBInstallationSource?
+    private(set) var iosDeviceToolAvailability: IOSDeviceToolAvailability = .checking
+    private(set) var iosDeviceToolPath = ""
+    private(set) var iosDeviceToolVersion = ""
+    private(set) var iosDeviceToolSource: IOSDeviceToolSource?
     private(set) var wirelessADBStatus = ""
     private(set) var isWirelessADBWorking = false
     private(set) var devices: [AndroidDevice] = []
@@ -149,6 +160,9 @@ final class AppModel {
     @ObservationIgnored private var deviceService: DeviceService?
     @ObservationIgnored private var logService: LogStreamingService?
     @ObservationIgnored private var captureService: CaptureService?
+    @ObservationIgnored private var iosDeviceService: IOSDeviceService?
+    @ObservationIgnored private var iosLogService: IOSLogStreamingService?
+    @ObservationIgnored private let iosScreenCaptureService = IOSScreenCaptureService()
     @ObservationIgnored private var sessionStore: SessionStore
     @ObservationIgnored private var buffer = LogBuffer(capacity: 50_000)
     @ObservationIgnored private var pendingEvents: [LogEvent] = []
@@ -271,6 +285,16 @@ final class AppModel {
             && !sessionState.isActive
     }
 
+    var canRecordScreen: Bool {
+        selectedDevice?.supportsScreenRecording == true
+    }
+
+    var hasAnyDeviceToolReady: Bool {
+        if case .ready = adbAvailability { return true }
+        if case .ready = iosDeviceToolAvailability { return true }
+        return false
+    }
+
     var visibleEvents: [LogEvent] {
         filteredEvents
     }
@@ -303,6 +327,7 @@ final class AppModel {
         await configureADB(
             savedPath: UserDefaults.standard.string(forKey: ADBPreferenceKey.customExecutablePath)
         )
+        await configureIOSDeviceTools()
     }
 
     func chooseADBExecutable() async {
@@ -345,10 +370,31 @@ final class AppModel {
     }
 
     func refreshDevices() async {
-        guard let deviceService else { return }
         statusMessage = String(localized: "正在刷新设备…")
+        var newDevices: [AndroidDevice] = []
+        var errors: [String] = []
+        if let deviceService {
+            do {
+                newDevices += try await deviceService.listDevices()
+            } catch {
+                errors.append("Android: \(error.localizedDescription)")
+            }
+        }
+        if let iosDeviceService {
+            do {
+                newDevices += try await iosDeviceService.listDevices()
+            } catch {
+                errors.append("iOS: \(error.localizedDescription)")
+            }
+        }
+        newDevices.sort {
+            if $0.platform != $1.platform { return $0.platform.rawValue < $1.platform.rawValue }
+            return $0.displayName.localizedStandardCompare($1.displayName) == .orderedAscending
+        }
         do {
-            let newDevices = try await deviceService.listDevices()
+            if newDevices.isEmpty, !errors.isEmpty {
+                throw DeviceRefreshError.failed(errors.joined(separator: "\n"))
+            }
             let activeSerial = selectedDeviceSerial
             devices = newDevices
 
@@ -370,14 +416,15 @@ final class AppModel {
             if selectedDeviceSerial == nil {
                 processes = []
                 selectedProcessID = nil
-                statusMessage = newDevices.isEmpty ? String(localized: "未发现 Android 设备") : String(localized: "设备尚未授权或处于离线状态")
+                statusMessage = newDevices.isEmpty
+                    ? String(localized: "未发现 Android 或 iOS 设备")
+                    : String(localized: "设备尚未授权或处于离线状态")
             } else {
-                statusMessage = String(localized: "已连接 \(selectedDevice?.displayName ?? String(localized: "Android 设备"))")
+                statusMessage = String(localized: "已连接 \(selectedDevice?.displayName ?? String(localized: "移动设备"))")
                 loadRecentPackages()
                 await refreshProcesses()
             }
         } catch {
-            adbAvailability = .failed(message: error.localizedDescription)
             statusMessage = error.localizedDescription
         }
     }
@@ -451,9 +498,17 @@ final class AppModel {
     }
 
     func refreshProcesses() async {
-        guard let serial = selectedDeviceSerial, let deviceService else { return }
+        guard let serial = selectedDeviceSerial, let device = selectedDevice else { return }
         do {
-            let newProcesses = try await deviceService.listProcesses(serial: serial)
+            let newProcesses: [AndroidProcess]
+            switch device.platform {
+            case .android:
+                guard let deviceService else { return }
+                newProcesses = try await deviceService.listProcesses(serial: serial)
+            case .iOS:
+                guard let iosDeviceService else { return }
+                newProcesses = try await iosDeviceService.listProcesses(serial: serial)
+            }
             processes = newProcesses
             if !newProcesses.contains(where: { $0.pid == selectedProcessID }) {
                 selectedProcessID = nil
@@ -480,8 +535,8 @@ final class AppModel {
         }
         selectedProcessID = pid
         if let process = processes.first(where: { $0.pid == pid }) {
-            guard AndroidPackageName.isValid(process.name) else {
-                statusMessage = String(localized: "所选进程不是有效的 Android 包名")
+            guard isValidTargetName(process.name) else {
+                statusMessage = String(localized: "所选进程名无效")
                 selectedProcessID = nil
                 return
             }
@@ -502,17 +557,23 @@ final class AppModel {
             selectedProcessID = nil
             return
         }
-        guard AndroidPackageName.isValid(trimmed) else {
+        guard isValidTargetName(trimmed) else {
             selectedPackageName = nil
             selectedProcessID = nil
-            statusMessage = String(localized: "包名格式无效；请输入类似 com.example.game 的 Android 包名")
+            statusMessage = selectedDevice?.platform == .iOS
+                ? String(localized: "进程名格式无效；请输入 iOS 进程列表中显示的名称")
+                : String(localized: "包名格式无效；请输入类似 com.example.game 的 Android 包名")
             return
         }
         selectedPackageName = trimmed
         packageInput = trimmed
         rememberPackage(trimmed)
-        guard let serial = selectedDeviceSerial, let deviceService else { return }
-        let pids = (try? await deviceService.pids(forPackage: trimmed, serial: serial)) ?? []
+        guard let serial = selectedDeviceSerial, let device = selectedDevice else { return }
+        let pids = (try? await targetPIDs(
+            for: trimmed,
+            device: device,
+            serial: serial
+        )) ?? []
         selectedProcessID = pids.sorted().first
         statusMessage = pids.isEmpty
             ? String(localized: "已选择 \(trimmed)；开始会话后将等待进程启动")
@@ -532,9 +593,10 @@ final class AppModel {
               let device = selectedDevice,
               device.state == .online,
               let targetPackage = selectedPackageName,
-              let deviceService,
-              logService != nil else {
-            statusMessage = selectedPackageName == nil ? String(localized: "请选择目标包名或应用进程") : String(localized: "设备或 ADB 尚未就绪")
+              isToolchainReady(for: device) else {
+            statusMessage = selectedPackageName == nil
+                ? String(localized: "请选择目标包名或应用进程")
+                : String(localized: "设备工具尚未就绪")
             return
         }
 
@@ -545,8 +607,9 @@ final class AppModel {
         resetVisibleSession()
 
         do {
-            let initialPIDs = try await deviceService.pids(
-                forPackage: targetPackage,
+            let initialPIDs = try await targetPIDs(
+                for: targetPackage,
+                device: device,
                 serial: device.serial
             )
             guard startSessionToken == startToken else { return }
@@ -554,8 +617,8 @@ final class AppModel {
                 device: device,
                 targetPackage: targetPackage,
                 pids: initialPIDs.sorted(),
-                adbPath: adbPath,
-                adbVersion: adbVersion,
+                adbPath: toolPath(for: device),
+                adbVersion: toolVersion(for: device),
                 buffers: selectedLogBuffers,
                 initialPreset: preset,
                 initialFilterConfiguration: filterConfiguration
@@ -900,7 +963,7 @@ final class AppModel {
         buffer.removeAll()
         events = []
         selectedEventIDs = []
-        let marker = systemEvent(String(localized: "本地视图已清空；设备 Logcat 缓冲区未改变"))
+        let marker = systemEvent(String(localized: "本地视图已清空；设备日志缓冲区未改变"))
         buffer.append(contentsOf: [marker])
         events = buffer.events
         scheduleFilterUpdate(delay: .zero)
@@ -914,8 +977,7 @@ final class AppModel {
 
     func takeScreenshot(attachingToIncidentID incidentID: UUID? = nil) async {
         guard sessionState.isActive,
-              let serial = selectedDeviceSerial,
-              let captureService,
+              let device = selectedDevice,
               let session = currentSession,
               let paths = currentSessionPaths,
               !isCapturing else {
@@ -927,10 +989,22 @@ final class AppModel {
         defer { isCapturing = false }
 
         do {
-            let item = try await captureService.takeScreenshot(
-                serial: serial,
-                destinationDirectory: paths.screenshotsDirectory
-            )
+            let item: CaptureEvidence
+            switch device.platform {
+            case .android:
+                guard let captureService else {
+                    throw DeviceRefreshError.failed(String(localized: "ADB 截图服务尚未就绪"))
+                }
+                item = try await captureService.takeScreenshot(
+                    serial: device.serial,
+                    destinationDirectory: paths.screenshotsDirectory
+                )
+            case .iOS:
+                item = try await iosScreenCaptureService.takeScreenshot(
+                    device: device,
+                    destinationDirectory: paths.screenshotsDirectory
+                )
+            }
             try await sessionStore.append(artifact: item, sessionID: session.id)
             let marker = evidenceEvent(
                 kind: .screenshot,
@@ -966,6 +1040,10 @@ final class AppModel {
     }
 
     func toggleRecording() {
+        guard canRecordScreen else {
+            statusMessage = String(localized: "iOS 真机无侵入录屏已列入计划，当前版本暂不支持")
+            return
+        }
         if recordingTask != nil {
             recordingState = .stopping
             statusMessage = String(localized: "正在停止录屏并保存文件…")
@@ -994,6 +1072,7 @@ final class AppModel {
 
     func recordScreen() async {
         guard sessionState.isActive,
+              canRecordScreen,
               let serial = selectedDeviceSerial,
               let captureService,
               let session = currentSession,
@@ -1529,7 +1608,9 @@ final class AppModel {
     private func refreshRecordingSafetyStatus() async {
         let macBytes = (try? await sessionStore.availableCapacity()) ?? 0
         let deviceBytes: Int64?
-        if let serial = selectedDeviceSerial, let deviceService {
+        if selectedDevice?.platform == .android,
+           let serial = selectedDeviceSerial,
+           let deviceService {
             deviceBytes = try? await deviceService.availableStorageBytes(serial: serial)
         } else {
             deviceBytes = nil
@@ -1552,6 +1633,51 @@ final class AppModel {
         statusMessage = status.level == .critical
             ? String(localized: "录屏继续进行；空间严重不足，请尽快停止并保存")
             : String(localized: "录屏继续进行；剩余空间偏低")
+    }
+
+    private func isValidTargetName(_ value: String) -> Bool {
+        switch selectedDevice?.platform ?? .android {
+        case .android:
+            AndroidPackageName.isValid(value)
+        case .iOS:
+            IOSProcessName.isValid(value)
+        }
+    }
+
+    private func targetPIDs(
+        for target: String,
+        device: AndroidDevice,
+        serial: String
+    ) async throws -> Set<Int> {
+        switch device.platform {
+        case .android:
+            guard let deviceService else {
+                throw DeviceRefreshError.failed(String(localized: "ADB 设备服务尚未就绪"))
+            }
+            return try await deviceService.pids(forPackage: target, serial: serial)
+        case .iOS:
+            guard let iosDeviceService else {
+                throw DeviceRefreshError.failed(String(localized: "iOS 设备服务尚未就绪"))
+            }
+            return try await iosDeviceService.pids(forProcess: target, serial: serial)
+        }
+    }
+
+    private func isToolchainReady(for device: AndroidDevice) -> Bool {
+        switch device.platform {
+        case .android:
+            deviceService != nil && logService != nil
+        case .iOS:
+            iosDeviceService != nil && iosLogService != nil
+        }
+    }
+
+    private func toolPath(for device: AndroidDevice) -> String {
+        device.platform == .android ? adbPath : iosDeviceToolPath
+    }
+
+    private func toolVersion(for device: AndroidDevice) -> String {
+        device.platform == .android ? adbVersion : iosDeviceToolVersion
     }
 
     private func configureADB(savedPath: String?) async {
@@ -1583,20 +1709,62 @@ final class AppModel {
         startDeviceMonitoring()
     }
 
+    private func configureIOSDeviceTools() async {
+        iosDeviceToolAvailability = .checking
+        guard let installation = await IOSDeviceToolLocator().locate() else {
+            iosDeviceToolAvailability = .missing
+            iosDeviceToolPath = ""
+            iosDeviceToolVersion = ""
+            iosDeviceToolSource = nil
+            iosDeviceService = nil
+            iosLogService = nil
+            await refreshDevices()
+            startDeviceMonitoring()
+            return
+        }
+
+        let executor = IOSDeviceToolExecutor(toolURLs: installation.toolURLs)
+        iosDeviceToolPath = installation.toolURLs[.deviceID]?.path ?? ""
+        iosDeviceToolVersion = installation.versionText
+        iosDeviceToolSource = installation.source
+        iosDeviceToolAvailability = .ready(version: installation.versionText)
+        iosDeviceService = IOSDeviceService(executor: executor)
+        iosLogService = IOSLogStreamingService(executor: executor)
+        await refreshDevices()
+        startDeviceMonitoring()
+    }
+
     private func launchLogStream(session: DebugSession, serial: String) {
-        guard let logService else { return }
         logTask?.cancel()
         isStreaming = true
         logTask = Task { [weak self] in
             guard let self else { return }
             do {
-                for try await batch in logService.events(
-                    serial: serial,
-                    buffers: currentSessionBuffers
-                ) {
-                    guard !Task.isCancelled else { break }
-                    try await sessionStore.append(events: batch, sessionID: session.id)
-                    enqueue(batch)
+                switch session.device.platform {
+                case .android:
+                    guard let logService else {
+                        throw DeviceRefreshError.failed(String(localized: "ADB 日志服务尚未就绪"))
+                    }
+                    for try await batch in logService.events(
+                        serial: serial,
+                        buffers: currentSessionBuffers
+                    ) {
+                        guard !Task.isCancelled else { break }
+                        try await sessionStore.append(events: batch, sessionID: session.id)
+                        enqueue(batch)
+                    }
+                case .iOS:
+                    guard let iosLogService else {
+                        throw DeviceRefreshError.failed(String(localized: "iOS 日志服务尚未就绪"))
+                    }
+                    for try await batch in iosLogService.events(
+                        serial: serial,
+                        processName: session.targetPackage
+                    ) {
+                        guard !Task.isCancelled else { break }
+                        try await sessionStore.append(events: batch, sessionID: session.id)
+                        enqueue(batch)
+                    }
                 }
                 streamDidFinish(error: nil)
             } catch {
@@ -1610,15 +1778,41 @@ final class AppModel {
         deviceMonitorTask = Task { [weak self] in
             while !Task.isCancelled {
                 try? await Task.sleep(for: .seconds(2))
-                guard !Task.isCancelled, let self, let deviceService = self.deviceService else { continue }
-                do {
-                    let snapshot = try await deviceService.listDevices()
+                guard !Task.isCancelled, let self else { continue }
+                if let snapshot = await self.polledDeviceSnapshot() {
                     await self.applyDeviceSnapshot(snapshot)
                     self.updateInputRateIfIdle()
-                } catch {
-                    // A transient polling error must not replace the last known device state.
                 }
             }
+        }
+    }
+
+    private func polledDeviceSnapshot() async -> [AndroidDevice]? {
+        var snapshot: [AndroidDevice] = []
+        var attempted = false
+        var succeeded = false
+        if let deviceService {
+            attempted = true
+            if let androidDevices = try? await deviceService.listDevices() {
+                snapshot += androidDevices
+                succeeded = true
+            } else {
+                snapshot += devices.filter { $0.platform == .android }
+            }
+        }
+        if let iosDeviceService {
+            attempted = true
+            if let iosDevices = try? await iosDeviceService.listDevices() {
+                snapshot += iosDevices
+                succeeded = true
+            } else {
+                snapshot += devices.filter { $0.platform == .iOS }
+            }
+        }
+        guard attempted, succeeded else { return nil }
+        return snapshot.sorted {
+            if $0.platform != $1.platform { return $0.platform.rawValue < $1.platform.rawValue }
+            return $0.displayName.localizedStandardCompare($1.displayName) == .orderedAscending
         }
     }
 
@@ -1663,13 +1857,17 @@ final class AppModel {
         sessionState = .recovering
         statusMessage = String(localized: "设备 \(serial) 已断开，正在等待重连…")
         await persistSystemEvent(String(localized: "设备已断开 · \(serial)"))
-        announceAccessibility(String(localized: "Android 设备已断开，正在等待重连"))
+        announceAccessibility(String(localized: "移动设备已断开，正在等待重连"))
     }
 
     private func recoverActiveDevice(serial: String) async {
-        guard let session = currentSession, let deviceService else { return }
+        guard let session = currentSession else { return }
         do {
-            let pids = try await deviceService.pids(forPackage: session.targetPackage, serial: serial)
+            let pids = try await targetPIDs(
+                for: session.targetPackage,
+                device: session.device,
+                serial: serial
+            )
             guard !pids.isEmpty else {
                 statusMessage = String(localized: "设备已重连，等待 \(session.targetPackage) 进程启动…")
                 return
@@ -1682,7 +1880,7 @@ final class AppModel {
             await persistSystemEvent(String(localized: "设备已重连 · PID \(pids.sorted().map(String.init).joined(separator: ", "))"))
             sessionState = followLatest ? .capturing : .followingPaused
             statusMessage = String(localized: "会话已自动恢复")
-            announceAccessibility(String(localized: "Android 设备已重连，会话已恢复"))
+            announceAccessibility(String(localized: "移动设备已重连，会话已恢复"))
             logRestartTask?.cancel()
             logRestartTask = nil
             launchLogStream(session: session, serial: serial)
@@ -1704,13 +1902,13 @@ final class AppModel {
                       self.sessionState.isActive,
                       !self.wasDeviceDisconnected,
                       let serial = self.selectedDeviceSerial,
-                      let session = self.currentSession,
-                      let deviceService = self.deviceService else {
+                      let session = self.currentSession else {
                     continue
                 }
                 do {
-                    let pids = try await deviceService.pids(
-                        forPackage: session.targetPackage,
+                    let pids = try await self.targetPIDs(
+                        for: session.targetPackage,
+                        device: session.device,
                         serial: serial
                     )
                     await self.applyTargetPIDs(pids, session: session, serial: serial)
@@ -2017,4 +2215,14 @@ final class AppModel {
         formatter.dateFormat = "HH:mm:ss"
         return formatter
     }()
+}
+
+private enum DeviceRefreshError: LocalizedError {
+    case failed(String)
+
+    var errorDescription: String? {
+        switch self {
+        case .failed(let message): message
+        }
+    }
 }

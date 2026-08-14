@@ -12,16 +12,19 @@ struct LogWorkspaceView: View {
                 RecoveryBanner(recoverable: recoverable)
             }
 
-            if case .missing = model.adbAvailability {
+            if !model.hasAnyDeviceToolReady,
+               case .missing = model.adbAvailability,
+               case .missing = model.iosDeviceToolAvailability {
                 MissingADBView()
-            } else if case .failed(let message) = model.adbAvailability {
+            } else if !model.hasAnyDeviceToolReady,
+                      case .failed(let message) = model.adbAvailability {
                 FailedADBView(message: message)
             } else if model.selectedDeviceSerial == nil,
                       model.devices.contains(where: { $0.state == .unauthorized }) {
                 ContentUnavailableView {
-                    Label(String(localized: "请在设备上允许 USB 调试"), systemImage: "lock.trianglebadge.exclamationmark")
+                    Label(String(localized: "请在设备上允许连接"), systemImage: "lock.trianglebadge.exclamationmark")
                 } description: {
-                    Text(String(localized: "解锁 Android 设备，并在 RSA 授权弹窗中选择允许这台 Mac。"))
+                    Text(String(localized: "Android 请允许 USB 调试；iOS 请解锁并信任这台 Mac。"))
                 } actions: {
                     Button(String(localized: "重新检查")) {
                         Task { await model.refreshDevices() }
@@ -40,9 +43,9 @@ struct LogWorkspaceView: View {
                 }
             } else if model.selectedDeviceSerial == nil {
                 ContentUnavailableView {
-                    Label(String(localized: "连接 Android 测试机"), systemImage: "cable.connector")
+                    Label(String(localized: "连接 Android 或 iOS 测试机"), systemImage: "cable.connector")
                 } description: {
-                    Text(String(localized: "打开 USB 调试并在设备上允许这台 Mac，然后刷新设备列表。"))
+                    Text(String(localized: "使用 USB 连接设备，完成调试授权或信任确认，然后刷新设备列表。"))
                 } actions: {
                     Button(String(localized: "刷新设备")) {
                         Task { await model.refreshDevices() }
@@ -245,9 +248,9 @@ private struct MissingADBView: View {
 
     var body: some View {
         ContentUnavailableView {
-            Label(String(localized: "内置 ADB 无法使用"), systemImage: "terminal")
+            Label(String(localized: "内置设备工具无法使用"), systemImage: "terminal")
         } description: {
-            Text(String(localized: "请重新安装 GameLog，或临时选择一个可用的外部 ADB。"))
+            Text(String(localized: "请重新安装 GameLog。Android 也可以临时选择一个可用的外部 ADB。"))
         } actions: {
             Button(String(localized: "选择外部 ADB…")) {
                 Task { await model.chooseADBExecutable() }

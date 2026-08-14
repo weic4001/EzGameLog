@@ -1,5 +1,24 @@
 import Foundation
 
+enum DevicePlatform: String, Codable, CaseIterable, Sendable {
+    case android
+    case iOS = "ios"
+
+    var displayName: String {
+        switch self {
+        case .android: "Android"
+        case .iOS: "iOS"
+        }
+    }
+
+    var systemImage: String {
+        switch self {
+        case .android: "apps.iphone"
+        case .iOS: "apple.logo"
+        }
+    }
+}
+
 enum DeviceConnectionState: String, Codable, Sendable {
     case online = "device"
     case offline
@@ -33,6 +52,7 @@ enum DeviceConnectionType: String, Codable, Sendable {
 }
 
 struct AndroidDevice: Identifiable, Hashable, Codable, Sendable {
+    let platform: DevicePlatform
     let serial: String
     let state: DeviceConnectionState
     let model: String?
@@ -44,8 +64,11 @@ struct AndroidDevice: Identifiable, Hashable, Codable, Sendable {
 
     var id: String { serial }
     var displayName: String { model?.replacingOccurrences(of: "_", with: " ") ?? serial }
+    var operatingSystemVersion: String? { androidVersion }
+    var supportsScreenRecording: Bool { platform == .android }
 
     init(
+        platform: DevicePlatform = .android,
         serial: String,
         state: DeviceConnectionState,
         model: String?,
@@ -55,6 +78,7 @@ struct AndroidDevice: Identifiable, Hashable, Codable, Sendable {
         apiLevel: Int? = nil,
         connectionType: DeviceConnectionType? = nil
     ) {
+        self.platform = platform
         self.serial = serial
         self.state = state
         self.model = model
@@ -63,6 +87,34 @@ struct AndroidDevice: Identifiable, Hashable, Codable, Sendable {
         self.androidVersion = androidVersion
         self.apiLevel = apiLevel
         self.connectionType = connectionType ?? Self.inferConnectionType(serial: serial)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case platform
+        case serial
+        case state
+        case model
+        case product
+        case transportID
+        case androidVersion
+        case apiLevel
+        case connectionType
+    }
+
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        platform = try container.decodeIfPresent(DevicePlatform.self, forKey: .platform) ?? .android
+        serial = try container.decode(String.self, forKey: .serial)
+        state = try container.decode(DeviceConnectionState.self, forKey: .state)
+        model = try container.decodeIfPresent(String.self, forKey: .model)
+        product = try container.decodeIfPresent(String.self, forKey: .product)
+        transportID = try container.decodeIfPresent(String.self, forKey: .transportID)
+        androidVersion = try container.decodeIfPresent(String.self, forKey: .androidVersion)
+        apiLevel = try container.decodeIfPresent(Int.self, forKey: .apiLevel)
+        connectionType = try container.decodeIfPresent(
+            DeviceConnectionType.self,
+            forKey: .connectionType
+        ) ?? Self.inferConnectionType(serial: serial)
     }
 
     private static func inferConnectionType(serial: String) -> DeviceConnectionType {

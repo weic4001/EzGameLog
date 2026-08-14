@@ -11,6 +11,20 @@
 		B00000000000000000000090 /* adb in Embed ADB */ = {isa = PBXBuildFile; fileRef = B00000000000000000000093 /* adb */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B00000000000000000000091 /* NOTICE.txt in Copy ADB Notices */ = {isa = PBXBuildFile; fileRef = B00000000000000000000094 /* NOTICE.txt */; };
 		B00000000000000000000092 /* source.properties in Copy ADB Notices */ = {isa = PBXBuildFile; fileRef = B00000000000000000000095 /* source.properties */; };
+		B000000000000000000000A0 /* idevice_id in Embed iOS Device Tools */ = {isa = PBXBuildFile; fileRef = B000000000000000000000B0 /* idevice_id */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B000000000000000000000A1 /* ideviceinfo in Embed iOS Device Tools */ = {isa = PBXBuildFile; fileRef = B000000000000000000000B1 /* ideviceinfo */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B000000000000000000000A2 /* idevicepair in Embed iOS Device Tools */ = {isa = PBXBuildFile; fileRef = B000000000000000000000B2 /* idevicepair */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B000000000000000000000A3 /* idevicesyslog in Embed iOS Device Tools */ = {isa = PBXBuildFile; fileRef = B000000000000000000000B3 /* idevicesyslog */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B000000000000000000000A4 /* libcrypto.3.dylib in Embed iOS Device Libraries */ = {isa = PBXBuildFile; fileRef = B000000000000000000000B4 /* libcrypto.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B000000000000000000000A5 /* libimobiledevice-1.0.6.dylib in Embed iOS Device Libraries */ = {isa = PBXBuildFile; fileRef = B000000000000000000000B5 /* libimobiledevice-1.0.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B000000000000000000000A6 /* libimobiledevice-glue-1.0.0.dylib in Embed iOS Device Libraries */ = {isa = PBXBuildFile; fileRef = B000000000000000000000B6 /* libimobiledevice-glue-1.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B000000000000000000000A7 /* libplist-2.0.4.dylib in Embed iOS Device Libraries */ = {isa = PBXBuildFile; fileRef = B000000000000000000000B7 /* libplist-2.0.4.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B000000000000000000000A8 /* libssl.3.dylib in Embed iOS Device Libraries */ = {isa = PBXBuildFile; fileRef = B000000000000000000000B8 /* libssl.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B000000000000000000000A9 /* libusbmuxd-2.0.7.dylib in Embed iOS Device Libraries */ = {isa = PBXBuildFile; fileRef = B000000000000000000000B9 /* libusbmuxd-2.0.7.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B000000000000000000000AA /* NOTICE.txt in Copy iOS Device Notices */ = {isa = PBXBuildFile; fileRef = B000000000000000000000BA /* NOTICE.txt */; };
+		B000000000000000000000AB /* source.properties in Copy iOS Device Notices */ = {isa = PBXBuildFile; fileRef = B000000000000000000000BB /* source.properties */; };
+		B000000000000000000000AC /* README.md in Copy iOS Device Notices */ = {isa = PBXBuildFile; fileRef = B000000000000000000000BC /* README.md */; };
+		B000000000000000000000AD /* Notices in Copy iOS Device Notices */ = {isa = PBXBuildFile; fileRef = B000000000000000000000BD /* Notices */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +61,50 @@
 			name = "Copy ADB Notices";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B000000000000000000000D0 /* Embed iOS Device Tools */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				B000000000000000000000A0 /* idevice_id in Embed iOS Device Tools */,
+				B000000000000000000000A1 /* ideviceinfo in Embed iOS Device Tools */,
+				B000000000000000000000A2 /* idevicepair in Embed iOS Device Tools */,
+				B000000000000000000000A3 /* idevicesyslog in Embed iOS Device Tools */,
+			);
+			name = "Embed iOS Device Tools";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B000000000000000000000D1 /* Embed iOS Device Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B000000000000000000000A4 /* libcrypto.3.dylib in Embed iOS Device Libraries */,
+				B000000000000000000000A5 /* libimobiledevice-1.0.6.dylib in Embed iOS Device Libraries */,
+				B000000000000000000000A6 /* libimobiledevice-glue-1.0.0.dylib in Embed iOS Device Libraries */,
+				B000000000000000000000A7 /* libplist-2.0.4.dylib in Embed iOS Device Libraries */,
+				B000000000000000000000A8 /* libssl.3.dylib in Embed iOS Device Libraries */,
+				B000000000000000000000A9 /* libusbmuxd-2.0.7.dylib in Embed iOS Device Libraries */,
+			);
+			name = "Embed iOS Device Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B000000000000000000000D2 /* Copy iOS Device Notices */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ThirdPartyNotices/iOSDeviceTools;
+			dstSubfolderSpec = 7;
+			files = (
+				B000000000000000000000AA /* NOTICE.txt in Copy iOS Device Notices */,
+				B000000000000000000000AB /* source.properties in Copy iOS Device Notices */,
+				B000000000000000000000AC /* README.md in Copy iOS Device Notices */,
+				B000000000000000000000AD /* Notices in Copy iOS Device Notices */,
+			);
+			name = "Copy iOS Device Notices";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +120,20 @@
 		B00000000000000000000094 /* NOTICE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = NOTICE.txt; sourceTree = "<group>"; };
 		B00000000000000000000095 /* source.properties */ = {isa = PBXFileReference; lastKnownFileType = text; path = source.properties; sourceTree = "<group>"; };
 		B00000000000000000000096 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B000000000000000000000B0 /* idevice_id */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = idevice_id; sourceTree = "<group>"; };
+		B000000000000000000000B1 /* ideviceinfo */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ideviceinfo; sourceTree = "<group>"; };
+		B000000000000000000000B2 /* idevicepair */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = idevicepair; sourceTree = "<group>"; };
+		B000000000000000000000B3 /* idevicesyslog */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = idevicesyslog; sourceTree = "<group>"; };
+		B000000000000000000000B4 /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libcrypto.3.dylib; sourceTree = "<group>"; };
+		B000000000000000000000B5 /* libimobiledevice-1.0.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libimobiledevice-1.0.6.dylib"; sourceTree = "<group>"; };
+		B000000000000000000000B6 /* libimobiledevice-glue-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libimobiledevice-glue-1.0.0.dylib"; sourceTree = "<group>"; };
+		B000000000000000000000B7 /* libplist-2.0.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libplist-2.0.4.dylib"; sourceTree = "<group>"; };
+		B000000000000000000000B8 /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libssl.3.dylib; sourceTree = "<group>"; };
+		B000000000000000000000B9 /* libusbmuxd-2.0.7.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libusbmuxd-2.0.7.dylib"; sourceTree = "<group>"; };
+		B000000000000000000000BA /* NOTICE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = NOTICE.txt; sourceTree = "<group>"; };
+		B000000000000000000000BB /* source.properties */ = {isa = PBXFileReference; lastKnownFileType = text; path = source.properties; sourceTree = "<group>"; };
+		B000000000000000000000BC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B000000000000000000000BD /* Notices */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Notices; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -132,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				B00000000000000000000098 /* ADB */,
+				B000000000000000000000C0 /* iOSDeviceTools */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -147,6 +220,43 @@
 			path = ADB;
 			sourceTree = "<group>";
 		};
+		B000000000000000000000C0 /* iOSDeviceTools */ = {
+			isa = PBXGroup;
+			children = (
+				B000000000000000000000C1 /* bin */,
+				B000000000000000000000C2 /* lib */,
+				B000000000000000000000BD /* Notices */,
+				B000000000000000000000BA /* NOTICE.txt */,
+				B000000000000000000000BB /* source.properties */,
+				B000000000000000000000BC /* README.md */,
+			);
+			path = iOSDeviceTools;
+			sourceTree = "<group>";
+		};
+		B000000000000000000000C1 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				B000000000000000000000B0 /* idevice_id */,
+				B000000000000000000000B1 /* ideviceinfo */,
+				B000000000000000000000B2 /* idevicepair */,
+				B000000000000000000000B3 /* idevicesyslog */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		B000000000000000000000C2 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				B000000000000000000000B4 /* libcrypto.3.dylib */,
+				B000000000000000000000B5 /* libimobiledevice-1.0.6.dylib */,
+				B000000000000000000000B6 /* libimobiledevice-glue-1.0.0.dylib */,
+				B000000000000000000000B7 /* libplist-2.0.4.dylib */,
+				B000000000000000000000B8 /* libssl.3.dylib */,
+				B000000000000000000000B9 /* libusbmuxd-2.0.7.dylib */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -159,6 +269,9 @@
 				B00000000000000000000044 /* Resources */,
 				B00000000000000000000099 /* Embed ADB */,
 				B0000000000000000000009A /* Copy ADB Notices */,
+				B000000000000000000000D1 /* Embed iOS Device Libraries */,
+				B000000000000000000000D0 /* Embed iOS Device Tools */,
+				B000000000000000000000D2 /* Copy iOS Device Notices */,
 			);
 			buildRules = (
 			);

@@ -1,12 +1,15 @@
 # GameLog
 
-GameLog 是一款面向 Android 游戏测试与客户端开发的原生 macOS Logcat 工具。它把实时日志、测试机截图、测试机录屏和导出材料组织在同一个调试会话中，不需要先打开 Android Studio 或创建空工程。
+GameLog 是一款面向移动游戏测试与客户端开发的原生 macOS 设备日志工具。它把实时日志、测试机截图、Android 录屏和导出材料组织在同一个调试会话中，不需要先打开 Android Studio、Xcode Console 或创建空工程。
 
 当前版本为 `1.2.2`，目标系统为 macOS 26 及以上。界面采用 SwiftUI 多窗口、Sidebar、Toolbar、Search、Inspector、会话归档和 Settings；高吞吐日志区由 `NSTableView` 承担。
 
 ## 已实现功能
 
 - App 内置 Universal ADB，安装后无需单独配置 Android SDK；设置中仍可选择外部 ADB 作为高级覆盖，并显示实际来源、路径、版本和故障恢复入口。
+- App 内置 iOS 真机发现与日志工具，Apple Silicon Mac 无需单独安装 `libimobiledevice`；连接、解锁并信任 Mac 后即可发现 iPhone。
+- iOS 真机支持按运行中进程采集设备日志，并通过 macOS 屏幕采集通道保存即时截图；首次截图由系统请求相机访问权限。
+- iOS 无侵入录屏仅列入后续计划，当前版本不提供开始按钮或后台录制路径。
 - 每 2 秒监测 USB、Wi‑Fi 和模拟器设备，展示在线、未授权、离线及 Android 版本/API。
 - 从运行中进程、手动输入和按设备保存的最近包名中选择目标；支持多 PID 与进程重启跟踪。
 - 通过设置中的 Android 11+ 无线调试流程执行 `adb pair`、`adb connect` 和断开连接。
@@ -57,6 +60,7 @@ open GameLog.xcodeproj
 - Xcode 26+
 - Swift 6.2+
 - 无需另外安装 Android Platform Tools；ADB 已随 GameLog 提供
+- Apple Silicon Mac 无需另外安装 iOS 命令行工具；iOS 辅助工具已随 GameLog 提供
 
 ```bash
 ./script/build_and_run.sh
@@ -106,7 +110,7 @@ GAMELOG_NOTARY_PROFILE="gamelog-notary" \
 ./script/package_release.sh
 ```
 
-脚本会执行 Xcode Release Archive，先签名内置 ADB、再签名外层 App，随后完成 ZIP 打包；在提供公证配置时还会调用 `notarytool`、staple 和 Gatekeeper 校验。Developer ID 证书和 Apple 公证凭据不包含在仓库中。
+脚本会执行 Xcode Release Archive，按“iOS 动态库 → iOS 工具 → ADB → 外层 App”的顺序签名，随后完成 ZIP 打包；在提供公证配置时还会调用 `notarytool`、staple 和 Gatekeeper 校验。Developer ID 证书和 Apple 公证凭据不包含在仓库中。
 
 发行脚本会自动调用预检；也可以单独复核已有产物：
 
@@ -135,11 +139,15 @@ GAMELOG_REQUIRE_NOTARIZATION=1 \
 - [macOS 26 交互规格](Docs/GameLog-Interaction-Spec.md)
 - [技术架构与模块接口](Docs/GameLog-Technical-Architecture.md)
 - [实现与验收审计](Docs/GameLog-Implementation-Audit.md)
+- [iOS 真机支持范围与计划](Docs/GameLog-iOS-Physical-Device-Plan.md)
 - [选定的 macOS 26 界面稿](Docs/Assets/gamelog-macos26-selected-concept.png)
 
 ## 已知产品约束
 
 - 每个窗口仍限制为单设备、单活动会话；可通过多个窗口并行采集。
+- 当前内置 iOS 辅助工具为 Apple Silicon (`arm64`)；Intel Mac 仍可完整使用 Android 功能，但 iOS 功能会显示为不可用。
+- iOS 截图要求设备通过 USB 连接、已解锁并信任此 Mac，且用户允许 GameLog 的相机访问权限。
+- iOS 无侵入录屏尚未实现；它不会复用 Android `screenrecord`，也不会静默开启采集。
 - 录屏不包含设备音频；旋转屏幕时 Android 原生录屏可能裁切。
 - 旧设备需要每 180 秒切换原生录屏分段，切换点可能出现很短的画面间隔。
 - 受保护内容的截图可能为黑屏，应用无法可靠区分系统保护与真实黑色画面。

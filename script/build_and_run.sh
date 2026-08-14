@@ -14,6 +14,19 @@ DIST_DIR="$PROJECT_ROOT/dist"
 APP_BUNDLE="$DIST_DIR/$APP_NAME.app"
 BUNDLED_ADB="$APP_BUNDLE/Contents/MacOS/adb"
 ADB_NOTICE="$APP_BUNDLE/Contents/Resources/ThirdPartyNotices/ADB/NOTICE.txt"
+IOS_TOOLS_DIR="$APP_BUNDLE/Contents/MacOS"
+IOS_LIBRARIES_DIR="$APP_BUNDLE/Contents/Frameworks"
+IOS_NOTICE="$APP_BUNDLE/Contents/Resources/ThirdPartyNotices/iOSDeviceTools/NOTICE.txt"
+IOS_SOURCE_PROPERTIES="$APP_BUNDLE/Contents/Resources/ThirdPartyNotices/iOSDeviceTools/source.properties"
+IOS_TOOLS=(idevice_id ideviceinfo idevicepair idevicesyslog)
+IOS_LIBRARIES=(
+    libcrypto.3.dylib
+    libimobiledevice-1.0.6.dylib
+    libimobiledevice-glue-1.0.0.dylib
+    libplist-2.0.4.dylib
+    libssl.3.dylib
+    libusbmuxd-2.0.7.dylib
+)
 
 cd "$PROJECT_ROOT"
 
@@ -39,11 +52,25 @@ rm -rf "$APP_BUNDLE"
 /usr/bin/ditto "$BUILT_APP" "$APP_BUNDLE"
 test -x "$BUNDLED_ADB"
 test -s "$ADB_NOTICE"
+test -s "$IOS_NOTICE"
+test -s "$IOS_SOURCE_PROPERTIES"
+for tool in "${IOS_TOOLS[@]}"; do
+    test -x "$IOS_TOOLS_DIR/$tool"
+done
+for library in "${IOS_LIBRARIES[@]}"; do
+    test -f "$IOS_LIBRARIES_DIR/$library"
+done
 
 # Debug builds produced by recent Xcode versions load the app body from
 # GameLog.debug.dylib. An ad-hoc signature has no Team ID, so enabling the
 # hardened runtime here would make library validation reject that dylib.
 # Release packaging uses package_release.sh and keeps the hardened runtime.
+for library in "${IOS_LIBRARIES[@]}"; do
+    /usr/bin/codesign --force --sign - "$IOS_LIBRARIES_DIR/$library" >/dev/null
+done
+for tool in "${IOS_TOOLS[@]}"; do
+    /usr/bin/codesign --force --sign - "$IOS_TOOLS_DIR/$tool" >/dev/null
+done
 /usr/bin/codesign --force --sign - "$BUNDLED_ADB" >/dev/null
 DEBUG_DYLIB="$APP_BUNDLE/Contents/MacOS/GameLog.debug.dylib"
 if [[ -f "$DEBUG_DYLIB" ]]; then
@@ -68,6 +95,7 @@ case "$ACTION" in
         /usr/bin/plutil -lint "$APP_BUNDLE/Contents/Info.plist"
         test -s "$APP_BUNDLE/Contents/Resources/AppIcon.icns"
         "$BUNDLED_ADB" version | /usr/bin/grep -q "Android Debug Bridge version"
+        "$IOS_TOOLS_DIR/idevice_id" --version | /usr/bin/grep -q "idevice_id"
         test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$APP_BUNDLE/Contents/Info.plist")" = "1.2.2"
         /usr/bin/open -n "$APP_BUNDLE"
         for _ in {1..20}; do

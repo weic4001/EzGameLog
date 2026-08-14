@@ -1,0 +1,16 @@
+GameLog includes a minimal Apple Silicon build of libimobiledevice tools and
+their runtime libraries for iOS physical-device discovery and log collection.
+
+Component versions, provenance, architecture, and checksums are recorded in
+source.properties. The complete upstream license texts are included in the
+Notices directory distributed with the application:
+
+- libimobiledevice
+- libimobiledevice-glue
+- libplist
+- libusbmuxd
+- OpenSSL
+- libtasn1
+- libtatsu
+
+Copyright and license terms remain those of the respective upstream projects.
